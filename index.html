@@ -4,768 +4,510 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OrionWavesStudio — Android Apps</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #080b14;
-  --surface: #0d1120;
-  --card: #111827;
-  --border: rgba(99,179,237,0.12);
-  --accent-blue: #63b3ed;
-  --accent-teal: #4fd1c5;
-  --accent-purple: #9f7aea;
-  --accent-pink: #f687b3;
-  --text: #e2e8f0;
-  --muted: #718096;
-  --glow-blue: rgba(99,179,237,0.15);
-  --glow-purple: rgba(159,122,234,0.15);
+:root{
+  --bg:#04060f;--bg2:#080b18;--card:rgba(255,255,255,.03);
+  --border:rgba(100,170,255,.1);--borderhov:rgba(100,170,255,.32);
+  --c1:#5eead4;--c2:#60a5fa;--c3:#a78bfa;--c4:#f472b6;--c5:#fb923c;
+  --text:#e8f0fe;--muted:#64748b;
+  --fd:'Syne',sans-serif;--fb:'Figtree',sans-serif;
 }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.7;overflow-x:hidden;cursor:none}
+a{color:inherit;text-decoration:none}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* CURSOR */
+#cur{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:screen}
+#cur .dot{width:8px;height:8px;background:var(--c1);border-radius:50%;position:absolute;transform:translate(-50%,-50%);box-shadow:0 0 12px var(--c1);transition:width .2s,height .2s,background .2s}
+#cur .ring{width:42px;height:42px;border:1px solid rgba(94,234,212,.45);border-radius:50%;position:absolute;transform:translate(-50%,-50%);transition:all .1s ease-out}
+body:has(a:hover) #cur .dot,body:has(button:hover) #cur .dot{width:14px;height:14px;background:var(--c4);box-shadow:0 0 20px var(--c4)}
+body:has(a:hover) #cur .ring,body:has(button:hover) #cur .ring{width:56px;height:56px;border-color:rgba(244,114,182,.45)}
 
-html { scroll-behavior: smooth; }
+/* CANVAS */
+#cv{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
-  overflow-x: hidden;
+/* GRAIN */
+body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.4}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
+nav.sc{background:rgba(4,6,15,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nlogo{font-family:var(--fd);font-weight:700;font-size:1rem;display:flex;align-items:center;gap:.55rem}
+.norb{width:26px;height:26px;border-radius:50%;background:conic-gradient(var(--c1),var(--c2),var(--c3),var(--c1));animation:spin 5s linear infinite;box-shadow:0 0 14px rgba(94,234,212,.4);flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.nlinks{display:flex;gap:2.25rem;list-style:none}
+.nlinks a{font-size:.85rem;font-weight:500;color:var(--muted);transition:color .2s}
+.nlinks a:hover{color:var(--text)}
+.ncta{background:linear-gradient(135deg,var(--c1),var(--c2));color:#04060f !important;padding:.45rem 1.2rem;border-radius:100px;font-weight:700 !important;font-size:.78rem !important;box-shadow:0 0 24px rgba(94,234,212,.25);transition:box-shadow .3s,transform .2s !important}
+.ncta:hover{box-shadow:0 0 48px rgba(94,234,212,.55) !important;transform:translateY(-2px)}
+
+/* HERO */
+.hero{position:relative;z-index:2;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 6rem;overflow:hidden}
+.orb-bg{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+.ob1{width:420px;height:420px;background:radial-gradient(circle,rgba(94,234,212,.16),transparent 70%);top:5%;left:-8%;animation:flt 9s ease-in-out infinite}
+.ob2{width:500px;height:500px;background:radial-gradient(circle,rgba(96,165,250,.13),transparent 70%);top:15%;right:-12%;animation:flt 7s ease-in-out infinite;animation-delay:-3s}
+.ob3{width:320px;height:320px;background:radial-gradient(circle,rgba(167,139,250,.1),transparent 70%);bottom:8%;left:28%;animation:flt 8s ease-in-out infinite;animation-delay:-6s}
+@keyframes flt{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.04)}}
+
+.badge{display:inline-flex;align-items:center;gap:.45rem;border:1px solid rgba(94,234,212,.22);border-radius:100px;padding:.32rem .95rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--c1);font-weight:600;margin-bottom:1.75rem;background:rgba(94,234,212,.05);opacity:0;animation:rise .8s ease .2s forwards}
+.bpulse{width:6px;height:6px;border-radius:50%;background:var(--c1);animation:pulse 1.8s ease infinite;box-shadow:0 0 8px var(--c1)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.htitle{font-family:var(--fd);font-size:clamp(3.8rem,11vw,8.5rem);font-weight:800;line-height:.9;letter-spacing:-.05em;margin-bottom:1.5rem;opacity:0;animation:rise .9s ease .35s forwards}
+.w1{display:block;color:var(--text)}
+.w2{display:block;background:linear-gradient(135deg,var(--c1) 0%,var(--c2) 35%,var(--c3) 70%,var(--c4) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:hue 8s linear infinite}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+
+.hsub{max-width:500px;font-size:1.05rem;color:var(--muted);font-weight:300;margin:0 auto 2.75rem;opacity:0;animation:rise .9s ease .5s forwards;line-height:1.65}
+.hbtns{display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:rise .9s ease .65s forwards}
+
+.bglow{display:inline-flex;align-items:center;gap:.45rem;background:linear-gradient(135deg,var(--c1),var(--c2));color:#04060f;font-weight:700;font-size:.875rem;padding:.88rem 2rem;border-radius:100px;border:none;cursor:none;transition:transform .2s,box-shadow .3s;box-shadow:0 0 40px rgba(94,234,212,.3),inset 0 1px 0 rgba(255,255,255,.2)}
+.bglow:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 0 70px rgba(94,234,212,.65),inset 0 1px 0 rgba(255,255,255,.2)}
+.bghost{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.04);color:var(--text);font-weight:500;font-size:.875rem;padding:.88rem 2rem;border-radius:100px;border:1px solid var(--border);cursor:none;transition:border-color .2s,background .2s,transform .2s}
+.bghost:hover{border-color:var(--borderhov);background:rgba(255,255,255,.07);transform:translateY(-2px)}
+
+.smouse{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:rise .8s ease 1s forwards}
+.mbody{width:22px;height:36px;border:1.5px solid rgba(94,234,212,.3);border-radius:100px;display:flex;justify-content:center;padding-top:6px}
+.mwheel{width:3px;height:8px;background:var(--c1);border-radius:100px;animation:mscr 1.5s ease infinite}
+@keyframes mscr{0%,100%{transform:translateY(0);opacity:1}80%{transform:translateY(10px);opacity:0}}
+.slbl{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* MARQUEE */
+.mwrap{position:relative;z-index:2;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.15rem 0;background:rgba(255,255,255,.01)}
+.mtrack{display:flex;gap:3rem;white-space:nowrap;animation:mq 22s linear infinite}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mitem{display:inline-flex;align-items:center;gap:.7rem;font-family:var(--fd);font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mdot{width:4px;height:4px;border-radius:50%;background:var(--c1);flex-shrink:0}
+
+/* SECTION */
+.sec{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:8rem 2.5rem}
+.seye{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--c1);font-weight:600;margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem}
+.seye::before{content:'';width:18px;height:1px;background:var(--c1)}
+.stitle{font-family:var(--fd);font-size:clamp(2rem,5vw,3.6rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-bottom:1.15rem}
+.ssub{color:var(--muted);font-size:.95rem;font-weight:300;max-width:520px;line-height:1.65}
+
+/* STATS */
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:4rem;background:var(--border);border-radius:20px;overflow:hidden;border:1px solid var(--border)}
+.scell{background:var(--bg2);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;transition:background .3s}
+.scell::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--c2),transparent);opacity:0;transition:opacity .3s}
+.scell:hover{background:rgba(96,165,250,.04)}
+.scell:hover::before{opacity:1}
+.snum{font-family:var(--fd);font-size:2.8rem;font-weight:800;letter-spacing:-.05em;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
+.slbl{color:var(--muted);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;margin-top:.2rem;font-weight:500}
+
+/* APP CARDS */
+.agrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem;margin-top:4rem}
+.acard{background:var(--card);border:1px solid var(--border);border-radius:28px;padding:2.25rem;position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s;transform-style:preserve-3d;will-change:transform}
+.acard::before{content:'';position:absolute;inset:0;border-radius:28px;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(94,234,212,.07) 0%,transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.acard:hover{border-color:var(--borderhov);box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(94,234,212,.07)}
+.acard:hover::before{opacity:1}
+
+.shimmer{position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;border-radius:30px;background:conic-gradient(from var(--ang,0deg),transparent 0deg,rgba(94,234,212,.28) 60deg,transparent 120deg);z-index:-1;opacity:0;transition:opacity .3s;animation:shrot 3s linear infinite}
+@keyframes shrot{to{--ang:360deg}}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+.acard:hover .shimmer{opacity:1}
+
+.aicon{width:68px;height:68px;border-radius:18px;margin-bottom:1.6rem;overflow:hidden;flex-shrink:0}
+.aicon img{width:100%;height:100%;object-fit:cover;display:block}
+.aicon-e{width:68px;height:68px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:1.6rem}
+.atag{display:inline-block;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:.25rem .75rem;border-radius:100px;margin-bottom:.9rem}
+.t1{background:rgba(94,234,212,.1);color:var(--c1);border:1px solid rgba(94,234,212,.2)}
+.t2{background:rgba(251,146,60,.1);color:var(--c5);border:1px solid rgba(251,146,60,.2)}
+.t3{background:rgba(167,139,250,.1);color:var(--c3);border:1px solid rgba(167,139,250,.2)}
+.aname{font-family:var(--fd);font-size:1.7rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.55rem}
+.adesc{color:var(--muted);font-size:.875rem;line-height:1.65;font-weight:300;margin-bottom:1.4rem}
+.apills{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.6rem}
+.pill{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:100px;padding:.2rem .65rem;font-size:.7rem;color:var(--muted)}
+.alink{display:inline-flex;align-items:center;gap:.4rem;font-size:.83rem;font-weight:600;color:var(--c1);position:relative}
+.alink::after{content:'';position:absolute;bottom:-2px;left:0;right:100%;height:1px;background:var(--c1);transition:right .3s}
+.alink:hover::after{right:0}
+.alink svg{transition:transform .2s}
+.alink:hover svg{transform:translateX(4px)}
+
+.mockup{margin:1.4rem -2.25rem -2.25rem;background:linear-gradient(180deg,rgba(255,255,255,.03) 0%,transparent 100%);border-top:1px solid var(--border);padding:1.15rem 2.25rem 1.4rem;display:flex;gap:.5rem;overflow:hidden}
+.ms{flex:0 0 auto;width:76px;height:125px;background:var(--bg);border-radius:9px;border:1px solid rgba(255,255,255,.06);overflow:hidden;position:relative}
+.msi{position:absolute;inset:0;display:flex;flex-direction:column;padding:6px;gap:3px}
+.mb{height:5px;border-radius:3px;background:rgba(255,255,255,.07)}
+.mba{background:linear-gradient(90deg,var(--c1),var(--c2));opacity:.6}
+.mba2{background:linear-gradient(90deg,var(--c3),var(--c4));opacity:.5}
+.mc{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--c1),var(--c2));opacity:.3;margin:3px auto}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px}
+.mgb{height:18px;background:rgba(255,255,255,.05);border-radius:3px}
+
+/* TESTIMONIALS */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.15rem;margin-top:4rem}
+.tcard{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:1.65rem;transition:border-color .3s,transform .3s}
+.tcard:hover{border-color:var(--borderhov);transform:translateY(-4px)}
+.tstars{color:#fbbf24;font-size:.9rem;margin-bottom:.9rem;letter-spacing:2px}
+.ttxt{font-size:.875rem;color:var(--text);line-height:1.65;font-style:italic;font-weight:300;margin-bottom:1.15rem}
+.tauth{display:flex;align-items:center;gap:.7rem}
+.tav{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#04060f;flex-shrink:0}
+.tname{font-size:.83rem;font-weight:600}
+.tsrc{font-size:.7rem;color:var(--muted)}
+
+/* ROADMAP */
+.roadmap{position:relative;margin-top:4rem;padding-left:2rem}
+.roadmap::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--c2),var(--c3),transparent)}
+.ritem{position:relative;margin-bottom:2.4rem;padding-left:2rem}
+.ritem::before{content:'';position:absolute;left:-7px;top:7px;width:14px;height:14px;border-radius:50%;border:2px solid var(--border);background:var(--bg);transition:border-color .3s,box-shadow .3s}
+.ritem.done::before{border-color:var(--c1);background:var(--c1);box-shadow:0 0 16px rgba(94,234,212,.5)}
+.ritem.active::before{border-color:var(--c2);box-shadow:0 0 16px rgba(96,165,250,.5);animation:blink .8s ease infinite alternate}
+@keyframes blink{from{box-shadow:0 0 8px rgba(96,165,250,.4)}to{box-shadow:0 0 28px rgba(96,165,250,.9)}}
+.rbadge{display:inline-block;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:.18rem .6rem;border-radius:100px;margin-bottom:.45rem}
+.bd{background:rgba(94,234,212,.1);color:var(--c1)}
+.ba{background:rgba(96,165,250,.1);color:var(--c2)}
+.bs{background:rgba(167,139,250,.1);color:var(--c3)}
+.bf{background:rgba(100,116,139,.1);color:var(--muted)}
+.rtitle{font-family:var(--fd);font-size:1.1rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.3rem}
+.rdesc{font-size:.83rem;color:var(--muted);font-weight:300}
+
+/* ABOUT */
+.alayout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;margin-top:3rem}
+.avis{position:relative;aspect-ratio:1;max-width:380px}
+.planet{width:100%;aspect-ratio:1;border-radius:50%;background:conic-gradient(from 0deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c1));filter:blur(42px);opacity:.22;animation:spin 14s linear infinite}
+.pcore{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52%;aspect-ratio:1;border-radius:50%;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:800;font-size:1.4rem;letter-spacing:-.03em;text-align:center}
+.pring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotateX(75deg);width:130%;aspect-ratio:2/1;border-radius:50%;border:1px solid rgba(94,234,212,.18);pointer-events:none}
+.pring2{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotateX(75deg);width:165%;aspect-ratio:2/1;border-radius:50%;border:1px solid rgba(96,165,250,.09);pointer-events:none}
+.atxt p{color:var(--muted);font-weight:300;margin-bottom:1rem;line-height:1.7}
+.avals{margin-top:2rem;display:flex;flex-direction:column;gap:.7rem}
+.aval{display:flex;align-items:center;gap:.7rem;font-size:.88rem;color:var(--text);font-weight:400}
+.avico{font-size:1rem;flex-shrink:0}
+
+/* CONTACT */
+.cbox{background:var(--bg2);border:1px solid var(--border);border-radius:28px;padding:4rem;text-align:center;margin-top:4rem;position:relative;overflow:hidden}
+.cbox::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:280px;height:1px;background:linear-gradient(90deg,transparent,var(--c1),var(--c2),transparent)}
+.cbox h3{font-family:var(--fd);font-size:2.4rem;font-weight:800;letter-spacing:-.04em;margin-bottom:.9rem}
+.cbox p{color:var(--muted);font-weight:300;max-width:380px;margin:0 auto 2.25rem}
+.cemail{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,rgba(94,234,212,.08),rgba(96,165,250,.08));border:1px solid rgba(94,234,212,.18);border-radius:12px;padding:.9rem 2rem;font-family:var(--fd);font-size:.95rem;font-weight:700;color:var(--c1);transition:border-color .3s,box-shadow .3s,transform .2s}
+.cemail:hover{border-color:rgba(94,234,212,.4);box-shadow:0 0 40px rgba(94,234,212,.14);transform:translateY(-2px)}
+.co{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.co1{width:280px;height:280px;background:radial-gradient(circle,rgba(94,234,212,.07),transparent 70%);top:-100px;left:-100px}
+.co2{width:280px;height:280px;background:radial-gradient(circle,rgba(167,139,250,.07),transparent 70%);bottom:-100px;right:-100px}
+
+/* FOOTER */
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.75rem 2.5rem;max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem}
+.flogo{font-family:var(--fd);font-weight:700;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:.45rem}
+.flinks{display:flex;gap:1.75rem;flex-wrap:wrap}
+.flinks a{color:var(--muted);font-size:.8rem;transition:color .2s}
+.flinks a:hover{color:var(--text)}
+.fright{color:var(--muted);font-size:.76rem}
+
+/* HR */
+.hr{position:relative;z-index:2;max-width:1200px;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv.up{opacity:1;transform:translateY(0)}
+
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .nlinks{display:none}
+  .sgrid{grid-template-columns:1fr 1fr}
+  .alayout{grid-template-columns:1fr;gap:3rem}
+  .avis{max-width:260px;margin:0 auto}
+  .cbox{padding:2.25rem 1.5rem}
+  .sec{padding:5rem 1.5rem}
+  footer{flex-direction:column;align-items:flex-start}
 }
-
-/* ── CANVAS STARS ── */
-#stars {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* ── NAV ── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 1.25rem 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(8,11,20,0.7);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-
-.nav-logo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 1.1rem;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.nav-logo-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(0.8); }
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-links a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 400;
-  transition: color 0.2s;
-  letter-spacing: 0.01em;
-}
-
-.nav-links a:hover { color: var(--text); }
-
-/* ── HERO ── */
-.hero {
-  position: relative;
-  z-index: 1;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 8rem 2rem 4rem;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(99,179,237,0.08);
-  border: 1px solid rgba(99,179,237,0.2);
-  border-radius: 100px;
-  padding: 0.4rem 1rem;
-  font-size: 0.8rem;
-  color: var(--accent-blue);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-  animation: fadeUp 0.8s ease both;
-}
-
-.hero-badge-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--accent-teal);
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-.hero-title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(3rem, 8vw, 6.5rem);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  margin-bottom: 1.5rem;
-  animation: fadeUp 0.8s ease 0.1s both;
-}
-
-.hero-title .line1 { display: block; color: var(--text); }
-.hero-title .line2 {
-  display: block;
-  background: linear-gradient(135deg, var(--accent-teal) 0%, var(--accent-blue) 40%, var(--accent-purple) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-sub {
-  font-size: 1.15rem;
-  color: var(--muted);
-  max-width: 480px;
-  font-weight: 300;
-  margin-bottom: 3rem;
-  animation: fadeUp 0.8s ease 0.2s both;
-}
-
-.hero-cta {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  animation: fadeUp 0.8s ease 0.3s both;
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
-  color: #080b14;
-  font-weight: 600;
-  font-size: 0.9rem;
-  padding: 0.85rem 1.75rem;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 0 30px rgba(99,179,237,0.3);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 50px rgba(99,179,237,0.5);
-}
-
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: transparent;
-  color: var(--text);
-  font-weight: 400;
-  font-size: 0.9rem;
-  padding: 0.85rem 1.75rem;
-  border-radius: 100px;
-  text-decoration: none;
-  border: 1px solid var(--border);
-  transition: border-color 0.2s, background 0.2s;
-}
-
-.btn-secondary:hover {
-  border-color: rgba(99,179,237,0.4);
-  background: var(--glow-blue);
-}
-
-/* ── SCROLL INDICATOR ── */
-.scroll-indicator {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--muted);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  animation: fadeUp 1s ease 0.6s both;
-}
-
-.scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--accent-blue), transparent);
-  animation: scrollLine 1.5s ease-in-out infinite;
-}
-
-@keyframes scrollLine {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  51% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
-
-/* ── SECTIONS ── */
-section {
-  position: relative;
-  z-index: 1;
-  padding: 6rem 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.section-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent-teal);
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
-
-.section-title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-}
-
-/* ── APPS GRID ── */
-.apps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-
-.app-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 2rem;
-  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.app-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.app-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(99,179,237,0.3);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px var(--glow-blue);
-}
-
-.app-card:hover::before { opacity: 1; }
-
-.app-card-glow {
-  position: absolute;
-  top: -50px; right: -50px;
-  width: 150px; height: 150px;
-  border-radius: 50%;
-  opacity: 0.06;
-  filter: blur(40px);
-}
-
-.app-icon {
-  width: 64px; height: 64px;
-  border-radius: 16px;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.8rem;
-}
-
-.app-icon img {
-  width: 64px; height: 64px;
-  border-radius: 16px;
-  object-fit: cover;
-}
-
-.app-tag {
-  display: inline-block;
-  background: rgba(99,179,237,0.1);
-  color: var(--accent-blue);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.75rem;
-  border-radius: 100px;
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-
-.app-tag.sms { background: rgba(249,130,74,0.1); color: #f9824a; }
-.app-tag.coming { background: rgba(159,122,234,0.1); color: var(--accent-purple); }
-
-.app-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
-}
-
-.app-desc {
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  font-weight: 300;
-}
-
-.app-features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.feature-pill {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 100px;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-
-.app-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--accent-blue);
-  text-decoration: none;
-  transition: gap 0.2s;
-}
-
-.app-link:hover { gap: 0.75rem; }
-
-/* ── STATS ── */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 3rem;
-}
-
-.stat-item {
-  background: var(--card);
-  padding: 2rem;
-  text-align: center;
-}
-
-.stat-number {
-  font-family: 'Syne', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: block;
-}
-
-.stat-label {
-  color: var(--muted);
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-top: 0.25rem;
-}
-
-/* ── ABOUT ── */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  margin-top: 3rem;
-}
-
-@media (max-width: 700px) {
-  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-  nav { padding: 1rem 1.25rem; }
-  .nav-links { display: none; }
-}
-
-.about-text p {
-  color: var(--muted);
-  font-weight: 300;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-}
-
-.about-visual {
-  position: relative;
-}
-
-.orb {
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: conic-gradient(from 0deg, var(--accent-teal), var(--accent-blue), var(--accent-purple), var(--accent-pink), var(--accent-teal));
-  filter: blur(60px);
-  opacity: 0.3;
-  margin: 0 auto;
-  animation: orbRotate 8s linear infinite;
-}
-
-@keyframes orbRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.orb-inner {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 120px; height: 120px;
-  background: var(--card);
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 1.1rem;
-  color: var(--text);
-}
-
-/* ── FOOTER ── */
-footer {
-  position: relative;
-  z-index: 1;
-  border-top: 1px solid var(--border);
-  padding: 3rem 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: gap;
-  gap: 1rem;
-}
-
-.footer-logo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--muted);
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.footer-links a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 0.85rem;
-  transition: color 0.2s;
-}
-
-.footer-links a:hover { color: var(--text); }
-
-.footer-copy {
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ── DIVIDER ── */
-.divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
-  position: relative;
-  z-index: 1;
+@media(max-width:480px){
+  .sgrid{grid-template-columns:1fr 1fr}
+  .htitle{font-size:clamp(3rem,15vw,5rem)}
 }
 </style>
 </head>
 <body>
 
-<canvas id="stars"></canvas>
+<div id="cur"><div class="dot"></div><div class="ring"></div></div>
+<canvas id="cv"></canvas>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <span class="nav-logo-dot"></span>
-    OrionWavesStudio
-  </a>
-  <ul class="nav-links">
-    <li><a href="#apps">Applications</a></li>
+<nav id="nav">
+  <a href="#" class="nlogo"><div class="norb"></div>OrionWavesStudio</a>
+  <ul class="nlinks">
+    <li><a href="#apps">Apps</a></li>
+    <li><a href="#reviews">Avis</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#about">Studio</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="mailto:orionwavesstudio@gmail.com" class="ncta">Contact →</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">
-    <span class="hero-badge-dot"></span>
-    Studio Android Indépendant
+<section class="hero" id="home">
+  <div class="orb-bg ob1"></div>
+  <div class="orb-bg ob2"></div>
+  <div class="orb-bg ob3"></div>
+  <div class="badge"><span class="bpulse"></span>Studio Android Indépendant · France</div>
+  <h1 class="htitle"><span class="w1">Orion</span><span class="w2">Waves</span></h1>
+  <p class="hsub">Nous forgeons des applications Android d'exception — chaque pixel pensé, chaque interaction soignée, chaque expérience mémorable.</p>
+  <div class="hbtns">
+    <a href="#apps" class="bglow">Découvrir nos apps <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+    <a href="#about" class="bghost">Notre histoire</a>
   </div>
-  <h1 class="hero-title">
-    <span class="line1">OrionWaves</span>
-    <span class="line2">Studio</span>
-  </h1>
-  <p class="hero-sub">Nous créons des applications Android qui allient design soigné, expérience fluide et innovation.</p>
-  <div class="hero-cta">
-    <a href="#apps" class="btn-primary">Découvrir nos apps →</a>
-    <a href="mailto:orionwavesstudio@gmail.com" class="btn-secondary">Nous contacter</a>
-  </div>
-  <div class="scroll-indicator">
-    <div class="scroll-line"></div>
-    <span>Défiler</span>
+  <div class="smouse"><div class="mbody"><div class="mwheel"></div></div><span class="slbl">Défiler</span></div>
+</section>
+
+<div class="mwrap">
+  <div class="mtrack">
+    <span class="mitem"><span class="mdot"></span>Android Dev</span>
+    <span class="mitem"><span class="mdot"></span>Kotlin & Compose</span>
+    <span class="mitem"><span class="mdot"></span>ASCEND — Mood & Habits</span>
+    <span class="mitem"><span class="mdot"></span>SMSplode</span>
+    <span class="mitem"><span class="mdot"></span>Made in France 🇫🇷</span>
+    <span class="mitem"><span class="mdot"></span>177 Pays</span>
+    <span class="mitem"><span class="mdot"></span>6 Langues</span>
+    <span class="mitem"><span class="mdot"></span>Google Play</span>
+    <span class="mitem"><span class="mdot"></span>MVVM · Hilt · Room</span>
+    <span class="mitem"><span class="mdot"></span>AdMob · Billing</span>
+    <span class="mitem"><span class="mdot"></span>Android Dev</span>
+    <span class="mitem"><span class="mdot"></span>Kotlin & Compose</span>
+    <span class="mitem"><span class="mdot"></span>ASCEND — Mood & Habits</span>
+    <span class="mitem"><span class="mdot"></span>SMSplode</span>
+    <span class="mitem"><span class="mdot"></span>Made in France 🇫🇷</span>
+    <span class="mitem"><span class="mdot"></span>177 Pays</span>
+    <span class="mitem"><span class="mdot"></span>6 Langues</span>
+    <span class="mitem"><span class="mdot"></span>Google Play</span>
+    <span class="mitem"><span class="mdot"></span>MVVM · Hilt · Room</span>
+    <span class="mitem"><span class="mdot"></span>AdMob · Billing</span>
   </div>
 </div>
 
-<div class="divider"></div>
+<div class="sec" id="stats">
+  <div class="sgrid rv">
+    <div class="scell"><span class="snum" data-target="2">0</span><span class="slbl">Applications</span></div>
+    <div class="scell"><span class="snum" data-target="177">0</span><span class="slbl">Pays</span></div>
+    <div class="scell"><span class="snum" data-target="6">0</span><span class="slbl">Langues</span></div>
+    <div class="scell"><span class="snum">∞</span><span class="slbl">Projets à venir</span></div>
+  </div>
+</div>
 
-<!-- STATS -->
-<section id="stats">
-  <div class="stats-row reveal">
-    <div class="stat-item">
-      <span class="stat-number">2</span>
-      <span class="stat-label">Applications publiées</span>
+<div class="hr"></div>
+
+<div class="sec" id="apps">
+  <p class="seye rv">Nos applications</p>
+  <h2 class="stitle rv">Conçues pour<br>vous surprendre.</h2>
+  <p class="ssub rv">Apps qui allient design soigné, expérience fluide et vraie valeur. Disponibles sur Google Play dans 177 pays.</p>
+  <div class="agrid">
+    <div class="acard rv" id="ca">
+      <div class="shimmer"></div>
+      <div class="aicon">
+        <img src="https://play-lh.googleusercontent.com/Mb4J5HI-qkb3YaKuT9encQp1a1Q4rmqh8C1wq47JgeFl9NW7JVPaGWGMUAc6sRxGDqfr=s256" alt="ASCEND" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#5eead4,#60a5fa)';this.parentElement.innerHTML='<span style=text-align:center;font-size:1.8rem>🔷</span>'">
+      </div>
+      <span class="atag t1">Bien-être & Gamification</span>
+      <h3 class="aname">ASCEND</h3>
+      <p class="adesc">Suivez votre humeur, gagnez de l'XP et montez en niveau. La gamification au service de votre bien-être quotidien.</p>
+      <div class="apills"><span class="pill">Suivi d'humeur</span><span class="pill">XP & Niveaux</span><span class="pill">Badges & Prestige</span><span class="pill">Routines</span><span class="pill">Stats</span><span class="pill">Premium</span></div>
+      <a href="https://play.google.com/store/apps/details?id=com.orionwavesstudio.ascend" class="alink" target="_blank">Télécharger sur Google Play <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+      <div class="mockup">
+        <div class="ms"><div class="msi"><div class="mb mba" style="width:60%"></div><div class="mc"></div><div class="mb" style="width:80%"></div><div class="mb" style="width:50%"></div><div class="mb mba2" style="width:70%"></div><div class="mg"><div class="mgb"></div><div class="mgb"></div></div></div></div>
+        <div class="ms"><div class="msi"><div class="mb" style="width:90%"></div><div class="mb mba" style="width:40%"></div><div class="mb" style="width:70%"></div><div class="mc" style="background:linear-gradient(135deg,#a78bfa,#f472b6)"></div><div class="mb" style="width:60%"></div></div></div>
+        <div class="ms"><div class="msi"><div class="mg"><div class="mgb"></div><div class="mgb"></div><div class="mgb" style="background:rgba(94,234,212,.2)"></div><div class="mgb"></div></div><div class="mb mba" style="width:85%;margin-top:4px"></div><div class="mb" style="width:65%"></div></div></div>
+      </div>
     </div>
-    <div class="stat-item">
-      <span class="stat-number">177</span>
-      <span class="stat-label">Pays disponibles</span>
+    <div class="acard rv" id="cs">
+      <div class="shimmer" style="background:conic-gradient(from var(--ang,0deg),transparent 0deg,rgba(251,146,60,.28) 60deg,transparent 120deg)"></div>
+      <div class="aicon-e" style="background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.18)">💣</div>
+      <span class="atag t2">Messagerie & Fun</span>
+      <h3 class="aname">SMSplode</h3>
+      <p class="adesc">Bombardez vos amis de SMS avec style — animation 3D explosive, sons personnalisés et programmation intelligente.</p>
+      <div class="apills"><span class="pill">Animation 3D</span><span class="pill">Sons custom</span><span class="pill">Programmation</span><span class="pill">Mode furtif</span><span class="pill">10 destinataires</span><span class="pill">Premium 2,99€</span></div>
+      <a href="https://play.google.com/store/apps/details?id=com.orionwavesstudio.smssplode" class="alink" style="color:var(--c5)" target="_blank">Télécharger sur Google Play <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+      <div class="mockup" style="background:linear-gradient(180deg,rgba(251,146,60,.04) 0%,transparent 100%)">
+        <div class="ms"><div class="msi"><div class="mb" style="width:70%;background:rgba(251,146,60,.3)"></div><div style="font-size:1.4rem;text-align:center;margin-top:8px">💣</div><div class="mb" style="width:80%"></div><div class="mb" style="width:50%"></div></div></div>
+        <div class="ms"><div class="msi"><div class="mb" style="width:90%"></div><div class="mb" style="width:60%;background:rgba(251,146,60,.3)"></div><div class="mb" style="width:75%"></div><div class="mb" style="width:45%"></div><div class="mb" style="width:80%"></div></div></div>
+      </div>
     </div>
-    <div class="stat-item">
-      <span class="stat-number">6</span>
-      <span class="stat-label">Langues supportées</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number">∞</span>
-      <span class="stat-label">Projets à venir</span>
+    <div class="acard rv" style="border-style:dashed;opacity:.52">
+      <div class="aicon-e" style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.14)">✦</div>
+      <span class="atag t3">En développement</span>
+      <h3 class="aname">Projet PULSAR</h3>
+      <p class="adesc">Notre prochain jeu mobile — réflexes circulaires et IA adaptative qui apprend de vous. Une arcade nouvelle génération.</p>
+      <div class="apills"><span class="pill">Jeu mobile</span><span class="pill">IA adaptative</span><span class="pill">Réflexes</span><span class="pill">Bientôt</span></div>
+      <span class="alink" style="color:var(--c3);cursor:not-allowed">Bientôt disponible <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
     </div>
   </div>
-</section>
+</div>
 
-<div class="divider"></div>
+<div class="hr"></div>
 
-<!-- APPS -->
-<section id="apps">
-  <p class="section-label reveal">Nos applications</p>
-  <h2 class="section-title reveal">Conçues avec passion,<br>publiées avec soin.</h2>
-
-  <div class="apps-grid">
-    <!-- ASCEND -->
-    <div class="app-card reveal">
-      <div class="app-card-glow" style="background: var(--accent-blue);"></div>
-      <div class="app-icon">
-        <img src="https://play-lh.googleusercontent.com/Mb4J5HI-qkb3YaKuT9encQp1a1Q4rmqh8C1wq47JgeFl9NW7JVPaGWGMUAc6sRxGDqfr=s256" alt="ASCEND" onerror="this.style.display='none'; this.parentElement.innerHTML='🔷'">
-      </div>
-      <span class="app-tag">Bien-être & Gamification</span>
-      <h3 class="app-name">ASCEND</h3>
-      <p class="app-desc">Suivez votre humeur, gagnez de l'XP, montez en niveau et débloquez des badges grâce à la puissance de la gamification. Transformez vos habitudes quotidiennes en aventure.</p>
-      <div class="app-features">
-        <span class="feature-pill">Suivi d'humeur</span>
-        <span class="feature-pill">Système XP</span>
-        <span class="feature-pill">Badges & Prestige</span>
-        <span class="feature-pill">Routines</span>
-        <span class="feature-pill">Statistiques</span>
-      </div>
-      <a href="https://play.google.com/store/apps/details?id=com.orionwavesstudio.ascend" class="app-link" target="_blank">
-        Télécharger sur Google Play →
-      </a>
+<div class="sec" id="reviews">
+  <p class="seye rv">Avis utilisateurs</p>
+  <h2 class="stitle rv">Ce qu'ils<br>en pensent.</h2>
+  <div class="tgrid">
+    <div class="tcard rv">
+      <div class="tstars">★★★★★</div>
+      <p class="ttxt">"Parfait, correspond aux attentes. Design différent des autres applications. L'aspect gamification est vraiment motivant !"</p>
+      <div class="tauth"><div class="tav" style="background:linear-gradient(135deg,var(--c1),var(--c2))">P</div><div><div class="tname">Phimonopoly</div><div class="tsrc">Google Play · ASCEND</div></div></div>
     </div>
-
-    <!-- SMSplode -->
-    <div class="app-card reveal">
-      <div class="app-card-glow" style="background: #f9824a;"></div>
-      <div class="app-icon" style="background: rgba(249,130,74,0.1); border-radius: 16px;">
-        <span style="font-size: 2rem;">💣</span>
-      </div>
-      <span class="app-tag sms">Messagerie</span>
-      <h3 class="app-name">SMSplode</h3>
-      <p class="app-desc">Envoyez des bombardements de SMS à vos amis de façon ludique. Animation 3D, sons personnalisés, mode furtif — l'app parfaite pour les blagues entre amis.</p>
-      <div class="app-features">
-        <span class="feature-pill">Animation 3D</span>
-        <span class="feature-pill">Sons custom</span>
-        <span class="feature-pill">Programmation</span>
-        <span class="feature-pill">Mode furtif</span>
-        <span class="feature-pill">Premium</span>
-      </div>
-      <a href="https://play.google.com/store/apps/details?id=com.orionwavesstudio.smssplode" class="app-link" target="_blank">
-        Télécharger sur Google Play →
-      </a>
+    <div class="tcard rv">
+      <div class="tstars">★★★★★</div>
+      <p class="ttxt">"Très bonne application. Simple à utiliser, le système de progression est addictif et donne envie de revenir chaque jour."</p>
+      <div class="tauth"><div class="tav" style="background:linear-gradient(135deg,var(--c3),var(--c4))">P</div><div><div class="tname">Philippe D.</div><div class="tsrc">Google Play · ASCEND</div></div></div>
     </div>
-
-    <!-- COMING SOON -->
-    <div class="app-card reveal" style="border-style: dashed; opacity: 0.6;">
-      <div class="app-icon" style="background: rgba(159,122,234,0.1); border-radius: 16px;">
-        <span style="font-size: 2rem;">✦</span>
-      </div>
-      <span class="app-tag coming">En développement</span>
-      <h3 class="app-name">Projet PULSAR</h3>
-      <p class="app-desc">Notre prochain jeu mobile. Réflexes, rythme et intelligence artificielle adaptative. Bientôt disponible sur Google Play.</p>
-      <div class="app-features">
-        <span class="feature-pill">Jeu mobile</span>
-        <span class="feature-pill">IA adaptative</span>
-        <span class="feature-pill">Bientôt</span>
-      </div>
+    <div class="tcard rv">
+      <div class="tstars">★★★★★</div>
+      <p class="ttxt">"Fun ! L'animation de l'explosion est hilarante. Mes amis ont adoré... ou pas 😄. Application très bien faite."</p>
+      <div class="tauth"><div class="tav" style="background:linear-gradient(135deg,var(--c5),var(--c4))">V</div><div><div class="tname">Vinicius S.</div><div class="tsrc">Google Play · SMSplode</div></div></div>
     </div>
   </div>
-</section>
+</div>
 
-<div class="divider"></div>
+<div class="hr"></div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p class="section-label">Notre studio</p>
-      <h2 class="section-title">Un studio indépendant, une vision forte.</h2>
-      <p>OrionWavesStudio est un studio de développement Android indépendant basé en France. Nous créons des applications qui ont du sens — du design à la publication, chaque détail compte.</p>
-      <p>Notre philosophie : des interfaces soignées, une expérience fluide, et une vraie valeur pour l'utilisateur. Pas de compromis sur la qualité.</p>
-      <br>
-      <a href="mailto:orionwavesstudio@gmail.com" class="btn-secondary">orionwavesstudio@gmail.com</a>
+<div class="sec" id="roadmap">
+  <p class="seye rv">Roadmap</p>
+  <h2 class="stitle rv">Ce qui arrive<br>bientôt.</h2>
+  <p class="ssub rv">Notre plan de développement — transparent et ambitieux.</p>
+  <div class="roadmap rv">
+    <div class="ritem done"><span class="rbadge bd">✓ Terminé</span><div class="rtitle">ASCEND v1.0 — Lancement Production</div><div class="rdesc">Suivi d'humeur, XP, niveaux, badges, routines. 177 pays, 6 langues.</div></div>
+    <div class="ritem done"><span class="rbadge bd">✓ Terminé</span><div class="rtitle">ASCEND v2.5 — Monétisation & RGPD</div><div class="rdesc">AdMob, RGPD/UMP, In-App Review, domaine orionwavesstudio.com.</div></div>
+    <div class="ritem active"><span class="rbadge ba">● En cours</span><div class="rtitle">ASCEND v3.0 — Optimisation ASO</div><div class="rdesc">Mots-clés Play Store, validation OAuth Google, améliorations UX.</div></div>
+    <div class="ritem"><span class="rbadge bs">Bientôt</span><div class="rtitle">SMSplode — Publication Production</div><div class="rdesc">Intégration AdMob, RGPD, correction widget, publication mondiale.</div></div>
+    <div class="ritem"><span class="rbadge bf">Futur</span><div class="rtitle">Projet PULSAR — Jeu Mobile</div><div class="rdesc">Réflexes circulaires avec IA adaptative. Documentation Phase 0 en cours.</div></div>
+    <div class="ritem"><span class="rbadge bf">Futur</span><div class="rtitle">Nouvelles Applications OrionWavesStudio</div><div class="rdesc">Notre pipeline continue — restez à l'écoute pour les prochaines annonces.</div></div>
+  </div>
+</div>
+
+<div class="hr"></div>
+
+<div class="sec" id="about">
+  <div class="alayout">
+    <div>
+      <p class="seye rv">Notre studio</p>
+      <h2 class="stitle rv">Un studio.<br>Une vision.</h2>
+      <div class="atxt rv">
+        <p>OrionWavesStudio est un studio Android indépendant basé en France. Une seule mission : créer des applications qui ont du sens, qui sont belles, et qui durent.</p>
+        <p>De la phase 0 de documentation jusqu'à la publication en production mondiale, chaque étape est pensée avec soin. Pas de compromis sur la qualité.</p>
+      </div>
+      <div class="avals rv">
+        <div class="aval"><span class="avico">⚡</span>Design-first — l'expérience avant tout</div>
+        <div class="aval"><span class="avico">🌍</span>International — 177 pays, 6 langues</div>
+        <div class="aval"><span class="avico">🔒</span>Privacy — RGPD dès le premier jour</div>
+        <div class="aval"><span class="avico">🚀</span>Continu — mises à jour régulières</div>
+        <div class="aval"><span class="avico">💎</span>Premium — qualité sans compromis</div>
+      </div>
     </div>
-    <div class="about-visual reveal">
-      <div class="orb"></div>
-      <div class="orb-inner">OWS</div>
+    <div class="avis rv">
+      <div class="planet"></div>
+      <div class="pcore">OWS</div>
+      <div class="pring"></div>
+      <div class="pring2"></div>
     </div>
   </div>
-</section>
+</div>
 
-<div class="divider"></div>
+<div class="hr"></div>
 
-<!-- FOOTER -->
-<footer id="contact">
-  <span class="footer-logo">OrionWavesStudio © 2026</span>
-  <div class="footer-links">
+<div class="sec" id="contact">
+  <div class="cbox rv">
+    <div class="co co1"></div>
+    <div class="co co2"></div>
+    <h3>Travaillons ensemble.</h3>
+    <p>Une idée d'application ? Un partenariat ? Une question ? Nous sommes à l'écoute.</p>
+    <a href="mailto:orionwavesstudio@gmail.com" class="cemail">✉ orionwavesstudio@gmail.com</a>
+  </div>
+</div>
+
+<footer>
+  <div class="flogo"><div class="norb" style="width:18px;height:18px"></div>OrionWavesStudio © 2026</div>
+  <div class="flinks">
     <a href="https://orionwavesstudio.com/ascend-privacy-policy/privacy-policy.html" target="_blank">Politique de confidentialité</a>
     <a href="https://play.google.com/store/apps/developer?id=OrionWavesStudio" target="_blank">Google Play</a>
+    <a href="#apps">Applications</a>
     <a href="mailto:orionwavesstudio@gmail.com">Contact</a>
   </div>
-  <span class="footer-copy">Made in France 🇫🇷</span>
+  <span class="fright">Made with ♥ in France 🇫🇷</span>
 </footer>
 
 <script>
-// ── STARS CANVAS ──
-const canvas = document.getElementById('stars');
-const ctx = canvas.getContext('2d');
+/* CURSOR */
+const cur=document.getElementById('cur');
+const dot=cur.querySelector('.dot'),ring=cur.querySelector('.ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
 
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener('resize', resize);
-
-const stars = Array.from({length: 150}, () => ({
-  x: Math.random(),
-  y: Math.random(),
-  r: Math.random() * 1.2 + 0.3,
-  a: Math.random(),
-  speed: Math.random() * 0.005 + 0.002,
-  twinkle: Math.random() * Math.PI * 2
-}));
-
-function drawStars() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  stars.forEach(s => {
-    s.twinkle += s.speed;
-    const alpha = (Math.sin(s.twinkle) * 0.4 + 0.6) * s.a;
-    ctx.beginPath();
-    ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(200, 220, 255, ${alpha})`;
-    ctx.fill();
+/* NEBULA */
+const canvas=document.getElementById('cv');
+const ctx=canvas.getContext('2d');
+function rsz(){canvas.width=innerWidth;canvas.height=innerHeight}rsz();
+window.addEventListener('resize',rsz);
+const nbs=[
+  {x:.15,y:.25,r:360,c:'rgba(94,234,212,',s:.003,p:0},
+  {x:.78,y:.18,r:420,c:'rgba(96,165,250,',s:.002,p:2},
+  {x:.5,y:.72,r:310,c:'rgba(167,139,250,',s:.004,p:4},
+  {x:.88,y:.62,r:270,c:'rgba(244,114,182,',s:.003,p:1},
+  {x:.18,y:.82,r:240,c:'rgba(251,146,60,',s:.002,p:3},
+];
+const stars2=Array.from({length:220},()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.3+.2,a:Math.random()*.8+.2,s:Math.random()*.004+.001,p:Math.random()*Math.PI*2}));
+let shooters=[],lastS=0;
+function spawnS(){shooters.push({x:Math.random()*canvas.width,y:0,vx:(Math.random()-.5)*4,vy:Math.random()*3+2,life:1})}
+function draw(t){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  nbs.forEach(n=>{
+    const px=(n.x+Math.sin(t*.001*n.s*1000+n.p)*.04)*canvas.width;
+    const py=(n.y+Math.cos(t*.001*n.s*1000+n.p)*.04)*canvas.height;
+    const a=Math.sin(t*.001*n.s*2000+n.p)*.04+.065;
+    const g=ctx.createRadialGradient(px,py,0,px,py,n.r);
+    g.addColorStop(0,n.c+a+')');g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(px,py,n.r,0,Math.PI*2);ctx.fill();
   });
-  requestAnimationFrame(drawStars);
-}
-drawStars();
+  stars2.forEach(s=>{
+    s.p+=s.s;const a=(Math.sin(s.p)*.4+.6)*s.a;
+    ctx.beginPath();ctx.arc(s.x*canvas.width,s.y*canvas.height,s.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(200,215,255,${a})`;ctx.fill();
+  });
+  if(t-lastS>200){spawnS();lastS=t}
+  shooters=shooters.filter(s=>s.life>0);
+  shooters.forEach(s=>{
+    ctx.save();ctx.globalAlpha=s.life*.7;
+    ctx.strokeStyle=`rgba(180,220,255,${s.life})`;ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s.x-s.vx*14,s.y-s.vy*14);ctx.stroke();ctx.restore();
+    s.x+=s.vx;s.y+=s.vy;s.life-=.015;
+  });
+  requestAnimationFrame(draw);
+}requestAnimationFrame(draw);
 
-// ── REVEAL ON SCROLL ──
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+/* NAV */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>60));
+
+/* REVEAL */
+const rvs=document.querySelectorAll('.rv');
+new IntersectionObserver(es=>es.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('up'),i*75)}),{threshold:.08}).observe&&rvs.forEach(el=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.rv){e.target.dataset.rv=1;e.target.classList.add('up')}}),{threshold:.08}).observe(el));
+
+/* COUNTERS */
+document.querySelectorAll('[data-target]').forEach(el=>{
+  new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting&&!e.target.dataset.done){
+      e.target.dataset.done=1;const t=+e.target.dataset.target;let c=0,inc=t/55;
+      (function s(){c=Math.min(c+inc,t);e.target.textContent=Math.round(c);if(c<t)requestAnimationFrame(s)})();
     }
+  }),{threshold:.5}).observe(el);
+});
+
+/* 3D CARDS */
+document.querySelectorAll('.acard').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=e.clientX-r.left,y=e.clientY-r.top;
+    const cx=r.width/2,cy=r.height/2;
+    card.style.transform=`perspective(900px) rotateX(${-(y-cy)/cy*7}deg) rotateY(${(x-cx)/cx*7}deg) translateZ(10px)`;
+    card.style.setProperty('--mx',(x/r.width*100)+'%');
+    card.style.setProperty('--my',(y/r.height*100)+'%');
   });
-}, { threshold: 0.1 });
-reveals.forEach(el => observer.observe(el));
+  card.addEventListener('mouseleave',()=>card.style.transform='');
+});
+
+/* PARALLAX */
+window.addEventListener('scroll',()=>{
+  const y=scrollY;
+  document.querySelectorAll('.orb-bg').forEach((o,i)=>o.style.transform=`translateY(${y*(0.08+i*.04)}px)`);
+});
 </script>
 </body>
 </html>
