@@ -1,69 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PULSAR — Privacy Policy</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-               background: #06000F; color: #CCCCCC; line-height: 1.7; }
-        .container { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
-        h1 { font-size: 2rem; color: #FF33BB; letter-spacing: 4px; margin-bottom: 8px; }
-        .studio { color: #9933FF; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 32px; }
-        .updated { color: #666; font-size: 0.85rem; margin-bottom: 40px; }
-        h2 { font-size: 1.1rem; color: #CC88FF; margin: 36px 0 12px;
-             letter-spacing: 1px; text-transform: uppercase; }
-        p { margin-bottom: 14px; font-size: 0.95rem; }
-        a { color: #9933FF; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid #1A0030;
-                  font-size: 0.8rem; color: #555; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — SMSplode</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07060f;
+    --surface: #0f0d1c;
+    --border: #1e1a33;
+    --primary: #8c3cdc;
+    --primary-dim: rgba(140,60,220,0.15);
+    --accent: #ef4444;
+    --text: #e8e4f0;
+    --text-dim: #7a7494;
+    --mono: 'Space Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; line-height: 1.75; min-height: 100vh; }
+  body::before { content: ''; position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(140,60,220,0.12) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+  .wrapper { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 60px 24px 80px; }
+  .header { text-align: center; margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+  .bomb { font-size: 48px; display: block; margin-bottom: 16px; animation: pulse 3s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+  .app-name { font-family: var(--mono); font-size: 28px; font-weight: 700; letter-spacing: -1px; background: linear-gradient(135deg, #8c3cdc, #ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .page-title { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); margin-top: 8px; }
+  .lang-switch { display: inline-flex; gap: 8px; margin-top: 20px; }
+  .lang-switch a { font-family: var(--mono); font-size: 11px; padding: 4px 12px; border-radius: 20px; text-decoration: none; transition: all 0.2s; }
+  .lang-switch a.active { background: var(--primary); color: #fff; }
+  .lang-switch a:not(.active) { border: 1px solid var(--border); color: var(--text-dim); }
+  .lang-switch a:not(.active):hover { border-color: var(--primary); color: var(--primary); }
+  .meta { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 48px; }
+  .meta-item { font-family: var(--mono); font-size: 11px; color: var(--text-dim); display: flex; align-items: center; gap: 6px; }
+  .meta-item span { color: var(--primary); }
+  .section { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; margin-bottom: 16px; transition: border-color 0.2s; }
+  .section:hover { border-color: rgba(140,60,220,0.3); }
+  .section-title { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  p { margin-bottom: 12px; color: #c8c4d8; font-size: 15px; }
+  p:last-child { margin-bottom: 0; }
+  ul { list-style: none; padding: 0; margin: 12px 0; }
+  ul li { font-size: 15px; color: #c8c4d8; padding: 6px 0 6px 20px; position: relative; }
+  ul li::before { content: '▸'; position: absolute; left: 0; color: var(--primary); font-size: 12px; }
+  .highlight { background: var(--primary-dim); border: 1px solid rgba(140,60,220,0.3); border-radius: 10px; padding: 16px 20px; margin: 16px 0; font-size: 14px; color: #d0c8e8; }
+  .highlight strong { color: #c084fc; font-weight: 600; }
+  .no-data-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); border-radius: 20px; padding: 8px 16px; font-family: var(--mono); font-size: 12px; color: #4ade80; margin: 8px 0 16px; }
+  strong { color: var(--text); font-weight: 600; }
+  a { color: var(--primary); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .contact-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 16px; margin-top: 8px; text-decoration: none; transition: all 0.2s; }
+  .contact-card:hover { border-color: var(--primary); background: var(--primary-dim); }
+  .contact-card .icon { font-size: 24px; }
+  .contact-card .label { font-size: 13px; color: var(--text-dim); }
+  .contact-card .value { font-family: var(--mono); font-size: 14px; color: var(--text); }
+
+  /* ── Footer ── */
+  .footer { text-align: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-dim); }
+  .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
+  .footer-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .footer-links a:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--primary-dim);
+    text-decoration: none;
+  }
+  .footer .studio {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 4px;
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .footer .studio:hover {
+    border-bottom-color: var(--primary);
+    text-decoration: none;
+  }
+
+  @media (max-width: 600px) { .wrapper { padding: 40px 16px 60px; } .section { padding: 20px; } }
+</style>
 </head>
 <body>
-<div class="container">
-    <h1>PULSAR</h1>
-    <div class="studio">OrionWavesStudio</div>
-    <p class="updated">Privacy Policy — Last updated: May 2026</p>
+<div class="wrapper">
 
-    <h2>1. Introduction</h2>
-    <p>PULSAR ("the App") is developed by OrionWavesStudio. This Privacy Policy explains what data we collect, how we use it, and your rights. We are committed to protecting your privacy and comply with GDPR and applicable privacy laws.</p>
-
-    <h2>2. Data We Collect</h2>
-    <p><strong>Anonymous identifier:</strong> The App uses Firebase Anonymous Authentication to assign a unique anonymous ID (UID) to each user. This ID is not linked to any personal information such as name, email, or phone number.</p>
-    <p><strong>Game data:</strong> Your scores, combo history, AI archetype, Mastery stage, and game session data are stored locally on your device (Room database + DataStore) and optionally synchronized to Firebase Firestore for the global leaderboard.</p>
-    <p><strong>Device information:</strong> Standard analytics data (device model, OS version, app version) may be collected via Firebase Analytics to improve performance.</p>
-
-    <h2>3. Data We Do NOT Collect</h2>
-    <p>We never collect: your name, email address, phone number, location, contacts, photos, or any other personally identifiable information. No account creation is required to use PULSAR.</p>
-
-    <h2>4. How We Use Your Data</h2>
-    <p>Your anonymous UID and game data are used solely to: display your scores on the global leaderboard, restore your progress if you reinstall the app, and power the AI difficulty engine that adapts to your playing style.</p>
-
-    <h2>5. Third-Party Services</h2>
-    <p><strong>Firebase (Google LLC):</strong> Used for anonymous authentication, Firestore database, and Analytics. Firebase's privacy policy is available at <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a>.</p>
-    <p><strong>Google Play Billing:</strong> Used to process the one-time Premium purchase (€2.99). Payment data is handled entirely by Google and is never accessible to OrionWavesStudio.</p>
-
-    <h2>6. Data Retention</h2>
-    <p>Your anonymous game data is retained as long as your anonymous Firebase account exists. You can request deletion by contacting us (see Section 9). Uninstalling the app permanently removes all local data.</p>
-
-    <h2>7. Your Rights (GDPR)</h2>
-    <p>If you are located in the European Economic Area, you have the right to access, correct, or delete your data. Since all data is anonymous, we cannot identify you personally — but we can delete all data associated with your anonymous UID upon request.</p>
-
-    <h2>8. Children's Privacy</h2>
-    <p>PULSAR is not directed at children under 13. We do not knowingly collect data from children under 13. If you believe a child has provided us with data, please contact us.</p>
-
-    <h2>9. Contact</h2>
-    <p>For any privacy-related questions or data deletion requests:<br>
-    <a href="mailto:orionwavesstudio@gmail.com">orionwavesstudio@gmail.com</a></p>
-
-    <h2>10. Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by updating the date at the top of this page.</p>
-
-    <div class="footer">
-        <p>© 2026 OrionWavesStudio — <a href="https://orionwavesstudio.com">orionwavesstudio.com</a></p>
+  <div class="header">
+    <span class="bomb">💣</span>
+    <div class="app-name">SMSplode</div>
+    <div class="page-title">Privacy Policy</div>
+    <div class="lang-switch">
+      <a href="smsplode-privacy-fr.html">🇫🇷 Français</a>
+      <a href="smsplode-privacy-en.html" class="active">🇬🇧 English</a>
     </div>
+  </div>
+
+  <div class="meta">
+    <div class="meta-item">📅 Last updated: <span>April 2026</span></div>
+    <div class="meta-item">🏢 Developer: <span>OrionWavesStudio</span></div>
+    <div class="meta-item">📍 France</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">01 — Introduction</div>
+    <p>This Privacy Policy describes how <strong>SMSplode</strong>, developed by <strong>OrionWavesStudio</strong>, handles your data when you use the application.</p>
+    <p>By using SMSplode, you agree to the practices described in this document.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">02 — Data Collection</div>
+    <div class="no-data-badge">✅ No data transmitted to any server</div>
+    <p>SMSplode operates <strong>entirely on your device</strong>. We do not collect, store, or transmit any personal data to our servers.</p>
+    <p>The following data is stored <strong>locally</strong> on your device only:</p>
+    <ul>
+      <li>Your username and avatar (profile customization)</li>
+      <li>Your preferences (theme, language, skins, sounds)</li>
+      <li>Bombardment history (Premium users only)</li>
+      <li>Message templates you create or use</li>
+      <li>Your Premium purchase status (managed by Google Play)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-title">03 — Required Permissions</div>
+    <p>SMSplode requests the following Android permissions, strictly necessary for its operation:</p>
+    <ul>
+      <li><strong>SEND_SMS</strong> — to send SMS messages to your contacts</li>
+      <li><strong>READ_CONTACTS</strong> — to select a contact as recipient (optional)</li>
+      <li><strong>POST_NOTIFICATIONS</strong> — to display sending progress</li>
+    </ul>
+    <div class="highlight">
+      <strong>Important:</strong> these permissions are only used when you explicitly grant them. No data from these permissions is shared with third parties.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">04 — In-App Purchases</div>
+    <p>The <strong>Premium</strong> upgrade is processed exclusively through <strong>Google Play Billing</strong>. OrionWavesStudio does not access your payment information.</p>
+    <p>Google Play may collect transaction-related data in accordance with its own <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a>.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">05 — Third-Party Services</div>
+    <p>SMSplode may integrate the following services:</p>
+    <ul>
+      <li><strong>Google Play Billing</strong> — in-app purchase management</li>
+      <li><strong>Google Play Review API</strong> — app store rating requests</li>
+    </ul>
+    <p>These services are subject to their own privacy policies. SMSplode does not share any personal data with advertising partners.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">06 — Children's Privacy</div>
+    <p>SMSplode is intended for users aged <strong>13 and older</strong>. We do not knowingly collect data from children under 13.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">07 — Your Rights (GDPR)</div>
+    <p>Under the General Data Protection Regulation (GDPR), you have the following rights:</p>
+    <ul>
+      <li>Right to access your data</li>
+      <li>Right to rectification</li>
+      <li>Right to erasure (deletable directly via Android settings)</li>
+      <li>Right to data portability</li>
+    </ul>
+    <div class="highlight">
+      Since all data is stored locally, you can delete it at any time via <strong>Android Settings → Apps → SMSplode → Clear Data</strong>.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">08 — Changes to This Policy</div>
+    <p>OrionWavesStudio reserves the right to modify this policy. In case of significant changes, we will notify you through an app update.</p>
+    <p>The last modification date is shown at the top of this document.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">09 — Contact</div>
+    <p>For any questions regarding this privacy policy:</p>
+    <a href="mailto:orionwavesstudio@gmail.com" class="contact-card">
+      <div class="icon">✉️</div>
+      <div>
+        <div class="label">Email</div>
+        <div class="value">orionwavesstudio@gmail.com</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <div class="footer-links">
+      <a href="smsplode-privacy-en.html">🔒 Privacy Policy</a>
+      <a href="smsplode-terms-en.html">📄 Terms of Use</a>
+    </div>
+    <a href="https://orionwavesstudio.com/" target="_blank" class="studio">OrionWavesStudio</a>
+    <br>
+    © 2026 — SMSplode. All rights reserved.
+  </div>
+
 </div>
 </body>
 </html>
