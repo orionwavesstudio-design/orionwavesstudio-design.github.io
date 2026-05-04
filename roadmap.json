@@ -42,27 +42,6 @@
     }
   },
   {
-    "status": "done",
-    "title": {
-      "fr": "ASCEND v3.0.0 — Optimisation & ASO",
-      "en": "ASCEND v3.0.0 — Optimization & ASO",
-      "de": "ASCEND v3.0.0 — Optimierung & ASO",
-      "it": "ASCEND v3.0.0 — Ottimizzazione & ASO",
-      "es": "ASCEND v3.0.0 — Optimización & ASO",
-      "pt": "ASCEND v3.0.0 — Otimização & ASO",
-      "zh": "ASCEND v3.0.0 — 优化 & ASO"
-    },
-    "desc": {
-      "fr": "Mots-clés Play Store, validation OAuth Google, améliorations UX.",
-      "en": "Play Store keywords, Google OAuth validation, UX improvements.",
-      "de": "Play Store-Keywords, Google OAuth-Validierung, UX-Verbesserungen.",
-      "it": "Parole chiave Play Store, validazione OAuth Google, miglioramenti UX.",
-      "es": "Palabras clave Play Store, validación OAuth Google, mejoras UX.",
-      "pt": "Palavras-chave Play Store, validação OAuth Google, melhorias UX.",
-      "zh": "Play Store关键词、谷歌OAuth验证、UX改进。"
-    }
-  },
-  {
   "status": "done",
   "title": {
     "fr": "ASCEND v3.0.1 — Correctifs & Améliorations",
