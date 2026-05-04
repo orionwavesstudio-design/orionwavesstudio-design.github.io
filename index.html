@@ -283,26 +283,26 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
     <li><a href="#reviews" data-i18n="nav_reviews">Avis</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#about" data-i18n="nav_studio">Studio</a></li>
-    <li>
-      <div class="lang-wrap" id="lang-wrap">
-        <button class="lang-btn" onclick="toggleDrop()" id="lang-btn">
-          <span id="lang-flag">🇫🇷</span>
-          <span id="lang-label">FR</span>
-          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="lang-drop" id="lang-drop">
-          <div class="lang-opt active" data-lang="fr" onclick="selectLang('fr')"><span class="lang-flag">🇫🇷</span>Français</div>
-          <div class="lang-opt" data-lang="en" onclick="selectLang('en')"><span class="lang-flag">🇬🇧</span>English</div>
-          <div class="lang-opt" data-lang="de" onclick="selectLang('de')"><span class="lang-flag">🇩🇪</span>Deutsch</div>
-          <div class="lang-opt" data-lang="it" onclick="selectLang('it')"><span class="lang-flag">🇮🇹</span>Italiano</div>
-          <div class="lang-opt" data-lang="es" onclick="selectLang('es')"><span class="lang-flag">🇪🇸</span>Español</div>
-          <div class="lang-opt" data-lang="pt" onclick="selectLang('pt')"><span class="lang-flag">🇧🇷</span>Português</div>
-          <div class="lang-opt" data-lang="zh" onclick="selectLang('zh')"><span class="lang-flag">🇨🇳</span>中文</div>
-        </div>
-      </div>
-    </li>
     <li><a href="#contact" class="ncta" data-i18n="nav_contact">Contact →</a></li>
   </ul>
+
+  <!-- LANG SELECTOR — hors de nlinks, toujours visible sur mobile -->
+  <div class="lang-wrap" id="lang-wrap">
+    <button class="lang-btn" onclick="toggleDrop()" id="lang-btn">
+      <span id="lang-flag">🇫🇷</span>
+      <span id="lang-label">FR</span>
+      <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="lang-drop" id="lang-drop">
+      <div class="lang-opt active" data-lang="fr" onclick="selectLang('fr')"><span class="lang-flag">🇫🇷</span>Français</div>
+      <div class="lang-opt" data-lang="en" onclick="selectLang('en')"><span class="lang-flag">🇬🇧</span>English</div>
+      <div class="lang-opt" data-lang="de" onclick="selectLang('de')"><span class="lang-flag">🇩🇪</span>Deutsch</div>
+      <div class="lang-opt" data-lang="it" onclick="selectLang('it')"><span class="lang-flag">🇮🇹</span>Italiano</div>
+      <div class="lang-opt" data-lang="es" onclick="selectLang('es')"><span class="lang-flag">🇪🇸</span>Español</div>
+      <div class="lang-opt" data-lang="pt" onclick="selectLang('pt')"><span class="lang-flag">🇧🇷</span>Português</div>
+      <div class="lang-opt" data-lang="zh" onclick="selectLang('zh')"><span class="lang-flag">🇨🇳</span>中文</div>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -642,9 +642,18 @@ window.addEventListener('scroll',()=>{
   const y=scrollY;
   document.querySelectorAll('.orb-bg').forEach((o,i)=>o.style.transform=`translateY(${y*(0.07+i*.035)}px)`);
 });
+
 /* ── I18N ── */
-const LANGS=['fr','en','de','it','es','pt','zh'];
-const LANG_LABELS={fr:'FR',en:'EN',de:'DE',it:'IT',es:'ES',pt:'PT',zh:'中文'};
+const LANG_META={
+  fr:{flag:'🇫🇷',label:'FR'},
+  en:{flag:'🇬🇧',label:'EN'},
+  de:{flag:'🇩🇪',label:'DE'},
+  it:{flag:'🇮🇹',label:'IT'},
+  es:{flag:'🇪🇸',label:'ES'},
+  pt:{flag:'🇧🇷',label:'PT'},
+  zh:{flag:'🇨🇳',label:'中文'}
+};
+
 const T={
   fr:{
     nav_apps:'Apps',nav_reviews:'Avis',nav_studio:'Studio',nav_contact:'Contact →',nav_contact_short:'Contact',
@@ -909,7 +918,6 @@ const T={
 
 /* ── ROADMAP DYNAMIQUE ── */
 let roadmapData=[];
-
 const STATUS_MAP={
   done:  {cls:'done', badgeKey:'badge_done',  badgeCls:'bd'},
   active:{cls:'active',badgeKey:'badge_active',badgeCls:'ba'},
@@ -938,16 +946,6 @@ async function fetchRoadmap(){
   }catch(e){console.warn('roadmap.json non chargé',e);}
 }
 
-const LANG_META={
-  fr:{flag:'🇫🇷',label:'FR'},
-  en:{flag:'🇬🇧',label:'EN'},
-  de:{flag:'🇩🇪',label:'DE'},
-  it:{flag:'🇮🇹',label:'IT'},
-  es:{flag:'🇪🇸',label:'ES'},
-  pt:{flag:'🇧🇷',label:'PT'},
-  zh:{flag:'🇨🇳',label:'中文'}
-};
-
 let currentLang='fr';
 
 function applyLang(lang){
@@ -960,19 +958,16 @@ function applyLang(lang){
     const k=el.dataset.i18nHtml;
     if(T[lang][k]!==undefined)el.innerHTML=T[lang][k];
   });
-  // Footer privacy link
   const fp=document.getElementById('footer-privacy');
   if(fp)fp.href=lang==='fr'
     ?'https://orionwavesstudio-design.github.io/ascend-privacy-fr.html'
     :'https://orionwavesstudio-design.github.io/ascend-privacy-en.html';
   document.documentElement.lang=lang==='zh'?'zh-CN':lang;
-  // Update button display
   const meta=LANG_META[lang]||LANG_META.en;
   const flagEl=document.getElementById('lang-flag');
   const labelEl=document.getElementById('lang-label');
   if(flagEl)flagEl.textContent=meta.flag;
   if(labelEl)labelEl.textContent=meta.label;
-  // Update active option in dropdown
   document.querySelectorAll('.lang-opt').forEach(opt=>{
     opt.classList.toggle('active',opt.dataset.lang===lang);
   });
@@ -990,13 +985,11 @@ function selectLang(lang){
   document.getElementById('lang-wrap').classList.remove('open');
 }
 
-// Close dropdown on outside click
 document.addEventListener('click',e=>{
   const wrap=document.getElementById('lang-wrap');
   if(wrap&&!wrap.contains(e.target))wrap.classList.remove('open');
 });
 
-// Init : saved pref → browser lang → EN fallback
 (function(){
   const saved=localStorage.getItem('ows_lang');
   if(saved&&T[saved]){applyLang(saved);}
@@ -1006,116 +999,6 @@ document.addEventListener('click',e=>{
     applyLang(map[bl]||'en');
   }
   fetchRoadmap();
-})();
-</script>
-</body>
-</html>
-    nav_apps:'Apps',nav_reviews:'Avis',nav_studio:'Studio',nav_contact:'Contact →',nav_contact_short:'Contact',
-    hero_badge:'Studio Android Indépendant · France 🇫🇷',
-    hero_sub:'Nous forgeons des applications Android d\'exception — chaque pixel pensé, chaque interaction soignée, chaque expérience mémorable.',
-    hero_btn1:'Découvrir nos apps',hero_btn2:'Notre histoire',
-    stat_apps:'Applications',stat_countries:'Pays',stat_langs:'Langues',stat_rating:'Note moyenne',hero_scroll:'Défiler',
-    apps_eye:'Nos applications',apps_title:'Conçues pour<br>vous surprendre.',
-    apps_sub:'Apps qui allient design soigné, expérience fluide et vraie valeur utilisateur. Disponibles dans 177 pays.',
-    ascend_tag:'Bien-être & Gamification',
-    ascend_desc:'Suivez votre humeur, gagnez de l\'XP et montez en niveau. La gamification au service de votre bien-être quotidien.',
-    ascend_p1:'Suivi d\'humeur',ascend_p2:'XP & Niveaux',ascend_p3:'Statistiques',
-    play_download:'Télécharger sur Google Play',
-    sms_tag:'Messagerie & Fun',
-    sms_desc:'Bombardez vos amis de SMS avec style — animation 3D explosive, sons personnalisés et programmation intelligente.',
-    sms_p1:'Animation 3D',sms_p2:'Sons custom',sms_p3:'Programmation',sms_p4:'Mode furtif',sms_p5:'10 destinataires',
-    pulsar_tag:'En développement',
-    pulsar_desc:'Notre prochain jeu mobile — réflexes circulaires et IA adaptative qui apprend de vous. Une arcade nouvelle génération.',
-    pulsar_p1:'Jeu mobile',pulsar_p2:'IA adaptative',pulsar_p3:'Réflexes',pulsar_p4:'Bientôt',pulsar_soon:'Bientôt disponible',
-    rev_eye:'Avis utilisateurs',rev_title:'Ce qu\'ils<br>en pensent.',
-    rev_sub:'Des vrais utilisateurs, des vrais retours. 5 étoiles sur Google Play.',
-    road_title:'Ce qui arrive<br>bientôt.',road_sub:'Notre plan de développement — transparent et ambitieux.',
-    badge_done:'✓ Terminé',badge_active:'● En cours',badge_soon:'Bientôt',badge_future:'Futur',
-    r1_title:'ASCEND v1.0 — Lancement Production',r1_desc:'Suivi d\'humeur, XP, niveaux, badges, routines. 177 pays, 6 langues.',
-    r2_title:'ASCEND v2.5 — Monétisation & RGPD',r2_desc:'AdMob, RGPD/UMP, In-App Review, domaine orionwavesstudio.com.',
-    r3_title:'ASCEND v3.0 — Optimisation & ASO',r3_desc:'Mots-clés Play Store, validation OAuth Google, améliorations UX.',
-    r4_title:'SMSplode — Publication Production',r4_desc:'Intégration AdMob, RGPD, correction widget, publication mondiale.',
-    r5_title:'Projet PULSAR — Jeu Mobile',r5_desc:'Réflexes circulaires avec IA adaptative. Phase 0 en cours.',
-    r6_title:'Nouvelles Applications OrionWavesStudio',r6_desc:'Notre pipeline continue — restez à l\'écoute pour les prochaines annonces.',
-    about_eye:'Notre studio',about_title:'Un studio.<br>Une vision.',
-    about_p1:'OrionWavesStudio est un studio Android indépendant basé en France. Une seule mission : créer des applications qui ont du sens, qui sont belles, et qui durent.',
-    about_p2:'De la phase 0 de documentation jusqu\'à la publication en production mondiale, chaque étape est pensée avec soin. Pas de compromis sur la qualité.',
-    val1:'Design-first — l\'expérience avant tout',val2:'International — 177 pays, 6 langues',
-    val3:'Privacy — RGPD dès le premier jour',val4:'Continu — mises à jour régulières',val5:'Premium — qualité sans compromis',
-    contact_title:'Travaillons ensemble.',
-    contact_sub:'Une idée d\'application ? Un partenariat ? Une question ? Nous sommes à l\'écoute.',
-    footer_privacy:'Politique de confidentialité',
-  },
-  en:{
-    nav_apps:'Apps',nav_reviews:'Reviews',nav_studio:'Studio',nav_contact:'Contact →',nav_contact_short:'Contact',
-    hero_badge:'Independent Android Studio · France 🇫🇷',
-    hero_sub:'We craft exceptional Android apps — every pixel considered, every interaction refined, every experience memorable.',
-    hero_btn1:'Discover our apps',hero_btn2:'Our story',
-    stat_apps:'Apps',stat_countries:'Countries',stat_langs:'Languages',stat_rating:'Avg. Rating',hero_scroll:'Scroll',
-    apps_eye:'Our apps',apps_title:'Crafted to<br>surprise you.',
-    apps_sub:'Apps combining refined design, smooth experience and real user value. Available in 177 countries.',
-    ascend_tag:'Wellness & Gamification',
-    ascend_desc:'Track your mood, earn XP and level up. Gamification at the service of your daily well-being.',
-    ascend_p1:'Mood Tracking',ascend_p2:'XP & Levels',ascend_p3:'Statistics',
-    play_download:'Download on Google Play',
-    sms_tag:'Messaging & Fun',
-    sms_desc:'Bombard your friends with SMS in style — explosive 3D animation, custom sounds and smart scheduling.',
-    sms_p1:'3D Animation',sms_p2:'Custom Sounds',sms_p3:'Scheduling',sms_p4:'Stealth Mode',sms_p5:'10 Recipients',
-    pulsar_tag:'In Development',
-    pulsar_desc:'Our next mobile game — circular reflexes and adaptive AI that learns from you. Next-gen arcade.',
-    pulsar_p1:'Mobile Game',pulsar_p2:'Adaptive AI',pulsar_p3:'Reflexes',pulsar_p4:'Coming Soon',pulsar_soon:'Coming Soon',
-    rev_eye:'User Reviews',rev_title:'What they<br>think.',
-    rev_sub:'Real users, real feedback. 5 stars on Google Play.',
-    road_title:'What\'s coming<br>next.',road_sub:'Our development plan — transparent and ambitious.',
-    badge_done:'✓ Done',badge_active:'● In Progress',badge_soon:'Soon',badge_future:'Future',
-    r1_title:'ASCEND v1.0 — Production Launch',r1_desc:'Mood tracking, XP, levels, badges, routines. 177 countries, 6 languages.',
-    r2_title:'ASCEND v2.5 — Monetization & GDPR',r2_desc:'AdMob, GDPR/UMP, In-App Review, orionwavesstudio.com domain.',
-    r3_title:'ASCEND v3.0 — Optimization & ASO',r3_desc:'Play Store keywords, Google OAuth validation, UX improvements.',
-    r4_title:'SMSplode — Production Release',r4_desc:'AdMob integration, GDPR, widget fix, worldwide release.',
-    r5_title:'Project PULSAR — Mobile Game',r5_desc:'Circular reflexes with adaptive AI. Phase 0 in progress.',
-    r6_title:'New OrionWavesStudio Apps',r6_desc:'Our pipeline continues — stay tuned for upcoming announcements.',
-    about_eye:'Our studio',about_title:'One studio.<br>One vision.',
-    about_p1:'OrionWavesStudio is an independent Android studio based in France. One mission: create apps that matter, that are beautiful, and that last.',
-    about_p2:'From phase 0 documentation to worldwide production release, every step is carefully considered. No compromise on quality.',
-    val1:'Design-first — experience above all',val2:'International — 177 countries, 6 languages',
-    val3:'Privacy — GDPR from day one',val4:'Ongoing — regular updates',val5:'Premium — quality without compromise',
-    contact_title:'Let\'s work together.',
-    contact_sub:'An app idea? A partnership? A question? We\'re listening.',
-    footer_privacy:'Privacy Policy',
-  }
-};
-
-let currentLang='fr';
-
-function applyLang(lang){
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.dataset.i18n;
-    if(T[lang][k]!==undefined)el.textContent=T[lang][k];
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
-    const k=el.dataset.i18nHtml;
-    if(T[lang][k]!==undefined)el.innerHTML=T[lang][k];
-  });
-  // Footer privacy link
-  const fp=document.getElementById('footer-privacy');
-  if(fp)fp.href=lang==='fr'
-    ?'https://orionwavesstudio-design.github.io/ascend-privacy-fr.html'
-    :'https://orionwavesstudio-design.github.io/ascend-privacy-en.html';
-  document.documentElement.lang=lang;
-  const btn=document.getElementById('lang-btn');
-  if(btn)btn.textContent=lang==='fr'?'EN':'FR';
-  localStorage.setItem('ows_lang',lang);
-  currentLang=lang;
-}
-
-function toggleLang(){applyLang(currentLang==='fr'?'en':'fr');}
-
-// Init : saved pref → browser lang → FR fallback
-(function(){
-  const saved=localStorage.getItem('ows_lang');
-  if(saved&&T[saved]){applyLang(saved);return;}
-  const bl=(navigator.language||navigator.userLanguage||'fr').toLowerCase();
-  applyLang(bl.startsWith('fr')?'fr':'en');
 })();
 </script>
 </body>
