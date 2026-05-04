@@ -86,13 +86,13 @@
   {
     "status": "active",
     "title": {
-      "fr": "SMSplode — Publication Production",
-      "en": "SMSplode — Production Release",
-      "de": "SMSplode — Produktionsveröffentlichung",
-      "it": "SMSplode — Pubblicazione Produzione",
-      "es": "SMSplode — Publicación en Producción",
-      "pt": "SMSplode — Publicação em Produção",
-      "zh": "SMSplode — 正式发布"
+      "fr": "SMSplode v3.1.2 — Publication Production",
+      "en": "SMSplode v3.1.2 — Production Release",
+      "de": "SMSplode v3.1.2  — Produktionsveröffentlichung",
+      "it": "SMSplode v3.1.2  — Pubblicazione Produzione",
+      "es": "SMSplode v3.1.2  — Publicación en Producción",
+      "pt": "SMSplode v3.1.2  — Publicação em Produção",
+      "zh": "SMSplode v3.1.2  — 正式发布"
     },
     "desc": {
       "fr": "Intégration AdMob, RGPD, correction widget, publication mondiale.",
