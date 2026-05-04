@@ -470,13 +470,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
   <p class="seye rv">Roadmap</p>
   <h2 class="stitle rv" data-i18n-html="road_title">Ce qui arrive<br>bientôt.</h2>
   <p class="ssub rv" data-i18n="road_sub">Notre plan de développement — transparent et ambitieux.</p>
-  <div class="roadmap rv">
-    <div class="ritem done"><span class="rbadge bd" data-i18n="badge_done">✓ Terminé</span><div class="rtitle" data-i18n="r1_title">ASCEND v1.0 — Lancement Production</div><div class="rdesc" data-i18n="r1_desc">Suivi d'humeur, XP, niveaux, badges, routines. 177 pays, 6 langues.</div></div>
-    <div class="ritem done"><span class="rbadge bd" data-i18n="badge_done">✓ Terminé</span><div class="rtitle" data-i18n="r2_title">ASCEND v2.5 — Monétisation & RGPD</div><div class="rdesc" data-i18n="r2_desc">AdMob, RGPD/UMP, In-App Review, domaine orionwavesstudio.com.</div></div>
-    <div class="ritem active"><span class="rbadge ba" data-i18n="badge_active">● En cours</span><div class="rtitle" data-i18n="r3_title">ASCEND v3.0 — Optimisation & ASO</div><div class="rdesc" data-i18n="r3_desc">Mots-clés Play Store, validation OAuth Google, améliorations UX.</div></div>
-    <div class="ritem"><span class="rbadge bs" data-i18n="badge_soon">Bientôt</span><div class="rtitle" data-i18n="r4_title">SMSplode — Publication Production</div><div class="rdesc" data-i18n="r4_desc">Intégration AdMob, RGPD, correction widget, publication mondiale.</div></div>
-    <div class="ritem"><span class="rbadge bf" data-i18n="badge_future">Futur</span><div class="rtitle" data-i18n="r5_title">Projet PULSAR — Jeu Mobile</div><div class="rdesc" data-i18n="r5_desc">Réflexes circulaires avec IA adaptative. Phase 0 en cours.</div></div>
-    <div class="ritem"><span class="rbadge bf" data-i18n="badge_future">Futur</span><div class="rtitle" data-i18n="r6_title">Nouvelles Applications OrionWavesStudio</div><div class="rdesc" data-i18n="r6_desc">Notre pipeline continue — restez à l'écoute pour les prochaines annonces.</div></div>
+  <div class="roadmap rv" id="roadmap-list">
+    <!-- Chargé dynamiquement depuis roadmap.json -->
   </div>
 </div>
 
@@ -912,6 +907,37 @@ const T={
   }
 };
 
+/* ── ROADMAP DYNAMIQUE ── */
+let roadmapData=[];
+
+const STATUS_MAP={
+  done:  {cls:'done', badgeKey:'badge_done',  badgeCls:'bd'},
+  active:{cls:'active',badgeKey:'badge_active',badgeCls:'ba'},
+  soon:  {cls:'',      badgeKey:'badge_soon',  badgeCls:'bs'},
+  future:{cls:'',      badgeKey:'badge_future',badgeCls:'bf'}
+};
+
+function renderRoadmap(lang){
+  const list=document.getElementById('roadmap-list');
+  if(!list||!roadmapData.length)return;
+  const l=T[lang]||T.en;
+  list.innerHTML=roadmapData.map(item=>{
+    const s=STATUS_MAP[item.status]||STATUS_MAP.future;
+    const title=(item.title[lang]||item.title.en||'');
+    const desc=(item.desc[lang]||item.desc.en||'');
+    const badge=l[s.badgeKey]||item.status;
+    return `<div class="ritem ${s.cls}"><span class="rbadge ${s.badgeCls}">${badge}</span><div class="rtitle">${title}</div><div class="rdesc">${desc}</div></div>`;
+  }).join('');
+}
+
+async function fetchRoadmap(){
+  try{
+    const r=await fetch('roadmap.json?v='+Date.now());
+    roadmapData=await r.json();
+    renderRoadmap(currentLang);
+  }catch(e){console.warn('roadmap.json non chargé',e);}
+}
+
 const LANG_META={
   fr:{flag:'🇫🇷',label:'FR'},
   en:{flag:'🇬🇧',label:'EN'},
@@ -952,6 +978,7 @@ function applyLang(lang){
   });
   localStorage.setItem('ows_lang',lang);
   currentLang=lang;
+  renderRoadmap(lang);
 }
 
 function toggleDrop(){
@@ -972,10 +999,13 @@ document.addEventListener('click',e=>{
 // Init : saved pref → browser lang → EN fallback
 (function(){
   const saved=localStorage.getItem('ows_lang');
-  if(saved&&T[saved]){applyLang(saved);return;}
-  const bl=(navigator.language||navigator.userLanguage||'fr').toLowerCase().slice(0,2);
-  const map={fr:'fr',en:'en',de:'de',it:'it',es:'es',pt:'pt',zh:'zh'};
-  applyLang(map[bl]||'en');
+  if(saved&&T[saved]){applyLang(saved);}
+  else{
+    const bl=(navigator.language||navigator.userLanguage||'fr').toLowerCase().slice(0,2);
+    const map={fr:'fr',en:'en',de:'de',it:'it',es:'es',pt:'pt',zh:'zh'};
+    applyLang(map[bl]||'en');
+  }
+  fetchRoadmap();
 })();
 </script>
 </body>
