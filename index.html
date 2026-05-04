@@ -219,6 +219,10 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
 .flinks a:hover{color:var(--text)}
 .fright{color:var(--muted);font-size:.76rem}
 
+/* ── LANG TOGGLE ── */
+.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted);padding:.3rem .78rem;border-radius:100px;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.08em;font-family:var(--fd);line-height:1}
+.lang-btn:hover{color:var(--text);border-color:var(--borderhov);background:rgba(255,255,255,.1)}
+
 /* ── HR ── */
 .hr{position:relative;z-index:2;max-width:1200px;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
 
@@ -265,11 +269,12 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
 <nav id="nav">
   <a href="#home" class="nlogo"><div class="norb"></div>OrionWavesStudio</a>
   <ul class="nlinks">
-    <li><a href="#apps">Apps</a></li>
-    <li><a href="#reviews">Avis</a></li>
+    <li><a href="#apps" data-i18n="nav_apps">Apps</a></li>
+    <li><a href="#reviews" data-i18n="nav_reviews">Avis</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#about">Studio</a></li>
-    <li><a href="#contact" class="ncta">Contact →</a></li>
+    <li><a href="#about" data-i18n="nav_studio">Studio</a></li>
+    <li><button class="lang-btn" onclick="toggleLang()" id="lang-btn">EN</button></li>
+    <li><a href="#contact" class="ncta" data-i18n="nav_contact">Contact →</a></li>
   </ul>
 </nav>
 
@@ -279,31 +284,31 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
   <div class="orb-bg ob2"></div>
   <div class="orb-bg ob3"></div>
 
-  <div class="badge"><span class="bpulse"></span>Studio Android Indépendant · France 🇫🇷</div>
+  <div class="badge"><span class="bpulse"></span><span data-i18n="hero_badge">Studio Android Indépendant · France 🇫🇷</span></div>
 
   <h1 class="htitle">
     <span class="w1">Orion</span>
     <span class="w2">Waves<span class="studio-label">Studio</span></span>
   </h1>
 
-  <p class="hsub">Nous forgeons des applications Android d'exception — chaque pixel pensé, chaque interaction soignée, chaque expérience mémorable.</p>
+  <p class="hsub" data-i18n="hero_sub">Nous forgeons des applications Android d'exception — chaque pixel pensé, chaque interaction soignée, chaque expérience mémorable.</p>
 
   <div class="hbtns">
-    <a href="#apps" class="bglow">Découvrir nos apps <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
-    <a href="#about" class="bghost">Notre histoire</a>
+    <a href="#apps" class="bglow"><span data-i18n="hero_btn1">Découvrir nos apps</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+    <a href="#about" class="bghost" data-i18n="hero_btn2">Notre histoire</a>
   </div>
 
   <div class="hstats">
-    <div class="hstat"><div class="hstat-n">2</div><div class="hstat-l">Applications</div></div>
+    <div class="hstat"><div class="hstat-n">2</div><div class="hstat-l" data-i18n="stat_apps">Applications</div></div>
     <div class="hstat-sep"></div>
-    <div class="hstat"><div class="hstat-n">177</div><div class="hstat-l">Pays</div></div>
+    <div class="hstat"><div class="hstat-n">177</div><div class="hstat-l" data-i18n="stat_countries">Pays</div></div>
     <div class="hstat-sep"></div>
-    <div class="hstat"><div class="hstat-n">6</div><div class="hstat-l">Langues</div></div>
+    <div class="hstat"><div class="hstat-n">6</div><div class="hstat-l" data-i18n="stat_langs">Langues</div></div>
     <div class="hstat-sep"></div>
-    <div class="hstat"><div class="hstat-n">5★</div><div class="hstat-l">Note moyenne</div></div>
+    <div class="hstat"><div class="hstat-n">5★</div><div class="hstat-l" data-i18n="stat_rating">Note moyenne</div></div>
   </div>
 
-  <div class="smouse"><div class="mbody"><div class="mwheel"></div></div><span class="slbl">Défiler</span></div>
+  <div class="smouse"><div class="mbody"><div class="mwheel"></div></div><span class="slbl" data-i18n="hero_scroll">Défiler</span></div>
 </section>
 
 <!-- MARQUEE x2 -->
@@ -334,9 +339,9 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
 
 <!-- APPS -->
 <div class="sec" id="apps">
-  <p class="seye rv">Nos applications</p>
-  <h2 class="stitle rv">Conçues pour<br>vous surprendre.</h2>
-  <p class="ssub rv">Apps qui allient design soigné, expérience fluide et vraie valeur utilisateur. Disponibles dans 177 pays.</p>
+  <p class="seye rv" data-i18n="apps_eye">Nos applications</p>
+  <h2 class="stitle rv" data-i18n-html="apps_title">Conçues pour<br>vous surprendre.</h2>
+  <p class="ssub rv" data-i18n="apps_sub">Apps qui allient design soigné, expérience fluide et vraie valeur utilisateur. Disponibles dans 177 pays.</p>
 
   <div class="agrid">
     <!-- ASCEND -->
@@ -346,15 +351,15 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
       <div class="aicon">
         <img src="https://play-lh.googleusercontent.com/Mb4J5HI-qkb3YaKuT9encQp1a1Q4rmqh8C1wq47JgeFl9NW7JVPaGWGMUAc6sRxGDqfr=s256" alt="ASCEND" onerror="this.parentElement.style.cssText='width:68px;height:68px;border-radius:18px;background:linear-gradient(135deg,#5eead4,#60a5fa);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:1.6rem';this.remove()">
       </div>
-      <span class="atag t1">Bien-être & Gamification</span>
+      <span class="atag t1" data-i18n="ascend_tag">Bien-être & Gamification</span>
       <h3 class="aname">ASCEND</h3>
-      <p class="adesc">Suivez votre humeur, gagnez de l'XP et montez en niveau. La gamification au service de votre bien-être quotidien.</p>
+      <p class="adesc" data-i18n="ascend_desc">Suivez votre humeur, gagnez de l'XP et montez en niveau. La gamification au service de votre bien-être quotidien.</p>
       <div class="apills">
-        <span class="pill">Suivi d'humeur</span><span class="pill">XP & Niveaux</span>
+        <span class="pill" data-i18n="ascend_p1">Suivi d'humeur</span><span class="pill" data-i18n="ascend_p2">XP & Niveaux</span>
         <span class="pill">Badges & Prestige</span><span class="pill">Routines</span>
-        <span class="pill">Statistiques</span><span class="pill">Premium</span>
+        <span class="pill" data-i18n="ascend_p3">Statistiques</span><span class="pill">Premium</span>
       </div>
-      <a href="https://play.google.com/store/apps/details?id=com.orionwavesstudio.ascend" class="alink" target="_blank" rel="noopener">
+      <a href="https://play.google.com/store/apps/details?id=com.orionwavesstudio.ascend" class="alink" target="_blank" rel="noopener" data-i18n="play_download">
         Télécharger sur Google Play
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </a>
@@ -369,15 +374,15 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
     <div class="acard rv delay1">
       <div class="shimmer" style="background:conic-gradient(from var(--ang,0deg),transparent 0deg,rgba(251,146,60,.25) 60deg,transparent 120deg)"></div>
       <div class="aicon-e" style="background:rgba(251,146,60,.09);border:1px solid rgba(251,146,60,.16)">💣</div>
-      <span class="atag t2">Messagerie & Fun</span>
+      <span class="atag t2" data-i18n="sms_tag">Messagerie & Fun</span>
       <h3 class="aname">SMSplode</h3>
-      <p class="adesc">Bombardez vos amis de SMS avec style — animation 3D explosive, sons personnalisés et programmation intelligente.</p>
+      <p class="adesc" data-i18n="sms_desc">Bombardez vos amis de SMS avec style — animation 3D explosive, sons personnalisés et programmation intelligente.</p>
       <div class="apills">
-        <span class="pill">Animation 3D</span><span class="pill">Sons custom</span>
-        <span class="pill">Programmation</span><span class="pill">Mode furtif</span>
-        <span class="pill">10 destinataires</span><span class="pill">Premium 2,99€</span>
+        <span class="pill" data-i18n="sms_p1">Animation 3D</span><span class="pill" data-i18n="sms_p2">Sons custom</span>
+        <span class="pill" data-i18n="sms_p3">Programmation</span><span class="pill" data-i18n="sms_p4">Mode furtif</span>
+        <span class="pill" data-i18n="sms_p5">10 destinataires</span><span class="pill">Premium 2,99€</span>
       </div>
-      <a href="https://play.google.com/store/apps/details?id=com.orionwavesstudio.smssplode" class="alink" style="color:var(--c5)" target="_blank" rel="noopener">
+      <a href="https://play.google.com/store/apps/details?id=com.orionwavesstudio.smssplode" class="alink" style="color:var(--c5)" target="_blank" rel="noopener" data-i18n="play_download">
         Télécharger sur Google Play
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </a>
@@ -390,14 +395,14 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
     <!-- PULSAR -->
     <div class="acard rv delay2" style="border-style:dashed;opacity:.5">
       <div class="aicon-e" style="background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.13)">✦</div>
-      <span class="atag t3">En développement</span>
+      <span class="atag t3" data-i18n="pulsar_tag">En développement</span>
       <h3 class="aname">Projet PULSAR</h3>
-      <p class="adesc">Notre prochain jeu mobile — réflexes circulaires et IA adaptative qui apprend de vous. Une arcade nouvelle génération.</p>
+      <p class="adesc" data-i18n="pulsar_desc">Notre prochain jeu mobile — réflexes circulaires et IA adaptative qui apprend de vous. Une arcade nouvelle génération.</p>
       <div class="apills">
-        <span class="pill">Jeu mobile</span><span class="pill">IA adaptative</span>
-        <span class="pill">Réflexes</span><span class="pill">Bientôt</span>
+        <span class="pill" data-i18n="pulsar_p1">Jeu mobile</span><span class="pill" data-i18n="pulsar_p2">IA adaptative</span>
+        <span class="pill" data-i18n="pulsar_p3">Réflexes</span><span class="pill" data-i18n="pulsar_p4">Bientôt</span>
       </div>
-      <span class="alink" style="color:var(--c3);cursor:not-allowed;opacity:.7">
+      <span class="alink" style="color:var(--c3);cursor:not-allowed;opacity:.7" data-i18n="pulsar_soon">
         Bientôt disponible
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </span>
@@ -409,9 +414,9 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
 
 <!-- TESTIMONIALS -->
 <div class="sec" id="reviews">
-  <p class="seye rv">Avis utilisateurs</p>
-  <h2 class="stitle rv">Ce qu'ils<br>en pensent.</h2>
-  <p class="ssub rv">Des vrais utilisateurs, des vrais retours. 5 étoiles sur Google Play.</p>
+  <p class="seye rv" data-i18n="rev_eye">Avis utilisateurs</p>
+  <h2 class="stitle rv" data-i18n-html="rev_title">Ce qu'ils<br>en pensent.</h2>
+  <p class="ssub rv" data-i18n="rev_sub">Des vrais utilisateurs, des vrais retours. 5 étoiles sur Google Play.</p>
   <div class="tgrid">
     <div class="tcard rv">
       <div class="tstars">★★★★★</div>
@@ -436,15 +441,15 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
 <!-- ROADMAP -->
 <div class="sec" id="roadmap">
   <p class="seye rv">Roadmap</p>
-  <h2 class="stitle rv">Ce qui arrive<br>bientôt.</h2>
-  <p class="ssub rv">Notre plan de développement — transparent et ambitieux.</p>
+  <h2 class="stitle rv" data-i18n-html="road_title">Ce qui arrive<br>bientôt.</h2>
+  <p class="ssub rv" data-i18n="road_sub">Notre plan de développement — transparent et ambitieux.</p>
   <div class="roadmap rv">
-    <div class="ritem done"><span class="rbadge bd">✓ Terminé</span><div class="rtitle">ASCEND v1.0 — Lancement Production</div><div class="rdesc">Suivi d'humeur, XP, niveaux, badges, routines. 177 pays, 6 langues.</div></div>
-    <div class="ritem done"><span class="rbadge bd">✓ Terminé</span><div class="rtitle">ASCEND v2.5 — Monétisation & RGPD</div><div class="rdesc">AdMob, RGPD/UMP, In-App Review, domaine orionwavesstudio.com.</div></div>
-    <div class="ritem active"><span class="rbadge ba">● En cours</span><div class="rtitle">ASCEND v3.0 — Optimisation & ASO</div><div class="rdesc">Mots-clés Play Store, validation OAuth Google, améliorations UX.</div></div>
-    <div class="ritem"><span class="rbadge bs">Bientôt</span><div class="rtitle">SMSplode — Publication Production</div><div class="rdesc">Intégration AdMob, RGPD, correction widget, publication mondiale.</div></div>
-    <div class="ritem"><span class="rbadge bf">Futur</span><div class="rtitle">Projet PULSAR — Jeu Mobile</div><div class="rdesc">Réflexes circulaires avec IA adaptative. Phase 0 en cours.</div></div>
-    <div class="ritem"><span class="rbadge bf">Futur</span><div class="rtitle">Nouvelles Applications OrionWavesStudio</div><div class="rdesc">Notre pipeline continue — restez à l'écoute pour les prochaines annonces.</div></div>
+    <div class="ritem done"><span class="rbadge bd" data-i18n="badge_done">✓ Terminé</span><div class="rtitle" data-i18n="r1_title">ASCEND v1.0 — Lancement Production</div><div class="rdesc" data-i18n="r1_desc">Suivi d'humeur, XP, niveaux, badges, routines. 177 pays, 6 langues.</div></div>
+    <div class="ritem done"><span class="rbadge bd" data-i18n="badge_done">✓ Terminé</span><div class="rtitle" data-i18n="r2_title">ASCEND v2.5 — Monétisation & RGPD</div><div class="rdesc" data-i18n="r2_desc">AdMob, RGPD/UMP, In-App Review, domaine orionwavesstudio.com.</div></div>
+    <div class="ritem active"><span class="rbadge ba" data-i18n="badge_active">● En cours</span><div class="rtitle" data-i18n="r3_title">ASCEND v3.0 — Optimisation & ASO</div><div class="rdesc" data-i18n="r3_desc">Mots-clés Play Store, validation OAuth Google, améliorations UX.</div></div>
+    <div class="ritem"><span class="rbadge bs" data-i18n="badge_soon">Bientôt</span><div class="rtitle" data-i18n="r4_title">SMSplode — Publication Production</div><div class="rdesc" data-i18n="r4_desc">Intégration AdMob, RGPD, correction widget, publication mondiale.</div></div>
+    <div class="ritem"><span class="rbadge bf" data-i18n="badge_future">Futur</span><div class="rtitle" data-i18n="r5_title">Projet PULSAR — Jeu Mobile</div><div class="rdesc" data-i18n="r5_desc">Réflexes circulaires avec IA adaptative. Phase 0 en cours.</div></div>
+    <div class="ritem"><span class="rbadge bf" data-i18n="badge_future">Futur</span><div class="rtitle" data-i18n="r6_title">Nouvelles Applications OrionWavesStudio</div><div class="rdesc" data-i18n="r6_desc">Notre pipeline continue — restez à l'écoute pour les prochaines annonces.</div></div>
   </div>
 </div>
 
@@ -454,18 +459,18 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
 <div class="sec" id="about">
   <div class="alayout">
     <div>
-      <p class="seye rv">Notre studio</p>
-      <h2 class="stitle rv">Un studio.<br>Une vision.</h2>
+      <p class="seye rv" data-i18n="about_eye">Notre studio</p>
+      <h2 class="stitle rv" data-i18n-html="about_title">Un studio.<br>Une vision.</h2>
       <div class="atxt rv">
-        <p>OrionWavesStudio est un studio Android indépendant basé en France. Une seule mission : créer des applications qui ont du sens, qui sont belles, et qui durent.</p>
-        <p>De la phase 0 de documentation jusqu'à la publication en production mondiale, chaque étape est pensée avec soin. Pas de compromis sur la qualité.</p>
+        <p data-i18n="about_p1">OrionWavesStudio est un studio Android indépendant basé en France. Une seule mission : créer des applications qui ont du sens, qui sont belles, et qui durent.</p>
+        <p data-i18n="about_p2">De la phase 0 de documentation jusqu'à la publication en production mondiale, chaque étape est pensée avec soin. Pas de compromis sur la qualité.</p>
       </div>
       <div class="avals rv">
-        <div class="aval"><span class="avico">⚡</span>Design-first — l'expérience avant tout</div>
-        <div class="aval"><span class="avico">🌍</span>International — 177 pays, 6 langues</div>
-        <div class="aval"><span class="avico">🔒</span>Privacy — RGPD dès le premier jour</div>
-        <div class="aval"><span class="avico">🚀</span>Continu — mises à jour régulières</div>
-        <div class="aval"><span class="avico">💎</span>Premium — qualité sans compromis</div>
+        <div class="aval"><span class="avico">⚡</span><span data-i18n="val1">Design-first — l'expérience avant tout</span></div>
+        <div class="aval"><span class="avico">🌍</span><span data-i18n="val2">International — 177 pays, 6 langues</span></div>
+        <div class="aval"><span class="avico">🔒</span><span data-i18n="val3">Privacy — RGPD dès le premier jour</span></div>
+        <div class="aval"><span class="avico">🚀</span><span data-i18n="val4">Continu — mises à jour régulières</span></div>
+        <div class="aval"><span class="avico">💎</span><span data-i18n="val5">Premium — qualité sans compromis</span></div>
       </div>
     </div>
     <div class="avis rv">
@@ -485,8 +490,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
     <div class="co co1"></div>
     <div class="co co2"></div>
     <div class="co co3"></div>
-    <h3>Travaillons ensemble.</h3>
-    <p>Une idée d'application ? Un partenariat ? Une question ? Nous sommes à l'écoute.</p>
+    <h3 data-i18n="contact_title">Travaillons ensemble.</h3>
+    <p data-i18n="contact_sub">Une idée d'application ? Un partenariat ? Une question ? Nous sommes à l'écoute.</p>
     <a href="https://mail.google.com/mail/?view=cm&to=orionwavesstudio@gmail.com" class="cemail" target="_blank" rel="noopener">
       ✉ orionwavesstudio@gmail.com
     </a>
@@ -506,10 +511,10 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
 <footer>
   <div class="flogo"><div class="norb" style="width:18px;height:18px"></div>OrionWavesStudio © 2026</div>
   <div class="flinks">
-    <a href="https://orionwavesstudio.com/ascend-privacy-policy/privacy-policy.html" target="_blank">Politique de confidentialité</a>
+    <a href="https://orionwavesstudio-design.github.io/ascend-privacy-fr.html" target="_blank" id="footer-privacy" data-i18n="footer_privacy">Politique de confidentialité</a>
     <a href="https://play.google.com/store/apps/developer?id=OrionWavesStudio" target="_blank">Google Play</a>
-    <a href="#apps">Applications</a>
-    <a href="#contact">Contact</a>
+    <a href="#apps" data-i18n="nav_apps">Applications</a>
+    <a href="#contact" data-i18n="nav_contact_short">Contact</a>
   </div>
   <span class="fright">Made with ♥ in France 🇫🇷</span>
 </footer>
@@ -615,6 +620,116 @@ window.addEventListener('scroll',()=>{
   const y=scrollY;
   document.querySelectorAll('.orb-bg').forEach((o,i)=>o.style.transform=`translateY(${y*(0.07+i*.035)}px)`);
 });
+/* ── I18N ── */
+const T={
+  fr:{
+    nav_apps:'Apps',nav_reviews:'Avis',nav_studio:'Studio',nav_contact:'Contact →',nav_contact_short:'Contact',
+    hero_badge:'Studio Android Indépendant · France 🇫🇷',
+    hero_sub:'Nous forgeons des applications Android d\'exception — chaque pixel pensé, chaque interaction soignée, chaque expérience mémorable.',
+    hero_btn1:'Découvrir nos apps',hero_btn2:'Notre histoire',
+    stat_apps:'Applications',stat_countries:'Pays',stat_langs:'Langues',stat_rating:'Note moyenne',hero_scroll:'Défiler',
+    apps_eye:'Nos applications',apps_title:'Conçues pour<br>vous surprendre.',
+    apps_sub:'Apps qui allient design soigné, expérience fluide et vraie valeur utilisateur. Disponibles dans 177 pays.',
+    ascend_tag:'Bien-être & Gamification',
+    ascend_desc:'Suivez votre humeur, gagnez de l\'XP et montez en niveau. La gamification au service de votre bien-être quotidien.',
+    ascend_p1:'Suivi d\'humeur',ascend_p2:'XP & Niveaux',ascend_p3:'Statistiques',
+    play_download:'Télécharger sur Google Play',
+    sms_tag:'Messagerie & Fun',
+    sms_desc:'Bombardez vos amis de SMS avec style — animation 3D explosive, sons personnalisés et programmation intelligente.',
+    sms_p1:'Animation 3D',sms_p2:'Sons custom',sms_p3:'Programmation',sms_p4:'Mode furtif',sms_p5:'10 destinataires',
+    pulsar_tag:'En développement',
+    pulsar_desc:'Notre prochain jeu mobile — réflexes circulaires et IA adaptative qui apprend de vous. Une arcade nouvelle génération.',
+    pulsar_p1:'Jeu mobile',pulsar_p2:'IA adaptative',pulsar_p3:'Réflexes',pulsar_p4:'Bientôt',pulsar_soon:'Bientôt disponible',
+    rev_eye:'Avis utilisateurs',rev_title:'Ce qu\'ils<br>en pensent.',
+    rev_sub:'Des vrais utilisateurs, des vrais retours. 5 étoiles sur Google Play.',
+    road_title:'Ce qui arrive<br>bientôt.',road_sub:'Notre plan de développement — transparent et ambitieux.',
+    badge_done:'✓ Terminé',badge_active:'● En cours',badge_soon:'Bientôt',badge_future:'Futur',
+    r1_title:'ASCEND v1.0 — Lancement Production',r1_desc:'Suivi d\'humeur, XP, niveaux, badges, routines. 177 pays, 6 langues.',
+    r2_title:'ASCEND v2.5 — Monétisation & RGPD',r2_desc:'AdMob, RGPD/UMP, In-App Review, domaine orionwavesstudio.com.',
+    r3_title:'ASCEND v3.0 — Optimisation & ASO',r3_desc:'Mots-clés Play Store, validation OAuth Google, améliorations UX.',
+    r4_title:'SMSplode — Publication Production',r4_desc:'Intégration AdMob, RGPD, correction widget, publication mondiale.',
+    r5_title:'Projet PULSAR — Jeu Mobile',r5_desc:'Réflexes circulaires avec IA adaptative. Phase 0 en cours.',
+    r6_title:'Nouvelles Applications OrionWavesStudio',r6_desc:'Notre pipeline continue — restez à l\'écoute pour les prochaines annonces.',
+    about_eye:'Notre studio',about_title:'Un studio.<br>Une vision.',
+    about_p1:'OrionWavesStudio est un studio Android indépendant basé en France. Une seule mission : créer des applications qui ont du sens, qui sont belles, et qui durent.',
+    about_p2:'De la phase 0 de documentation jusqu\'à la publication en production mondiale, chaque étape est pensée avec soin. Pas de compromis sur la qualité.',
+    val1:'Design-first — l\'expérience avant tout',val2:'International — 177 pays, 6 langues',
+    val3:'Privacy — RGPD dès le premier jour',val4:'Continu — mises à jour régulières',val5:'Premium — qualité sans compromis',
+    contact_title:'Travaillons ensemble.',
+    contact_sub:'Une idée d\'application ? Un partenariat ? Une question ? Nous sommes à l\'écoute.',
+    footer_privacy:'Politique de confidentialité',
+  },
+  en:{
+    nav_apps:'Apps',nav_reviews:'Reviews',nav_studio:'Studio',nav_contact:'Contact →',nav_contact_short:'Contact',
+    hero_badge:'Independent Android Studio · France 🇫🇷',
+    hero_sub:'We craft exceptional Android apps — every pixel considered, every interaction refined, every experience memorable.',
+    hero_btn1:'Discover our apps',hero_btn2:'Our story',
+    stat_apps:'Apps',stat_countries:'Countries',stat_langs:'Languages',stat_rating:'Avg. Rating',hero_scroll:'Scroll',
+    apps_eye:'Our apps',apps_title:'Crafted to<br>surprise you.',
+    apps_sub:'Apps combining refined design, smooth experience and real user value. Available in 177 countries.',
+    ascend_tag:'Wellness & Gamification',
+    ascend_desc:'Track your mood, earn XP and level up. Gamification at the service of your daily well-being.',
+    ascend_p1:'Mood Tracking',ascend_p2:'XP & Levels',ascend_p3:'Statistics',
+    play_download:'Download on Google Play',
+    sms_tag:'Messaging & Fun',
+    sms_desc:'Bombard your friends with SMS in style — explosive 3D animation, custom sounds and smart scheduling.',
+    sms_p1:'3D Animation',sms_p2:'Custom Sounds',sms_p3:'Scheduling',sms_p4:'Stealth Mode',sms_p5:'10 Recipients',
+    pulsar_tag:'In Development',
+    pulsar_desc:'Our next mobile game — circular reflexes and adaptive AI that learns from you. Next-gen arcade.',
+    pulsar_p1:'Mobile Game',pulsar_p2:'Adaptive AI',pulsar_p3:'Reflexes',pulsar_p4:'Coming Soon',pulsar_soon:'Coming Soon',
+    rev_eye:'User Reviews',rev_title:'What they<br>think.',
+    rev_sub:'Real users, real feedback. 5 stars on Google Play.',
+    road_title:'What\'s coming<br>next.',road_sub:'Our development plan — transparent and ambitious.',
+    badge_done:'✓ Done',badge_active:'● In Progress',badge_soon:'Soon',badge_future:'Future',
+    r1_title:'ASCEND v1.0 — Production Launch',r1_desc:'Mood tracking, XP, levels, badges, routines. 177 countries, 6 languages.',
+    r2_title:'ASCEND v2.5 — Monetization & GDPR',r2_desc:'AdMob, GDPR/UMP, In-App Review, orionwavesstudio.com domain.',
+    r3_title:'ASCEND v3.0 — Optimization & ASO',r3_desc:'Play Store keywords, Google OAuth validation, UX improvements.',
+    r4_title:'SMSplode — Production Release',r4_desc:'AdMob integration, GDPR, widget fix, worldwide release.',
+    r5_title:'Project PULSAR — Mobile Game',r5_desc:'Circular reflexes with adaptive AI. Phase 0 in progress.',
+    r6_title:'New OrionWavesStudio Apps',r6_desc:'Our pipeline continues — stay tuned for upcoming announcements.',
+    about_eye:'Our studio',about_title:'One studio.<br>One vision.',
+    about_p1:'OrionWavesStudio is an independent Android studio based in France. One mission: create apps that matter, that are beautiful, and that last.',
+    about_p2:'From phase 0 documentation to worldwide production release, every step is carefully considered. No compromise on quality.',
+    val1:'Design-first — experience above all',val2:'International — 177 countries, 6 languages',
+    val3:'Privacy — GDPR from day one',val4:'Ongoing — regular updates',val5:'Premium — quality without compromise',
+    contact_title:'Let\'s work together.',
+    contact_sub:'An app idea? A partnership? A question? We\'re listening.',
+    footer_privacy:'Privacy Policy',
+  }
+};
+
+let currentLang='fr';
+
+function applyLang(lang){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.dataset.i18n;
+    if(T[lang][k]!==undefined)el.textContent=T[lang][k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    const k=el.dataset.i18nHtml;
+    if(T[lang][k]!==undefined)el.innerHTML=T[lang][k];
+  });
+  // Footer privacy link
+  const fp=document.getElementById('footer-privacy');
+  if(fp)fp.href=lang==='fr'
+    ?'https://orionwavesstudio-design.github.io/ascend-privacy-fr.html'
+    :'https://orionwavesstudio-design.github.io/ascend-privacy-en.html';
+  document.documentElement.lang=lang;
+  const btn=document.getElementById('lang-btn');
+  if(btn)btn.textContent=lang==='fr'?'EN':'FR';
+  localStorage.setItem('ows_lang',lang);
+  currentLang=lang;
+}
+
+function toggleLang(){applyLang(currentLang==='fr'?'en':'fr');}
+
+// Init : saved pref → browser lang → FR fallback
+(function(){
+  const saved=localStorage.getItem('ows_lang');
+  if(saved&&T[saved]){applyLang(saved);return;}
+  const bl=(navigator.language||navigator.userLanguage||'fr').toLowerCase();
+  applyLang(bl.startsWith('fr')?'fr':'en');
+})();
 </script>
 </body>
 </html>
