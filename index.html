@@ -219,9 +219,19 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
 .flinks a:hover{color:var(--text)}
 .fright{color:var(--muted);font-size:.76rem}
 
-/* ── LANG TOGGLE ── */
-.lang-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted);padding:.3rem .78rem;border-radius:100px;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.08em;font-family:var(--fd);line-height:1}
+/* ── LANG DROPDOWN ── */
+.lang-wrap{position:relative}
+.lang-btn{display:flex;align-items:center;gap:.38rem;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted);padding:.3rem .72rem;border-radius:100px;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.06em;font-family:var(--fd);line-height:1;white-space:nowrap}
 .lang-btn:hover{color:var(--text);border-color:var(--borderhov);background:rgba(255,255,255,.1)}
+.lang-btn svg{width:10px;height:10px;transition:transform .2s;flex-shrink:0}
+.lang-wrap.open .lang-btn{border-color:var(--borderhov);color:var(--text)}
+.lang-wrap.open .lang-btn svg{transform:rotate(180deg)}
+.lang-drop{position:absolute;top:calc(100% + 10px);right:0;background:rgba(7,9,26,.95);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid var(--border);border-radius:14px;padding:.45rem;min-width:140px;z-index:600;opacity:0;transform:translateY(-6px) scale(.97);pointer-events:none;transition:opacity .18s ease,transform .18s ease}
+.lang-wrap.open .lang-drop{opacity:1;transform:translateY(0) scale(1);pointer-events:all}
+.lang-opt{display:flex;align-items:center;gap:.55rem;padding:.52rem .75rem;border-radius:9px;font-size:.78rem;color:var(--muted);cursor:pointer;transition:background .15s,color .15s;font-family:var(--fb);font-weight:500;white-space:nowrap}
+.lang-opt:hover{background:rgba(255,255,255,.07);color:var(--text)}
+.lang-opt.active{background:rgba(94,234,212,.08);color:var(--c1);font-weight:600}
+.lang-flag{font-size:.95rem;line-height:1}
 
 /* ── HR ── */
 .hr{position:relative;z-index:2;max-width:1200px;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
@@ -273,7 +283,24 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
     <li><a href="#reviews" data-i18n="nav_reviews">Avis</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#about" data-i18n="nav_studio">Studio</a></li>
-    <li><button class="lang-btn" onclick="toggleLang()" id="lang-btn">EN</button></li>
+    <li>
+      <div class="lang-wrap" id="lang-wrap">
+        <button class="lang-btn" onclick="toggleDrop()" id="lang-btn">
+          <span id="lang-flag">🇫🇷</span>
+          <span id="lang-label">FR</span>
+          <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="lang-drop" id="lang-drop">
+          <div class="lang-opt active" data-lang="fr" onclick="selectLang('fr')"><span class="lang-flag">🇫🇷</span>Français</div>
+          <div class="lang-opt" data-lang="en" onclick="selectLang('en')"><span class="lang-flag">🇬🇧</span>English</div>
+          <div class="lang-opt" data-lang="de" onclick="selectLang('de')"><span class="lang-flag">🇩🇪</span>Deutsch</div>
+          <div class="lang-opt" data-lang="it" onclick="selectLang('it')"><span class="lang-flag">🇮🇹</span>Italiano</div>
+          <div class="lang-opt" data-lang="es" onclick="selectLang('es')"><span class="lang-flag">🇪🇸</span>Español</div>
+          <div class="lang-opt" data-lang="pt" onclick="selectLang('pt')"><span class="lang-flag">🇧🇷</span>Português</div>
+          <div class="lang-opt" data-lang="zh" onclick="selectLang('zh')"><span class="lang-flag">🇨🇳</span>中文</div>
+        </div>
+      </div>
+    </li>
     <li><a href="#contact" class="ncta" data-i18n="nav_contact">Contact →</a></li>
   </ul>
 </nav>
@@ -621,8 +648,338 @@ window.addEventListener('scroll',()=>{
   document.querySelectorAll('.orb-bg').forEach((o,i)=>o.style.transform=`translateY(${y*(0.07+i*.035)}px)`);
 });
 /* ── I18N ── */
+const LANGS=['fr','en','de','it','es','pt','zh'];
+const LANG_LABELS={fr:'FR',en:'EN',de:'DE',it:'IT',es:'ES',pt:'PT',zh:'中文'};
 const T={
   fr:{
+    nav_apps:'Apps',nav_reviews:'Avis',nav_studio:'Studio',nav_contact:'Contact →',nav_contact_short:'Contact',
+    hero_badge:'Studio Android Indépendant · France 🇫🇷',
+    hero_sub:'Nous forgeons des applications Android d\'exception — chaque pixel pensé, chaque interaction soignée, chaque expérience mémorable.',
+    hero_btn1:'Découvrir nos apps',hero_btn2:'Notre histoire',
+    stat_apps:'Applications',stat_countries:'Pays',stat_langs:'Langues',stat_rating:'Note moyenne',hero_scroll:'Défiler',
+    apps_eye:'Nos applications',apps_title:'Conçues pour<br>vous surprendre.',
+    apps_sub:'Apps qui allient design soigné, expérience fluide et vraie valeur utilisateur. Disponibles dans 177 pays.',
+    ascend_tag:'Bien-être & Gamification',
+    ascend_desc:'Suivez votre humeur, gagnez de l\'XP et montez en niveau. La gamification au service de votre bien-être quotidien.',
+    ascend_p1:'Suivi d\'humeur',ascend_p2:'XP & Niveaux',ascend_p3:'Statistiques',
+    play_download:'Télécharger sur Google Play',
+    sms_tag:'Messagerie & Fun',
+    sms_desc:'Bombardez vos amis de SMS avec style — animation 3D explosive, sons personnalisés et programmation intelligente.',
+    sms_p1:'Animation 3D',sms_p2:'Sons custom',sms_p3:'Programmation',sms_p4:'Mode furtif',sms_p5:'10 destinataires',
+    pulsar_tag:'En développement',
+    pulsar_desc:'Notre prochain jeu mobile — réflexes circulaires et IA adaptative qui apprend de vous. Une arcade nouvelle génération.',
+    pulsar_p1:'Jeu mobile',pulsar_p2:'IA adaptative',pulsar_p3:'Réflexes',pulsar_p4:'Bientôt',pulsar_soon:'Bientôt disponible',
+    rev_eye:'Avis utilisateurs',rev_title:'Ce qu\'ils<br>en pensent.',
+    rev_sub:'Des vrais utilisateurs, des vrais retours. 5 étoiles sur Google Play.',
+    road_title:'Ce qui arrive<br>bientôt.',road_sub:'Notre plan de développement — transparent et ambitieux.',
+    badge_done:'✓ Terminé',badge_active:'● En cours',badge_soon:'Bientôt',badge_future:'Futur',
+    r1_title:'ASCEND v1.0 — Lancement Production',r1_desc:'Suivi d\'humeur, XP, niveaux, badges, routines. 177 pays, 6 langues.',
+    r2_title:'ASCEND v2.5 — Monétisation & RGPD',r2_desc:'AdMob, RGPD/UMP, In-App Review, domaine orionwavesstudio.com.',
+    r3_title:'ASCEND v3.0 — Optimisation & ASO',r3_desc:'Mots-clés Play Store, validation OAuth Google, améliorations UX.',
+    r4_title:'SMSplode — Publication Production',r4_desc:'Intégration AdMob, RGPD, correction widget, publication mondiale.',
+    r5_title:'Projet PULSAR — Jeu Mobile',r5_desc:'Réflexes circulaires avec IA adaptative. Phase 0 en cours.',
+    r6_title:'Nouvelles Applications OrionWavesStudio',r6_desc:'Notre pipeline continue — restez à l\'écoute pour les prochaines annonces.',
+    about_eye:'Notre studio',about_title:'Un studio.<br>Une vision.',
+    about_p1:'OrionWavesStudio est un studio Android indépendant basé en France. Une seule mission : créer des applications qui ont du sens, qui sont belles, et qui durent.',
+    about_p2:'De la phase 0 de documentation jusqu\'à la publication en production mondiale, chaque étape est pensée avec soin. Pas de compromis sur la qualité.',
+    val1:'Design-first — l\'expérience avant tout',val2:'International — 177 pays, 6 langues',
+    val3:'Privacy — RGPD dès le premier jour',val4:'Continu — mises à jour régulières',val5:'Premium — qualité sans compromis',
+    contact_title:'Travaillons ensemble.',
+    contact_sub:'Une idée d\'application ? Un partenariat ? Une question ? Nous sommes à l\'écoute.',
+    footer_privacy:'Politique de confidentialité',
+  },
+  en:{
+    nav_apps:'Apps',nav_reviews:'Reviews',nav_studio:'Studio',nav_contact:'Contact →',nav_contact_short:'Contact',
+    hero_badge:'Independent Android Studio · France 🇫🇷',
+    hero_sub:'We craft exceptional Android apps — every pixel considered, every interaction refined, every experience memorable.',
+    hero_btn1:'Discover our apps',hero_btn2:'Our story',
+    stat_apps:'Apps',stat_countries:'Countries',stat_langs:'Languages',stat_rating:'Avg. Rating',hero_scroll:'Scroll',
+    apps_eye:'Our apps',apps_title:'Crafted to<br>surprise you.',
+    apps_sub:'Apps combining refined design, smooth experience and real user value. Available in 177 countries.',
+    ascend_tag:'Wellness & Gamification',
+    ascend_desc:'Track your mood, earn XP and level up. Gamification at the service of your daily well-being.',
+    ascend_p1:'Mood Tracking',ascend_p2:'XP & Levels',ascend_p3:'Statistics',
+    play_download:'Download on Google Play',
+    sms_tag:'Messaging & Fun',
+    sms_desc:'Bombard your friends with SMS in style — explosive 3D animation, custom sounds and smart scheduling.',
+    sms_p1:'3D Animation',sms_p2:'Custom Sounds',sms_p3:'Scheduling',sms_p4:'Stealth Mode',sms_p5:'10 Recipients',
+    pulsar_tag:'In Development',
+    pulsar_desc:'Our next mobile game — circular reflexes and adaptive AI that learns from you. Next-gen arcade.',
+    pulsar_p1:'Mobile Game',pulsar_p2:'Adaptive AI',pulsar_p3:'Reflexes',pulsar_p4:'Coming Soon',pulsar_soon:'Coming Soon',
+    rev_eye:'User Reviews',rev_title:'What they<br>think.',
+    rev_sub:'Real users, real feedback. 5 stars on Google Play.',
+    road_title:'What\'s coming<br>next.',road_sub:'Our development plan — transparent and ambitious.',
+    badge_done:'✓ Done',badge_active:'● In Progress',badge_soon:'Soon',badge_future:'Future',
+    r1_title:'ASCEND v1.0 — Production Launch',r1_desc:'Mood tracking, XP, levels, badges, routines. 177 countries, 6 languages.',
+    r2_title:'ASCEND v2.5 — Monetization & GDPR',r2_desc:'AdMob, GDPR/UMP, In-App Review, orionwavesstudio.com domain.',
+    r3_title:'ASCEND v3.0 — Optimization & ASO',r3_desc:'Play Store keywords, Google OAuth validation, UX improvements.',
+    r4_title:'SMSplode — Production Release',r4_desc:'AdMob integration, GDPR, widget fix, worldwide release.',
+    r5_title:'Project PULSAR — Mobile Game',r5_desc:'Circular reflexes with adaptive AI. Phase 0 in progress.',
+    r6_title:'New OrionWavesStudio Apps',r6_desc:'Our pipeline continues — stay tuned for upcoming announcements.',
+    about_eye:'Our studio',about_title:'One studio.<br>One vision.',
+    about_p1:'OrionWavesStudio is an independent Android studio based in France. One mission: create apps that matter, that are beautiful, and that last.',
+    about_p2:'From phase 0 documentation to worldwide production release, every step is carefully considered. No compromise on quality.',
+    val1:'Design-first — experience above all',val2:'International — 177 countries, 6 languages',
+    val3:'Privacy — GDPR from day one',val4:'Ongoing — regular updates',val5:'Premium — quality without compromise',
+    contact_title:'Let\'s work together.',
+    contact_sub:'An app idea? A partnership? A question? We\'re listening.',
+    footer_privacy:'Privacy Policy',
+  },
+  de:{
+    nav_apps:'Apps',nav_reviews:'Bewertungen',nav_studio:'Studio',nav_contact:'Kontakt →',nav_contact_short:'Kontakt',
+    hero_badge:'Unabhängiges Android-Studio · Frankreich 🇫🇷',
+    hero_sub:'Wir entwickeln außergewöhnliche Android-Apps — jedes Pixel durchdacht, jede Interaktion verfeinert, jedes Erlebnis unvergesslich.',
+    hero_btn1:'Unsere Apps entdecken',hero_btn2:'Unsere Geschichte',
+    stat_apps:'Apps',stat_countries:'Länder',stat_langs:'Sprachen',stat_rating:'Ø Bewertung',hero_scroll:'Scrollen',
+    apps_eye:'Unsere Apps',apps_title:'Gestaltet um<br>zu überraschen.',
+    apps_sub:'Apps, die elegantes Design, flüssige Erfahrung und echten Mehrwert verbinden. In 177 Ländern verfügbar.',
+    ascend_tag:'Wellness & Gamification',
+    ascend_desc:'Verfolge deine Stimmung, sammle XP und steige auf. Gamification im Dienst deines täglichen Wohlbefindens.',
+    ascend_p1:'Stimmungstracking',ascend_p2:'XP & Level',ascend_p3:'Statistiken',
+    play_download:'Bei Google Play herunterladen',
+    sms_tag:'Messaging & Spaß',
+    sms_desc:'Bombardiere deine Freunde mit SMS — explosive 3D-Animation, eigene Töne und intelligente Planung.',
+    sms_p1:'3D-Animation',sms_p2:'Eigene Töne',sms_p3:'Planung',sms_p4:'Tarnmodus',sms_p5:'10 Empfänger',
+    pulsar_tag:'In Entwicklung',
+    pulsar_desc:'Unser nächstes Mobilspiel — kreisförmige Reflexe und adaptive KI, die von dir lernt. Arcade der nächsten Generation.',
+    pulsar_p1:'Mobilspiel',pulsar_p2:'Adaptive KI',pulsar_p3:'Reflexe',pulsar_p4:'Demnächst',pulsar_soon:'Demnächst verfügbar',
+    rev_eye:'Nutzerbewertungen',rev_title:'Was sie<br>denken.',
+    rev_sub:'Echte Nutzer, echtes Feedback. 5 Sterne bei Google Play.',
+    road_title:'Was als<br>Nächstes kommt.',road_sub:'Unser Entwicklungsplan — transparent und ehrgeizig.',
+    badge_done:'✓ Fertig',badge_active:'● In Arbeit',badge_soon:'Bald',badge_future:'Zukunft',
+    r1_title:'ASCEND v1.0 — Produktionsstart',r1_desc:'Stimmungstracking, XP, Level, Badges, Routinen. 177 Länder, 6 Sprachen.',
+    r2_title:'ASCEND v2.5 — Monetarisierung & DSGVO',r2_desc:'AdMob, DSGVO/UMP, In-App-Bewertung, Domain orionwavesstudio.com.',
+    r3_title:'ASCEND v3.0 — Optimierung & ASO',r3_desc:'Play Store-Keywords, Google OAuth-Validierung, UX-Verbesserungen.',
+    r4_title:'SMSplode — Produktionsveröffentlichung',r4_desc:'AdMob-Integration, DSGVO, Widget-Fix, weltweite Veröffentlichung.',
+    r5_title:'Projekt PULSAR — Mobilspiel',r5_desc:'Kreisförmige Reflexe mit adaptiver KI. Phase 0 in Arbeit.',
+    r6_title:'Neue OrionWavesStudio-Apps',r6_desc:'Unsere Pipeline läuft weiter — bleib auf dem Laufenden.',
+    about_eye:'Unser Studio',about_title:'Ein Studio.<br>Eine Vision.',
+    about_p1:'OrionWavesStudio ist ein unabhängiges Android-Studio mit Sitz in Frankreich. Eine Mission: Apps zu entwickeln, die sinnvoll, schön und dauerhaft sind.',
+    about_p2:'Von der Phase-0-Dokumentation bis zur weltweiten Produktionsveröffentlichung wird jeder Schritt sorgfältig durchdacht. Kein Kompromiss bei der Qualität.',
+    val1:'Design-first — Erlebnis über alles',val2:'International — 177 Länder, 6 Sprachen',
+    val3:'Datenschutz — DSGVO von Anfang an',val4:'Kontinuierlich — regelmäßige Updates',val5:'Premium — Qualität ohne Kompromiss',
+    contact_title:'Arbeiten wir zusammen.',
+    contact_sub:'Eine App-Idee? Eine Partnerschaft? Eine Frage? Wir hören zu.',
+    footer_privacy:'Datenschutzrichtlinie',
+  },
+  it:{
+    nav_apps:'App',nav_reviews:'Recensioni',nav_studio:'Studio',nav_contact:'Contatto →',nav_contact_short:'Contatto',
+    hero_badge:'Studio Android Indipendente · Francia 🇫🇷',
+    hero_sub:'Creiamo app Android eccezionali — ogni pixel curato, ogni interazione raffinata, ogni esperienza memorabile.',
+    hero_btn1:'Scopri le nostre app',hero_btn2:'La nostra storia',
+    stat_apps:'App',stat_countries:'Paesi',stat_langs:'Lingue',stat_rating:'Voto medio',hero_scroll:'Scorri',
+    apps_eye:'Le nostre app',apps_title:'Progettate per<br>sorprenderti.',
+    apps_sub:'App che combinano design curato, esperienza fluida e vero valore per l\'utente. Disponibili in 177 paesi.',
+    ascend_tag:'Benessere & Gamification',
+    ascend_desc:'Monitora il tuo umore, guadagna XP e sali di livello. La gamification al servizio del tuo benessere quotidiano.',
+    ascend_p1:'Monitoraggio umore',ascend_p2:'XP & Livelli',ascend_p3:'Statistiche',
+    play_download:'Scarica su Google Play',
+    sms_tag:'Messaggistica & Divertimento',
+    sms_desc:'Bombarda i tuoi amici con SMS in stile — animazione 3D esplosiva, suoni personalizzati e pianificazione intelligente.',
+    sms_p1:'Animazione 3D',sms_p2:'Suoni custom',sms_p3:'Pianificazione',sms_p4:'Modalità furtiva',sms_p5:'10 destinatari',
+    pulsar_tag:'In sviluppo',
+    pulsar_desc:'Il nostro prossimo gioco mobile — riflessi circolari e IA adattiva che impara da te. Arcade di nuova generazione.',
+    pulsar_p1:'Gioco mobile',pulsar_p2:'IA adattiva',pulsar_p3:'Riflessi',pulsar_p4:'Prossimamente',pulsar_soon:'Prossimamente',
+    rev_eye:'Recensioni utenti',rev_title:'Cosa<br>pensano.',
+    rev_sub:'Utenti reali, feedback reali. 5 stelle su Google Play.',
+    road_title:'Cosa sta<br>arrivando.',road_sub:'Il nostro piano di sviluppo — trasparente e ambizioso.',
+    badge_done:'✓ Completato',badge_active:'● In corso',badge_soon:'Presto',badge_future:'Futuro',
+    r1_title:'ASCEND v1.0 — Lancio in Produzione',r1_desc:'Monitoraggio umore, XP, livelli, badge, routine. 177 paesi, 6 lingue.',
+    r2_title:'ASCEND v2.5 — Monetizzazione & GDPR',r2_desc:'AdMob, GDPR/UMP, In-App Review, dominio orionwavesstudio.com.',
+    r3_title:'ASCEND v3.0 — Ottimizzazione & ASO',r3_desc:'Parole chiave Play Store, validazione OAuth Google, miglioramenti UX.',
+    r4_title:'SMSplode — Pubblicazione Produzione',r4_desc:'Integrazione AdMob, GDPR, correzione widget, pubblicazione mondiale.',
+    r5_title:'Progetto PULSAR — Gioco Mobile',r5_desc:'Riflessi circolari con IA adattiva. Fase 0 in corso.',
+    r6_title:'Nuove App OrionWavesStudio',r6_desc:'La nostra pipeline continua — resta aggiornato per i prossimi annunci.',
+    about_eye:'Il nostro studio',about_title:'Uno studio.<br>Una visione.',
+    about_p1:'OrionWavesStudio è uno studio Android indipendente con sede in Francia. Una sola missione: creare app che abbiano senso, siano belle e durino nel tempo.',
+    about_p2:'Dalla fase 0 di documentazione alla pubblicazione in produzione mondiale, ogni fase è pensata con cura. Nessun compromesso sulla qualità.',
+    val1:'Design-first — l\'esperienza prima di tutto',val2:'Internazionale — 177 paesi, 6 lingue',
+    val3:'Privacy — GDPR dal primo giorno',val4:'Continuo — aggiornamenti regolari',val5:'Premium — qualità senza compromessi',
+    contact_title:'Lavoriamo insieme.',
+    contact_sub:'Un\'idea di app? Una partnership? Una domanda? Siamo in ascolto.',
+    footer_privacy:'Informativa sulla privacy',
+  },
+  es:{
+    nav_apps:'Apps',nav_reviews:'Reseñas',nav_studio:'Studio',nav_contact:'Contacto →',nav_contact_short:'Contacto',
+    hero_badge:'Estudio Android Independiente · Francia 🇫🇷',
+    hero_sub:'Creamos apps Android excepcionales — cada píxel pensado, cada interacción refinada, cada experiencia memorable.',
+    hero_btn1:'Descubrir nuestras apps',hero_btn2:'Nuestra historia',
+    stat_apps:'Apps',stat_countries:'Países',stat_langs:'Idiomas',stat_rating:'Nota media',hero_scroll:'Desplazar',
+    apps_eye:'Nuestras apps',apps_title:'Diseñadas para<br>sorprenderte.',
+    apps_sub:'Apps que combinan diseño refinado, experiencia fluida y verdadero valor para el usuario. Disponibles en 177 países.',
+    ascend_tag:'Bienestar & Gamificación',
+    ascend_desc:'Registra tu estado de ánimo, gana XP y sube de nivel. La gamificación al servicio de tu bienestar diario.',
+    ascend_p1:'Seguimiento del humor',ascend_p2:'XP & Niveles',ascend_p3:'Estadísticas',
+    play_download:'Descargar en Google Play',
+    sms_tag:'Mensajería & Diversión',
+    sms_desc:'Bombardea a tus amigos con SMS en estilo — animación 3D explosiva, sonidos personalizados y programación inteligente.',
+    sms_p1:'Animación 3D',sms_p2:'Sonidos custom',sms_p3:'Programación',sms_p4:'Modo sigiloso',sms_p5:'10 destinatarios',
+    pulsar_tag:'En desarrollo',
+    pulsar_desc:'Nuestro próximo juego móvil — reflejos circulares e IA adaptativa que aprende de ti. Arcade de nueva generación.',
+    pulsar_p1:'Juego móvil',pulsar_p2:'IA adaptativa',pulsar_p3:'Reflejos',pulsar_p4:'Próximamente',pulsar_soon:'Próximamente',
+    rev_eye:'Reseñas de usuarios',rev_title:'Lo que<br>opinan.',
+    rev_sub:'Usuarios reales, feedback real. 5 estrellas en Google Play.',
+    road_title:'Lo que está<br>por venir.',road_sub:'Nuestro plan de desarrollo — transparente y ambicioso.',
+    badge_done:'✓ Completado',badge_active:'● En curso',badge_soon:'Pronto',badge_future:'Futuro',
+    r1_title:'ASCEND v1.0 — Lanzamiento en Producción',r1_desc:'Seguimiento del humor, XP, niveles, insignias, rutinas. 177 países, 6 idiomas.',
+    r2_title:'ASCEND v2.5 — Monetización & RGPD',r2_desc:'AdMob, RGPD/UMP, In-App Review, dominio orionwavesstudio.com.',
+    r3_title:'ASCEND v3.0 — Optimización & ASO',r3_desc:'Palabras clave Play Store, validación OAuth Google, mejoras UX.',
+    r4_title:'SMSplode — Publicación en Producción',r4_desc:'Integración AdMob, RGPD, corrección widget, publicación mundial.',
+    r5_title:'Proyecto PULSAR — Juego Móvil',r5_desc:'Reflejos circulares con IA adaptativa. Fase 0 en curso.',
+    r6_title:'Nuevas Apps OrionWavesStudio',r6_desc:'Nuestro pipeline continúa — mantente atento para próximos anuncios.',
+    about_eye:'Nuestro estudio',about_title:'Un estudio.<br>Una visión.',
+    about_p1:'OrionWavesStudio es un estudio Android independiente con sede en Francia. Una sola misión: crear apps que tengan sentido, sean bonitas y duraderas.',
+    about_p2:'Desde la fase 0 de documentación hasta la publicación en producción mundial, cada etapa está pensada con cuidado. Sin compromisos en la calidad.',
+    val1:'Design-first — la experiencia ante todo',val2:'Internacional — 177 países, 6 idiomas',
+    val3:'Privacidad — RGPD desde el primer día',val4:'Continuo — actualizaciones regulares',val5:'Premium — calidad sin compromisos',
+    contact_title:'Trabajemos juntos.',
+    contact_sub:'¿Una idea de app? ¿Una colaboración? ¿Una pregunta? Estamos a la escucha.',
+    footer_privacy:'Política de privacidad',
+  },
+  pt:{
+    nav_apps:'Apps',nav_reviews:'Avaliações',nav_studio:'Studio',nav_contact:'Contato →',nav_contact_short:'Contato',
+    hero_badge:'Estúdio Android Independente · França 🇫🇷',
+    hero_sub:'Criamos apps Android excepcionais — cada pixel pensado, cada interação refinada, cada experiência memorável.',
+    hero_btn1:'Descobrir nossas apps',hero_btn2:'Nossa história',
+    stat_apps:'Apps',stat_countries:'Países',stat_langs:'Idiomas',stat_rating:'Nota média',hero_scroll:'Rolar',
+    apps_eye:'Nossas apps',apps_title:'Criadas para<br>surpreender você.',
+    apps_sub:'Apps que combinam design refinado, experiência fluida e valor real para o usuário. Disponíveis em 177 países.',
+    ascend_tag:'Bem-estar & Gamificação',
+    ascend_desc:'Acompanhe seu humor, ganhe XP e suba de nível. A gamificação a serviço do seu bem-estar diário.',
+    ascend_p1:'Rastreamento de humor',ascend_p2:'XP & Níveis',ascend_p3:'Estatísticas',
+    play_download:'Baixar no Google Play',
+    sms_tag:'Mensagens & Diversão',
+    sms_desc:'Bombardeie seus amigos com SMS em estilo — animação 3D explosiva, sons personalizados e agendamento inteligente.',
+    sms_p1:'Animação 3D',sms_p2:'Sons custom',sms_p3:'Agendamento',sms_p4:'Modo furtivo',sms_p5:'10 destinatários',
+    pulsar_tag:'Em desenvolvimento',
+    pulsar_desc:'Nosso próximo jogo mobile — reflexos circulares e IA adaptativa que aprende com você. Arcade de nova geração.',
+    pulsar_p1:'Jogo mobile',pulsar_p2:'IA adaptativa',pulsar_p3:'Reflexos',pulsar_p4:'Em breve',pulsar_soon:'Em breve',
+    rev_eye:'Avaliações de usuários',rev_title:'O que eles<br>pensam.',
+    rev_sub:'Usuários reais, feedback real. 5 estrelas no Google Play.',
+    road_title:'O que está<br>por vir.',road_sub:'Nosso plano de desenvolvimento — transparente e ambicioso.',
+    badge_done:'✓ Concluído',badge_active:'● Em andamento',badge_soon:'Em breve',badge_future:'Futuro',
+    r1_title:'ASCEND v1.0 — Lançamento em Produção',r1_desc:'Rastreamento de humor, XP, níveis, badges, rotinas. 177 países, 6 idiomas.',
+    r2_title:'ASCEND v2.5 — Monetização & LGPD',r2_desc:'AdMob, LGPD/UMP, In-App Review, domínio orionwavesstudio.com.',
+    r3_title:'ASCEND v3.0 — Otimização & ASO',r3_desc:'Palavras-chave Play Store, validação OAuth Google, melhorias UX.',
+    r4_title:'SMSplode — Publicação em Produção',r4_desc:'Integração AdMob, LGPD, correção widget, publicação mundial.',
+    r5_title:'Projeto PULSAR — Jogo Mobile',r5_desc:'Reflexos circulares com IA adaptativa. Fase 0 em andamento.',
+    r6_title:'Novos Apps OrionWavesStudio',r6_desc:'Nosso pipeline continua — fique atento para os próximos anúncios.',
+    about_eye:'Nosso estúdio',about_title:'Um estúdio.<br>Uma visão.',
+    about_p1:'OrionWavesStudio é um estúdio Android independente sediado na França. Uma única missão: criar apps que façam sentido, sejam belos e duradouros.',
+    about_p2:'Da fase 0 de documentação até a publicação em produção mundial, cada etapa é pensada com cuidado. Sem compromissos na qualidade.',
+    val1:'Design-first — a experiência acima de tudo',val2:'Internacional — 177 países, 6 idiomas',
+    val3:'Privacidade — LGPD desde o primeiro dia',val4:'Contínuo — atualizações regulares',val5:'Premium — qualidade sem compromissos',
+    contact_title:'Vamos trabalhar juntos.',
+    contact_sub:'Uma ideia de app? Uma parceria? Uma pergunta? Estamos ouvindo.',
+    footer_privacy:'Política de privacidade',
+  },
+  zh:{
+    nav_apps:'应用',nav_reviews:'评价',nav_studio:'工作室',nav_contact:'联系我们 →',nav_contact_short:'联系',
+    hero_badge:'独立 Android 工作室 · 法国 🇫🇷',
+    hero_sub:'我们打造卓越的 Android 应用 — 每个像素精心设计，每次交互精益求精，每段体验令人难忘。',
+    hero_btn1:'探索我们的应用',hero_btn2:'我们的故事',
+    stat_apps:'应用',stat_countries:'国家',stat_langs:'语言',stat_rating:'平均评分',hero_scroll:'滚动',
+    apps_eye:'我们的应用',apps_title:'精心打造<br>令你惊喜。',
+    apps_sub:'精致设计、流畅体验与真实用户价值的完美结合。在177个国家上线。',
+    ascend_tag:'健康 & 游戏化',
+    ascend_desc:'追踪你的情绪，获取经验值，不断升级。用游戏化方式服务你的日常健康。',
+    ascend_p1:'情绪追踪',ascend_p2:'XP & 等级',ascend_p3:'统计数据',
+    play_download:'在 Google Play 下载',
+    sms_tag:'消息 & 趣味',
+    sms_desc:'以风格轰炸你的朋友 — 爆炸性3D动画、自定义音效和智能定时发送。',
+    sms_p1:'3D动画',sms_p2:'自定义音效',sms_p3:'定时发送',sms_p4:'隐身模式',sms_p5:'10位接收者',
+    pulsar_tag:'开发中',
+    pulsar_desc:'我们的下一款手游 — 环形反应与能从你身上学习的自适应AI。下一代街机游戏。',
+    pulsar_p1:'手游',pulsar_p2:'自适应AI',pulsar_p3:'反应力',pulsar_p4:'即将上线',pulsar_soon:'即将上线',
+    rev_eye:'用户评价',rev_title:'他们的<br>看法。',
+    rev_sub:'真实用户，真实反馈。Google Play 五星好评。',
+    road_title:'即将推出<br>的内容。',road_sub:'我们的开发计划 — 透明且充满雄心。',
+    badge_done:'✓ 已完成',badge_active:'● 进行中',badge_soon:'即将',badge_future:'未来',
+    r1_title:'ASCEND v1.0 — 正式上线',r1_desc:'情绪追踪、经验值、等级、徽章、例行程序。177个国家，6种语言。',
+    r2_title:'ASCEND v2.5 — 变现 & GDPR',r2_desc:'AdMob、GDPR/UMP、应用内评价、orionwavesstudio.com域名。',
+    r3_title:'ASCEND v3.0 — 优化 & ASO',r3_desc:'Play Store关键词、谷歌OAuth验证、UX改进。',
+    r4_title:'SMSplode — 正式发布',r4_desc:'AdMob集成、GDPR、小部件修复、全球发布。',
+    r5_title:'PULSAR项目 — 手游',r5_desc:'自适应AI的环形反应游戏。第0阶段进行中。',
+    r6_title:'新的OrionWavesStudio应用',r6_desc:'我们的开发管线继续 — 敬请关注即将发布的公告。',
+    about_eye:'我们的工作室',about_title:'一个工作室。<br>一个愿景。',
+    about_p1:'OrionWavesStudio是一家总部位于法国的独立Android工作室。唯一的使命：创造有意义、美观且持久的应用。',
+    about_p2:'从第0阶段文档到全球生产发布，每个步骤都经过精心考量。质量上绝不妥协。',
+    val1:'设计优先 — 体验至上',val2:'国际化 — 177个国家，6种语言',
+    val3:'隐私保护 — 从第一天起符合GDPR',val4:'持续更新 — 定期发布更新',val5:'高级版 — 品质无妥协',
+    contact_title:'让我们一起合作。',
+    contact_sub:'有应用想法？合作机会？还是有问题？我们在聆听。',
+    footer_privacy:'隐私政策',
+  }
+};
+
+const LANG_META={
+  fr:{flag:'🇫🇷',label:'FR'},
+  en:{flag:'🇬🇧',label:'EN'},
+  de:{flag:'🇩🇪',label:'DE'},
+  it:{flag:'🇮🇹',label:'IT'},
+  es:{flag:'🇪🇸',label:'ES'},
+  pt:{flag:'🇧🇷',label:'PT'},
+  zh:{flag:'🇨🇳',label:'中文'}
+};
+
+let currentLang='fr';
+
+function applyLang(lang){
+  if(!T[lang])lang='en';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.dataset.i18n;
+    if(T[lang][k]!==undefined)el.textContent=T[lang][k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    const k=el.dataset.i18nHtml;
+    if(T[lang][k]!==undefined)el.innerHTML=T[lang][k];
+  });
+  // Footer privacy link
+  const fp=document.getElementById('footer-privacy');
+  if(fp)fp.href=lang==='fr'
+    ?'https://orionwavesstudio-design.github.io/ascend-privacy-fr.html'
+    :'https://orionwavesstudio-design.github.io/ascend-privacy-en.html';
+  document.documentElement.lang=lang==='zh'?'zh-CN':lang;
+  // Update button display
+  const meta=LANG_META[lang]||LANG_META.en;
+  const flagEl=document.getElementById('lang-flag');
+  const labelEl=document.getElementById('lang-label');
+  if(flagEl)flagEl.textContent=meta.flag;
+  if(labelEl)labelEl.textContent=meta.label;
+  // Update active option in dropdown
+  document.querySelectorAll('.lang-opt').forEach(opt=>{
+    opt.classList.toggle('active',opt.dataset.lang===lang);
+  });
+  localStorage.setItem('ows_lang',lang);
+  currentLang=lang;
+}
+
+function toggleDrop(){
+  document.getElementById('lang-wrap').classList.toggle('open');
+}
+
+function selectLang(lang){
+  applyLang(lang);
+  document.getElementById('lang-wrap').classList.remove('open');
+}
+
+// Close dropdown on outside click
+document.addEventListener('click',e=>{
+  const wrap=document.getElementById('lang-wrap');
+  if(wrap&&!wrap.contains(e.target))wrap.classList.remove('open');
+});
+
+// Init : saved pref → browser lang → EN fallback
+(function(){
+  const saved=localStorage.getItem('ows_lang');
+  if(saved&&T[saved]){applyLang(saved);return;}
+  const bl=(navigator.language||navigator.userLanguage||'fr').toLowerCase().slice(0,2);
+  const map={fr:'fr',en:'en',de:'de',it:'it',es:'es',pt:'pt',zh:'zh'};
+  applyLang(map[bl]||'en');
+})();
+</script>
+</body>
+</html>
     nav_apps:'Apps',nav_reviews:'Avis',nav_studio:'Studio',nav_contact:'Contact →',nav_contact_short:'Contact',
     hero_badge:'Studio Android Indépendant · France 🇫🇷',
     hero_sub:'Nous forgeons des applications Android d\'exception — chaque pixel pensé, chaque interaction soignée, chaque expérience mémorable.',
