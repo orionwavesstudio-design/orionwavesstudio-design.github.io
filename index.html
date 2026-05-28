@@ -421,16 +421,33 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
     </div>
 
     <!-- PULSAR -->
-    <div class="acard rv delay2" style="border-style:dashed;opacity:.5">
-      <div class="aicon-e" style="background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.13)">✦</div>
-      <span class="atag t3" data-i18n="pulsar_tag">En développement</span>
-      <h3 class="aname">Projet PULSAR</h3>
-      <p class="adesc" data-i18n="pulsar_desc">Notre prochain jeu mobile — réflexes circulaires et IA adaptative qui apprend de vous. Une arcade nouvelle génération.</p>
+    <div class="acard rv delay2">
+      <div class="shimmer" style="background:conic-gradient(from var(--ang,0deg),transparent 0deg,rgba(167,139,250,.25) 60deg,transparent 120deg)"></div>
+      <div class="aicon-e" style="background:rgba(167,139,250,.09);border:1px solid rgba(167,139,250,.18);font-size:2rem">✦</div>
+      <span class="atag t3" data-i18n="pulsar_tag">Jeu Mobile</span>
+      <h3 class="aname">PULSAR</h3>
+      <p class="adesc" data-i18n="pulsar_desc">Réflexes circulaires et IA adaptative qui apprend de vous. Une arcade nouvelle génération disponible sur Google Play.</p>
       <div class="apills">
         <span class="pill" data-i18n="pulsar_p1">Jeu mobile</span><span class="pill" data-i18n="pulsar_p2">IA adaptative</span>
-        <span class="pill" data-i18n="pulsar_p3">Réflexes</span><span class="pill" data-i18n="pulsar_p4">Bientôt</span>
+        <span class="pill" data-i18n="pulsar_p3">Réflexes</span><span class="pill">Premium 2,99€</span>
       </div>
-      <span class="alink" style="color:var(--c3);cursor:not-allowed;opacity:.7" data-i18n="pulsar_soon">
+      <a href="https://play.google.com/store/apps/details?id=com.orionwavesstudio.pulsar" class="alink" style="color:var(--c3)" target="_blank" rel="noopener" data-i18n="play_download">
+        Télécharger sur Google Play
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+
+    <!-- NOVA -->
+    <div class="acard rv delay3" style="border-style:dashed;opacity:.55">
+      <div class="aicon-e" style="background:rgba(244,114,182,.07);border:1px solid rgba(244,114,182,.13);font-size:2rem">🌌</div>
+      <span class="atag" style="background:rgba(244,114,182,.09);color:var(--c4);border:1px solid rgba(244,114,182,.18)" data-i18n="nova_tag">En développement</span>
+      <h3 class="aname">Projet NOVA</h3>
+      <p class="adesc" data-i18n="nova_desc">Notre prochain projet Android — actuellement en phase de conception. Stay tuned.</p>
+      <div class="apills">
+        <span class="pill" data-i18n="nova_p1">Android</span>
+        <span class="pill" data-i18n="nova_p2">Bientôt</span>
+      </div>
+      <span class="alink" style="color:var(--c4);cursor:not-allowed;opacity:.7" data-i18n="nova_soon">
         Bientôt disponible
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </span>
@@ -671,9 +688,10 @@ const T={
     sms_tag:'Messagerie & Fun',
     sms_desc:'Bombardez vos amis de SMS avec style — animation 3D explosive, sons personnalisés et programmation intelligente.',
     sms_p1:'Animation 3D',sms_p2:'Sons custom',sms_p3:'Programmation',sms_p4:'Mode furtif',sms_p5:'10 destinataires',
-    pulsar_tag:'En développement',
-    pulsar_desc:'Notre prochain jeu mobile — réflexes circulaires et IA adaptative qui apprend de vous. Une arcade nouvelle génération.',
-    pulsar_p1:'Jeu mobile',pulsar_p2:'IA adaptative',pulsar_p3:'Réflexes',pulsar_p4:'Bientôt',pulsar_soon:'Bientôt disponible',
+    pulsar_tag:'Jeu Mobile',
+    pulsar_desc:'Réflexes circulaires et IA adaptative qui apprend de vous. Une arcade nouvelle génération disponible sur Google Play.',
+    pulsar_p1:'Jeu mobile',pulsar_p2:'IA adaptative',pulsar_p3:'Réflexes',pulsar_p4:'Premium 2,99€',pulsar_soon:'Télécharger sur Google Play',
+    nova_tag:'En développement',nova_desc:'Notre prochain projet Android — actuellement en phase de conception. Stay tuned.',nova_p1:'Android',nova_p2:'Bientôt',nova_soon:'Bientôt disponible',
     rev_eye:'Avis utilisateurs',rev_title:'Ce qu\'ils<br>en pensent.',
     rev_sub:'Des vrais utilisateurs, des vrais retours. 5 étoiles sur Google Play.',
     road_title:'Ce qui arrive<br>bientôt.',road_sub:'Notre plan de développement — transparent et ambitieux.',
@@ -708,9 +726,10 @@ const T={
     sms_tag:'Messaging & Fun',
     sms_desc:'Bombard your friends with SMS in style — explosive 3D animation, custom sounds and smart scheduling.',
     sms_p1:'3D Animation',sms_p2:'Custom Sounds',sms_p3:'Scheduling',sms_p4:'Stealth Mode',sms_p5:'10 Recipients',
-    pulsar_tag:'In Development',
-    pulsar_desc:'Our next mobile game — circular reflexes and adaptive AI that learns from you. Next-gen arcade.',
-    pulsar_p1:'Mobile Game',pulsar_p2:'Adaptive AI',pulsar_p3:'Reflexes',pulsar_p4:'Coming Soon',pulsar_soon:'Coming Soon',
+    pulsar_tag:'Mobile Game',
+    pulsar_desc:'Circular reflexes and adaptive AI that learns from you. Next-gen arcade now available on Google Play.',
+    pulsar_p1:'Mobile Game',pulsar_p2:'Adaptive AI',pulsar_p3:'Reflexes',pulsar_p4:'Premium €2.99',pulsar_soon:'Download on Google Play',
+    nova_tag:'In Development',nova_desc:'Our next Android project — currently in design phase. Stay tuned.',nova_p1:'Android',nova_p2:'Coming Soon',nova_soon:'Coming Soon',
     rev_eye:'User Reviews',rev_title:'What they<br>think.',
     rev_sub:'Real users, real feedback. 5 stars on Google Play.',
     road_title:'What\'s coming<br>next.',road_sub:'Our development plan — transparent and ambitious.',
@@ -745,9 +764,10 @@ const T={
     sms_tag:'Messaging & Spaß',
     sms_desc:'Bombardiere deine Freunde mit SMS — explosive 3D-Animation, eigene Töne und intelligente Planung.',
     sms_p1:'3D-Animation',sms_p2:'Eigene Töne',sms_p3:'Planung',sms_p4:'Tarnmodus',sms_p5:'10 Empfänger',
-    pulsar_tag:'In Entwicklung',
-    pulsar_desc:'Unser nächstes Mobilspiel — kreisförmige Reflexe und adaptive KI, die von dir lernt. Arcade der nächsten Generation.',
-    pulsar_p1:'Mobilspiel',pulsar_p2:'Adaptive KI',pulsar_p3:'Reflexe',pulsar_p4:'Demnächst',pulsar_soon:'Demnächst verfügbar',
+    pulsar_tag:'Mobilspiel',
+    pulsar_desc:'Kreisförmige Reflexe und adaptive KI, die von dir lernt. Arcade der nächsten Generation — jetzt bei Google Play.',
+    pulsar_p1:'Mobilspiel',pulsar_p2:'Adaptive KI',pulsar_p3:'Reflexe',pulsar_p4:'Premium 2,99€',pulsar_soon:'Bei Google Play herunterladen',
+    nova_tag:'In Entwicklung',nova_desc:'Unser nächstes Android-Projekt — aktuell in der Konzeptionsphase. Stay tuned.',nova_p1:'Android',nova_p2:'Demnächst',nova_soon:'Demnächst verfügbar',
     rev_eye:'Nutzerbewertungen',rev_title:'Was sie<br>denken.',
     rev_sub:'Echte Nutzer, echtes Feedback. 5 Sterne bei Google Play.',
     road_title:'Was als<br>Nächstes kommt.',road_sub:'Unser Entwicklungsplan — transparent und ehrgeizig.',
@@ -782,9 +802,10 @@ const T={
     sms_tag:'Messaggistica & Divertimento',
     sms_desc:'Bombarda i tuoi amici con SMS in stile — animazione 3D esplosiva, suoni personalizzati e pianificazione intelligente.',
     sms_p1:'Animazione 3D',sms_p2:'Suoni custom',sms_p3:'Pianificazione',sms_p4:'Modalità furtiva',sms_p5:'10 destinatari',
-    pulsar_tag:'In sviluppo',
-    pulsar_desc:'Il nostro prossimo gioco mobile — riflessi circolari e IA adattiva che impara da te. Arcade di nuova generazione.',
-    pulsar_p1:'Gioco mobile',pulsar_p2:'IA adattiva',pulsar_p3:'Riflessi',pulsar_p4:'Prossimamente',pulsar_soon:'Prossimamente',
+    pulsar_tag:'Gioco Mobile',
+    pulsar_desc:'Riflessi circolari e IA adattiva che impara da te. Arcade di nuova generazione disponibile su Google Play.',
+    pulsar_p1:'Gioco mobile',pulsar_p2:'IA adattiva',pulsar_p3:'Riflessi',pulsar_p4:'Premium 2,99€',pulsar_soon:'Scarica su Google Play',
+    nova_tag:'In sviluppo',nova_desc:'Il nostro prossimo progetto Android — attualmente in fase di ideazione. Stay tuned.',nova_p1:'Android',nova_p2:'Prossimamente',nova_soon:'Prossimamente',
     rev_eye:'Recensioni utenti',rev_title:'Cosa<br>pensano.',
     rev_sub:'Utenti reali, feedback reali. 5 stelle su Google Play.',
     road_title:'Cosa sta<br>arrivando.',road_sub:'Il nostro piano di sviluppo — trasparente e ambizioso.',
@@ -819,9 +840,10 @@ const T={
     sms_tag:'Mensajería & Diversión',
     sms_desc:'Bombardea a tus amigos con SMS en estilo — animación 3D explosiva, sonidos personalizados y programación inteligente.',
     sms_p1:'Animación 3D',sms_p2:'Sonidos custom',sms_p3:'Programación',sms_p4:'Modo sigiloso',sms_p5:'10 destinatarios',
-    pulsar_tag:'En desarrollo',
-    pulsar_desc:'Nuestro próximo juego móvil — reflejos circulares e IA adaptativa que aprende de ti. Arcade de nueva generación.',
-    pulsar_p1:'Juego móvil',pulsar_p2:'IA adaptativa',pulsar_p3:'Reflejos',pulsar_p4:'Próximamente',pulsar_soon:'Próximamente',
+    pulsar_tag:'Juego Móvil',
+    pulsar_desc:'Reflejos circulares e IA adaptativa que aprende de ti. Arcade de nueva generación disponible en Google Play.',
+    pulsar_p1:'Juego móvil',pulsar_p2:'IA adaptativa',pulsar_p3:'Reflejos',pulsar_p4:'Premium 2,99€',pulsar_soon:'Descargar en Google Play',
+    nova_tag:'En desarrollo',nova_desc:'Nuestro próximo proyecto Android — actualmente en fase de concepto. Stay tuned.',nova_p1:'Android',nova_p2:'Próximamente',nova_soon:'Próximamente',
     rev_eye:'Reseñas de usuarios',rev_title:'Lo que<br>opinan.',
     rev_sub:'Usuarios reales, feedback real. 5 estrellas en Google Play.',
     road_title:'Lo que está<br>por venir.',road_sub:'Nuestro plan de desarrollo — transparente y ambicioso.',
@@ -856,9 +878,10 @@ const T={
     sms_tag:'Mensagens & Diversão',
     sms_desc:'Bombardeie seus amigos com SMS em estilo — animação 3D explosiva, sons personalizados e agendamento inteligente.',
     sms_p1:'Animação 3D',sms_p2:'Sons custom',sms_p3:'Agendamento',sms_p4:'Modo furtivo',sms_p5:'10 destinatários',
-    pulsar_tag:'Em desenvolvimento',
-    pulsar_desc:'Nosso próximo jogo mobile — reflexos circulares e IA adaptativa que aprende com você. Arcade de nova geração.',
-    pulsar_p1:'Jogo mobile',pulsar_p2:'IA adaptativa',pulsar_p3:'Reflexos',pulsar_p4:'Em breve',pulsar_soon:'Em breve',
+    pulsar_tag:'Jogo Mobile',
+    pulsar_desc:'Reflexos circulares e IA adaptativa que aprende com você. Arcade de nova geração disponível no Google Play.',
+    pulsar_p1:'Jogo mobile',pulsar_p2:'IA adaptativa',pulsar_p3:'Reflexos',pulsar_p4:'Premium 2,99€',pulsar_soon:'Baixar no Google Play',
+    nova_tag:'Em desenvolvimento',nova_desc:'Nosso próximo projeto Android — atualmente em fase de concepção. Fique ligado.',nova_p1:'Android',nova_p2:'Em breve',nova_soon:'Em breve',
     rev_eye:'Avaliações de usuários',rev_title:'O que eles<br>pensam.',
     rev_sub:'Usuários reais, feedback real. 5 estrelas no Google Play.',
     road_title:'O que está<br>por vir.',road_sub:'Nosso plano de desenvolvimento — transparente e ambicioso.',
@@ -893,9 +916,10 @@ const T={
     sms_tag:'消息 & 趣味',
     sms_desc:'以风格轰炸你的朋友 — 爆炸性3D动画、自定义音效和智能定时发送。',
     sms_p1:'3D动画',sms_p2:'自定义音效',sms_p3:'定时发送',sms_p4:'隐身模式',sms_p5:'10位接收者',
-    pulsar_tag:'开发中',
-    pulsar_desc:'我们的下一款手游 — 环形反应与能从你身上学习的自适应AI。下一代街机游戏。',
-    pulsar_p1:'手游',pulsar_p2:'自适应AI',pulsar_p3:'反应力',pulsar_p4:'即将上线',pulsar_soon:'即将上线',
+    pulsar_tag:'手机游戏',
+    pulsar_desc:'环形反应与能从你身上学习的自适应AI。下一代街机游戏，现已登陆Google Play。',
+    pulsar_p1:'手游',pulsar_p2:'自适应AI',pulsar_p3:'反应力',pulsar_p4:'高级版2.99€',pulsar_soon:'在 Google Play 下载',
+    nova_tag:'开发中',nova_desc:'我们的下一个Android项目 — 目前正处于概念设计阶段。敬请期待。',nova_p1:'Android',nova_p2:'即将上线',nova_soon:'即将上线',
     rev_eye:'用户评价',rev_title:'他们的<br>看法。',
     rev_sub:'真实用户，真实反馈。Google Play 五星好评。',
     road_title:'即将推出<br>的内容。',road_sub:'我们的开发计划 — 透明且充满雄心。',

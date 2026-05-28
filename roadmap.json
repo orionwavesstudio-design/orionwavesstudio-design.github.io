@@ -126,6 +126,27 @@
   }
 },
   {
+  "status": "active",
+  "title": {
+    "fr": "Projet NOVA — En Développement",
+    "en": "Project NOVA — In Development",
+    "de": "Projekt NOVA — In Entwicklung",
+    "it": "Progetto NOVA — In Sviluppo",
+    "es": "Proyecto NOVA — En Desarrollo",
+    "pt": "Projeto NOVA — Em Desenvolvimento",
+    "zh": "NOVA项目 — 开发中"
+  },
+  "desc": {
+    "fr": "Notre prochain projet Android — actuellement en phase de conception.",
+    "en": "Our next Android project — currently in design phase.",
+    "de": "Unser nächstes Android-Projekt — aktuell in der Konzeptionsphase.",
+    "it": "Il nostro prossimo progetto Android — attualmente in fase di ideazione.",
+    "es": "Nuestro próximo proyecto Android — actualmente en fase de concepto.",
+    "pt": "Nosso próximo projeto Android — atualmente em fase de concepção.",
+    "zh": "我们的下一个Android项目 — 目前正处于概念设计阶段。"
+  }
+},
+  {
     "status": "future",
     "title": {
       "fr": "Nouvelles Applications OrionWavesStudio",
