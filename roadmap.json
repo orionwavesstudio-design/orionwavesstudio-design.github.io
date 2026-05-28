@@ -128,12 +128,12 @@
   {
   "status": "active",
   "title": {
-    "fr": "Projet NOVA — En Développement",
-    "en": "Project NOVA — In Development",
-    "de": "Projekt NOVA — In Entwicklung",
-    "it": "Progetto NOVA — In Sviluppo",
-    "es": "Proyecto NOVA — En Desarrollo",
-    "pt": "Projeto NOVA — Em Desenvolvimento",
+    "fr": "Projet NOVA v1.0.0 — En Développement",
+    "en": "Project NOVA v1.0.0 — In Development",
+    "de": "Projekt NOVA v1.0.0 — In Entwicklung",
+    "it": "Progetto NOVA v1.0.0 — In Sviluppo",
+    "es": "Proyecto NOVA v1.0.0 — En Desarrollo",
+    "pt": "Projeto NOVA v1.0.0 — Em Desenvolvimento",
     "zh": "NOVA项目 — 开发中"
   },
   "desc": {
