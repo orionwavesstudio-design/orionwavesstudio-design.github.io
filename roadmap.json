@@ -149,13 +149,13 @@
   {
   "status": "active",
   "title": {
-    "fr": "Projet NOVA v27 « V1.3.0 » — Jeu Mobile",
-    "en": "Project NOVA v27 \"V1.3.0\" — Mobile Game",
-    "de": "Projekt NOVA v27 \"V1.3.0\" — Handyspiel",
-    "it": "Progetto NOVA v27 \"V1.3.0\" — Gioco Mobile",
-    "es": "Proyecto NOVA v27 \"V1.3.0\" — Juego Móvil",
-    "pt": "Projeto NOVA v27 \"V1.3.0\" — Jogo Mobile",
-    "zh": "NOVA项目 v27「V1.3.0」— 手机游戏"
+    "fr": "Projet NOVA V1.3.0  — Jeu Mobile",
+    "en": "Project NOVA  V1.3.0 — Mobile Game",
+    "de": "Projekt NOVA V1.3.0 — Handyspiel",
+    "it": "Progetto NOVA V1.3.0 — Gioco Mobile",
+    "es": "Proyecto NOVA V1.3.0 — Juego Móvil",
+    "pt": "Projeto NOVA V1.3.0 — Jogo Mobile",
+    "zh": "NOVA项目 V1.3.0 — 手机游戏"
   },
   "desc": {
     "fr": "Shoot'em up spatial complet avec IA adaptative, leaderboards et défis quotidiens. Phase de test fermée (12 testeurs).",
