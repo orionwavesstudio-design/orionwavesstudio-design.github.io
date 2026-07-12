@@ -126,7 +126,7 @@
   }
 },
   {
-  "status": "active",
+  "status": "done",
   "title": {
     "fr": "Projet NOVA v1.0.0 — En Développement",
     "en": "Project NOVA v1.0.0 — In Development",
@@ -144,6 +144,27 @@
     "es": "Nuestro próximo proyecto Android — actualmente en fase de concepto.",
     "pt": "Nosso próximo projeto Android — atualmente em fase de concepção.",
     "zh": "我们的下一个Android项目 — 目前正处于概念设计阶段。"
+  }
+},
+  {
+  "status": "active",
+  "title": {
+    "fr": "Projet NOVA v27 « V1.3.0 » — Jeu Mobile",
+    "en": "Project NOVA v27 \"V1.3.0\" — Mobile Game",
+    "de": "Projekt NOVA v27 \"V1.3.0\" — Handyspiel",
+    "it": "Progetto NOVA v27 \"V1.3.0\" — Gioco Mobile",
+    "es": "Proyecto NOVA v27 \"V1.3.0\" — Juego Móvil",
+    "pt": "Projeto NOVA v27 \"V1.3.0\" — Jogo Mobile",
+    "zh": "NOVA项目 v27「V1.3.0」— 手机游戏"
+  },
+  "desc": {
+    "fr": "Shoot'em up spatial complet avec IA adaptative, leaderboards et défis quotidiens. Phase de test fermée (12 testeurs).",
+    "en": "Complete space shoot'em up with adaptive AI, leaderboards and daily challenges. Closed testing phase (12 testers).",
+    "de": "Komplettes Weltraum-Shoot'em-up mit adaptiver KI, Bestenlisten und täglichen Herausforderungen. Geschlossene Testphase (12 Tester).",
+    "it": "Shoot'em up spaziale completo con IA adattiva, classifiche e sfide giornaliere. Fase di test chiusa (12 tester).",
+    "es": "Shoot'em up espacial completo con IA adaptativa, clasificaciones y desafíos diarios. Fase de prueba cerrada (12 testers).",
+    "pt": "Shoot'em up espacial completo com IA adaptativa, rankings e desafios diários. Fase de teste fechado (12 testadores).",
+    "zh": "完整太空射击游戏，配备自适应AI、排行榜和每日挑战。封闭测试阶段（12名测试员）。"
   }
 },
   {

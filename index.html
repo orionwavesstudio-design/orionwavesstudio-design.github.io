@@ -445,19 +445,25 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:2.
     </div>
 
     <!-- NOVA -->
-    <div class="acard rv delay3" style="border-style:dashed;opacity:.55">
-      <div class="aicon-e" style="background:rgba(244,114,182,.07);border:1px solid rgba(244,114,182,.13);font-size:2rem">🌌</div>
-      <span class="atag" style="background:rgba(244,114,182,.09);color:var(--c4);border:1px solid rgba(244,114,182,.18)" data-i18n="nova_tag">En développement</span>
-      <h3 class="aname">Projet NOVA</h3>
-      <p class="adesc" data-i18n="nova_desc">Notre prochain projet Android — actuellement en phase de conception. Stay tuned.</p>
+    <div class="acard rv delay3">
+      <div class="shimmer" style="background:conic-gradient(from var(--ang,0deg),transparent 0deg,rgba(244,114,182,.25) 60deg,transparent 120deg)"></div>
+      <div class="aicon-e" style="background:rgba(244,114,182,.09);border:1px solid rgba(244,114,182,.18);font-size:2rem">🌌</div>
+      <span class="atag" style="background:rgba(244,114,182,.09);color:var(--c4);border:1px solid rgba(244,114,182,.18)" data-i18n="nova_tag">En phase de test</span>
+      <h3 class="aname">NOVA</h3>
+      <p class="adesc" data-i18n="nova_desc">Shoot'em up spatial complet avec IA adaptative, leaderboards et défis quotidiens. Actuellement en phase de test fermée.</p>
       <div class="apills">
-        <span class="pill" data-i18n="nova_p1">Android</span>
-        <span class="pill" data-i18n="nova_p2">Bientôt</span>
+        <span class="pill" data-i18n="nova_p1">Shoot'em up</span><span class="pill" data-i18n="nova_p2">IA adaptative</span>
+        <span class="pill" data-i18n="nova_p3">Leaderboard</span><span class="pill" data-i18n="nova_p4">Défis quotidiens</span>
       </div>
       <span class="alink" style="color:var(--c4);cursor:not-allowed;opacity:.7" data-i18n="nova_soon">
         Bientôt disponible
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </span>
+      <div class="mockup" style="background:linear-gradient(180deg,rgba(244,114,182,.04) 0%,transparent 100%)">
+        <div class="ms"><div class="msi"><div class="mb" style="width:70%;background:rgba(244,114,182,.3)"></div><div style="font-size:1.4rem;text-align:center;margin-top:8px">🌌</div><div class="mb" style="width:80%;margin-top:8px;background:rgba(244,114,182,.2)"></div><div class="mb" style="width:50%"></div></div></div>
+        <div class="ms"><div class="msi"><div class="mc" style="background:linear-gradient(135deg,var(--c4),#a78bfa);opacity:.5;margin-top:4px"></div><div class="mb" style="width:85%;background:rgba(244,114,182,.25)"></div><div class="mb" style="width:60%"></div><div class="mb" style="width:75%;background:rgba(244,114,182,.15)"></div></div></div>
+        <div class="ms"><div class="msi"><div class="mg"><div class="mgb" style="background:rgba(244,114,182,.15)"></div><div class="mgb"></div><div class="mgb" style="background:rgba(244,114,182,.2)"></div><div class="mgb"></div></div><div class="mb" style="width:90%;margin-top:4px;background:rgba(244,114,182,.25)"></div><div class="mb" style="width:55%"></div></div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -698,7 +704,7 @@ const T={
     pulsar_tag:'Jeu Mobile',
     pulsar_desc:'Réflexes circulaires et IA adaptative qui apprend de vous. Une arcade nouvelle génération disponible sur Google Play.',
     pulsar_p1:'Jeu mobile',pulsar_p2:'IA adaptative',pulsar_p3:'Réflexes',pulsar_p4:'Premium 2,99€',pulsar_soon:'Télécharger sur Google Play',
-    nova_tag:'En développement',nova_desc:'Notre prochain projet Android — actuellement en phase de conception. Stay tuned.',nova_p1:'Android',nova_p2:'Bientôt',nova_soon:'Bientôt disponible',
+    nova_tag:'En phase de test',nova_desc:'Shoot\'em up spatial complet avec IA adaptative, leaderboards et défis quotidiens. Actuellement en phase de test fermée.',nova_p1:'Shoot\'em up',nova_p2:'IA adaptative',nova_p3:'Leaderboard',nova_p4:'Défis quotidiens',nova_soon:'Bientôt disponible',
     rev_eye:'Avis utilisateurs',rev_title:'Ce qu\'ils<br>en pensent.',
     rev_sub:'Des vrais utilisateurs, des vrais retours. 5 étoiles sur Google Play.',
     road_title:'Ce qui arrive<br>bientôt.',road_sub:'Notre plan de développement — transparent et ambitieux.',
@@ -736,7 +742,7 @@ const T={
     pulsar_tag:'Mobile Game',
     pulsar_desc:'Circular reflexes and adaptive AI that learns from you. Next-gen arcade now available on Google Play.',
     pulsar_p1:'Mobile Game',pulsar_p2:'Adaptive AI',pulsar_p3:'Reflexes',pulsar_p4:'Premium €2.99',pulsar_soon:'Download on Google Play',
-    nova_tag:'In Development',nova_desc:'Our next Android project — currently in design phase. Stay tuned.',nova_p1:'Android',nova_p2:'Coming Soon',nova_soon:'Coming Soon',
+    nova_tag:'Testing Phase',nova_desc:'Complete space shoot\'em up with adaptive AI, leaderboards and daily challenges. Currently in closed testing.',nova_p1:'Shoot\'em up',nova_p2:'Adaptive AI',nova_p3:'Leaderboard',nova_p4:'Daily Challenges',nova_soon:'Coming Soon',
     rev_eye:'User Reviews',rev_title:'What they<br>think.',
     rev_sub:'Real users, real feedback. 5 stars on Google Play.',
     road_title:'What\'s coming<br>next.',road_sub:'Our development plan — transparent and ambitious.',
@@ -774,7 +780,7 @@ const T={
     pulsar_tag:'Mobilspiel',
     pulsar_desc:'Kreisförmige Reflexe und adaptive KI, die von dir lernt. Arcade der nächsten Generation — jetzt bei Google Play.',
     pulsar_p1:'Mobilspiel',pulsar_p2:'Adaptive KI',pulsar_p3:'Reflexe',pulsar_p4:'Premium 2,99€',pulsar_soon:'Bei Google Play herunterladen',
-    nova_tag:'In Entwicklung',nova_desc:'Unser nächstes Android-Projekt — aktuell in der Konzeptionsphase. Stay tuned.',nova_p1:'Android',nova_p2:'Demnächst',nova_soon:'Demnächst verfügbar',
+    nova_tag:'Testphase',nova_desc:'Komplettes Weltraum-Shoot\'em-up mit adaptiver KI, Bestenlisten und täglichen Herausforderungen. Aktuell in geschlossener Testphase.',nova_p1:'Shoot\'em up',nova_p2:'Adaptive KI',nova_p3:'Bestenliste',nova_p4:'Tägliche Herausforderungen',nova_soon:'Demnächst verfügbar',
     rev_eye:'Nutzerbewertungen',rev_title:'Was sie<br>denken.',
     rev_sub:'Echte Nutzer, echtes Feedback. 5 Sterne bei Google Play.',
     road_title:'Was als<br>Nächstes kommt.',road_sub:'Unser Entwicklungsplan — transparent und ehrgeizig.',
@@ -812,7 +818,7 @@ const T={
     pulsar_tag:'Gioco Mobile',
     pulsar_desc:'Riflessi circolari e IA adattiva che impara da te. Arcade di nuova generazione disponibile su Google Play.',
     pulsar_p1:'Gioco mobile',pulsar_p2:'IA adattiva',pulsar_p3:'Riflessi',pulsar_p4:'Premium 2,99€',pulsar_soon:'Scarica su Google Play',
-    nova_tag:'In sviluppo',nova_desc:'Il nostro prossimo progetto Android — attualmente in fase di ideazione. Stay tuned.',nova_p1:'Android',nova_p2:'Prossimamente',nova_soon:'Prossimamente',
+    nova_tag:'Fase di test',nova_desc:'Shoot\'em up spaziale completo con IA adattiva, classifiche e sfide giornaliere. Attualmente in fase di test chiusa.',nova_p1:'Shoot\'em up',nova_p2:'IA adattiva',nova_p3:'Classifica',nova_p4:'Sfide giornaliere',nova_soon:'Prossimamente',
     rev_eye:'Recensioni utenti',rev_title:'Cosa<br>pensano.',
     rev_sub:'Utenti reali, feedback reali. 5 stelle su Google Play.',
     road_title:'Cosa sta<br>arrivando.',road_sub:'Il nostro piano di sviluppo — trasparente e ambizioso.',
@@ -850,7 +856,7 @@ const T={
     pulsar_tag:'Juego Móvil',
     pulsar_desc:'Reflejos circulares e IA adaptativa que aprende de ti. Arcade de nueva generación disponible en Google Play.',
     pulsar_p1:'Juego móvil',pulsar_p2:'IA adaptativa',pulsar_p3:'Reflejos',pulsar_p4:'Premium 2,99€',pulsar_soon:'Descargar en Google Play',
-    nova_tag:'En desarrollo',nova_desc:'Nuestro próximo proyecto Android — actualmente en fase de concepto. Stay tuned.',nova_p1:'Android',nova_p2:'Próximamente',nova_soon:'Próximamente',
+    nova_tag:'Fase de prueba',nova_desc:'Shoot\'em up espacial completo con IA adaptativa, clasificaciones y desafíos diarios. Actualmente en fase de prueba cerrada.',nova_p1:'Shoot\'em up',nova_p2:'IA adaptativa',nova_p3:'Clasificación',nova_p4:'Desafíos diarios',nova_soon:'Próximamente',
     rev_eye:'Reseñas de usuarios',rev_title:'Lo que<br>opinan.',
     rev_sub:'Usuarios reales, feedback real. 5 estrellas en Google Play.',
     road_title:'Lo que está<br>por venir.',road_sub:'Nuestro plan de desarrollo — transparente y ambicioso.',
@@ -888,7 +894,7 @@ const T={
     pulsar_tag:'Jogo Mobile',
     pulsar_desc:'Reflexos circulares e IA adaptativa que aprende com você. Arcade de nova geração disponível no Google Play.',
     pulsar_p1:'Jogo mobile',pulsar_p2:'IA adaptativa',pulsar_p3:'Reflexos',pulsar_p4:'Premium 2,99€',pulsar_soon:'Baixar no Google Play',
-    nova_tag:'Em desenvolvimento',nova_desc:'Nosso próximo projeto Android — atualmente em fase de concepção. Fique ligado.',nova_p1:'Android',nova_p2:'Em breve',nova_soon:'Em breve',
+    nova_tag:'Fase de teste',nova_desc:'Shoot\'em up espacial completo com IA adaptativa, rankings e desafios diários. Atualmente em fase de teste fechado.',nova_p1:'Shoot\'em up',nova_p2:'IA adaptativa',nova_p3:'Ranking',nova_p4:'Desafios diários',nova_soon:'Em breve',
     rev_eye:'Avaliações de usuários',rev_title:'O que eles<br>pensam.',
     rev_sub:'Usuários reais, feedback real. 5 estrelas no Google Play.',
     road_title:'O que está<br>por vir.',road_sub:'Nosso plano de desenvolvimento — transparente e ambicioso.',
@@ -926,7 +932,7 @@ const T={
     pulsar_tag:'手机游戏',
     pulsar_desc:'环形反应与能从你身上学习的自适应AI。下一代街机游戏，现已登陆Google Play。',
     pulsar_p1:'手游',pulsar_p2:'自适应AI',pulsar_p3:'反应力',pulsar_p4:'高级版2.99€',pulsar_soon:'在 Google Play 下载',
-    nova_tag:'开发中',nova_desc:'我们的下一个Android项目 — 目前正处于概念设计阶段。敬请期待。',nova_p1:'Android',nova_p2:'即将上线',nova_soon:'即将上线',
+    nova_tag:'测试阶段',nova_desc:'完整太空射击游戏，配备自适应AI、排行榜和每日挑战。目前处于封闭测试阶段。',nova_p1:'射击游戏',nova_p2:'自适应AI',nova_p3:'排行榜',nova_p4:'每日挑战',nova_soon:'即将上线',
     rev_eye:'用户评价',rev_title:'他们的<br>看法。',
     rev_sub:'真实用户，真实反馈。Google Play 五星好评。',
     road_title:'即将推出<br>的内容。',road_sub:'我们的开发计划 — 透明且充满雄心。',
