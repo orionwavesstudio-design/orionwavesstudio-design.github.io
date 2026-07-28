@@ -21,47 +21,68 @@
     }
   },
   {
-  "status": "done",
-  "title": {
-    "fr": "ASCEND v3.0.1 — Correctifs & Améliorations",
-    "en": "ASCEND v3.0.1 — Fixes & Improvements",
-    "de": "ASCEND v3.0.1 — Korrekturen & Verbesserungen",
-    "it": "ASCEND v3.0.1 — Correzioni & Miglioramenti",
-    "es": "ASCEND v3.0.1 — Correcciones & Mejoras",
-    "pt": "ASCEND v3.0.1 — Correções & Melhorias",
-    "zh": "ASCEND v3.0.1 — 修复与改进"
+    "status": "done",
+    "title": {
+      "fr": "ASCEND v3.0.1 — Correctifs & Améliorations",
+      "en": "ASCEND v3.0.1 — Fixes & Improvements",
+      "de": "ASCEND v3.0.1 — Korrekturen & Verbesserungen",
+      "it": "ASCEND v3.0.1 — Correzioni & Miglioramenti",
+      "es": "ASCEND v3.0.1 — Correcciones & Mejoras",
+      "pt": "ASCEND v3.0.1 — Correções & Melhorias",
+      "zh": "ASCEND v3.0.1 — 修复与改进"
+    },
+    "desc": {
+      "fr": "Liens légaux PremiumScreen, site web intégré.",
+      "en": "Legal links PremiumScreen, website integrated.",
+      "de": "Rechtliche Links PremiumScreen, Website integriert.",
+      "it": "Link legali PremiumScreen, sito web integrato.",
+      "es": "Links legales PremiumScreen, sitio web integrado.",
+      "pt": "Links legais PremiumScreen, site integrado.",
+      "zh": "法律链接PremiumScreen，网站已集成。"
+    }
   },
-  "desc": {
-    "fr": "Liens légaux PremiumScreen, site web intégré.",
-    "en": "Legal links PremiumScreen, website integrated.",
-    "de": "Rechtliche Links PremiumScreen, Website integriert.",
-    "it": "Link legali PremiumScreen, sito web integrato.",
-    "es": "Liens legales PremiumScreen, sitio web integrado.",
-    "pt": "Links legais PremiumScreen, site integrado.",
-    "zh": "法律链接PremiumScreen，网站已集成。"
-  }
-},
   {
-  "status": "done",
-  "title": {
-    "fr": "SMSplode v1.0.0 — Lancement Production",
-    "en": "SMSplode v1.0.0 — Production Launch",
-    "de": "SMSplode v1.0.0 — Produktionsstart",
-    "it": "SMSplode v1.0.0 — Lancio in Produzione",
-    "es": "SMSplode v1.0.0 — Lanzamiento en Producción",
-    "pt": "SMSplode v1.0.0 — Lançamento em Produção",
-    "zh": "SMSplode v1.0.0 — 正式上线"
+    "status": "done",
+    "title": {
+      "fr": "ASCEND v3.0.5 — Publication Production",
+      "en": "ASCEND v3.0.5 — Production Release",
+      "de": "ASCEND v3.0.5 — Produktionsveröffentlichung",
+      "it": "ASCEND v3.0.5 — Pubblicazione Produzione",
+      "es": "ASCEND v3.0.5 — Publicación en Producción",
+      "pt": "ASCEND v3.0.5 — Publicação em Produção",
+      "zh": "ASCEND v3.0.5 — 正式发布"
+    },
+    "desc": {
+      "fr": "Mise à jour Play Billing & targetSdk. Compatibilité Google Play maintenue.",
+      "en": "Play Billing & targetSdk update. Google Play compatibility maintained.",
+      "de": "Play Billing & targetSdk aktualisiert. Google Play-Kompatibilität beibehalten.",
+      "it": "Aggiornamento Play Billing & targetSdk. Compatibilità Google Play mantenuta.",
+      "es": "Actualización Play Billing & targetSdk. Compatibilidad Google Play mantenida.",
+      "pt": "Atualização Play Billing & targetSdk. Compatibilidade Google Play mantida.",
+      "zh": "更新Play Billing和targetSdk。保持Google Play兼容性。"
+    }
   },
-  "desc": {
-    "fr": "Bombardement SMS, animation 3D, sons custom, mode furtif, 10 destinataires. 177 pays.",
-    "en": "SMS bombing, 3D animation, custom sounds, stealth mode, 10 recipients. 177 countries.",
-    "de": "SMS-Bombardierung, 3D-Animation, eigene Töne, Tarnmodus, 10 Empfänger. 177 Länder.",
-    "it": "Bombardamento SMS, animazione 3D, suoni custom, modalità furtiva, 10 destinatari. 177 paesi.",
-    "es": "Bombardeo SMS, animación 3D, sonidos custom, modo sigiloso, 10 destinatarios. 177 países.",
-    "pt": "Bombardeio SMS, animação 3D, sons custom, modo furtivo, 10 destinatários. 177 países.",
-    "zh": "SMS轰炸、3D动画、自定义音效、隐身模式、10位接收者。177个国家。"
-  }
-},
+  {
+    "status": "done",
+    "title": {
+      "fr": "SMSplode v1.0.0 — Lancement Production",
+      "en": "SMSplode v1.0.0 — Production Launch",
+      "de": "SMSplode v1.0.0 — Produktionsstart",
+      "it": "SMSplode v1.0.0 — Lancio in Produzione",
+      "es": "SMSplode v1.0.0 — Lanzamiento en Producción",
+      "pt": "SMSplode v1.0.0 — Lançamento em Produção",
+      "zh": "SMSplode v1.0.0 — 正式上线"
+    },
+    "desc": {
+      "fr": "Bombardement SMS, animation 3D, sons custom, mode furtif, 10 destinataires. 177 pays.",
+      "en": "SMS bombing, 3D animation, custom sounds, stealth mode, 10 recipients. 177 countries.",
+      "de": "SMS-Bombardierung, 3D-Animation, eigene Töne, Tarnmodus, 10 Empfänger. 177 Länder.",
+      "it": "Bombardamento SMS, animazione 3D, suoni custom, modalità furtiva, 10 destinatari. 177 paesi.",
+      "es": "Bombardeo SMS, animación 3D, sonidos custom, modo sigiloso, 10 destinatarios. 177 países.",
+      "pt": "Bombardeio SMS, animação 3D, sons custom, modo furtivo, 10 destinatários. 177 países.",
+      "zh": "SMS轰炸、3D动画、自定义音效、隐身模式、10位接收者。177个国家。"
+    }
+  },
   {
     "status": "done",
     "title": {
@@ -84,89 +105,152 @@
     }
   },
   {
-  "status": "done",
-  "title": {
-    "fr": "Projet PULSAR v1.0.0 — Lancement Production",
-    "en": "Project PULSAR v1.0.0 — Production Launch",
-    "de": "Projekt PULSAR v1.0.0 — Produktionsstart",
-    "it": "Progetto PULSAR v1.0.0 — Lancio in Produzione",
-    "es": "Proyecto PULSAR v1.0.0 — Lanzamiento en Producción",
-    "pt": "Projeto PULSAR v1.0.0 — Lançamento em Produção",
-    "zh": "PULSAR项目 v1.0.0 — 正式上线"
+    "status": "done",
+    "title": {
+      "fr": "SMSplode v3.2.1 — Publication Production",
+      "en": "SMSplode v3.2.1 — Production Release",
+      "de": "SMSplode v3.2.1 — Produktionsveröffentlichung",
+      "it": "SMSplode v3.2.1 — Pubblicazione Produzione",
+      "es": "SMSplode v3.2.1 — Publicación en Producción",
+      "pt": "SMSplode v3.2.1 — Publicação em Produção",
+      "zh": "SMSplode v3.2.1 — 正式发布"
+    },
+    "desc": {
+      "fr": "Mise à jour Play Billing & targetSdk. Correctif sélection des contacts.",
+      "en": "Play Billing & targetSdk update. Contact selection fix.",
+      "de": "Play Billing & targetSdk aktualisiert. Korrektur der Kontaktauswahl.",
+      "it": "Aggiornamento Play Billing & targetSdk. Correzione selezione contatti.",
+      "es": "Actualización Play Billing & targetSdk. Corrección selección de contactos.",
+      "pt": "Atualização Play Billing & targetSdk. Correção seleção de contatos.",
+      "zh": "更新Play Billing和targetSdk。修复联系人选择问题。"
+    }
   },
-  "desc": {
-    "fr": "Jeu de réflexes circulaires avec IA adaptative. Disponible sur Google Play.",
-    "en": "Circular reflex game with adaptive AI. Available on Google Play.",
-    "de": "Kreisförmiges Reflexspiel mit adaptiver KI. Auf Google Play verfügbar.",
-    "it": "Gioco di riflessi circolari con IA adattiva. Disponibile su Google Play.",
-    "es": "Juego de reflejos circulares con IA adaptativa. Disponible en Google Play.",
-    "pt": "Jogo de reflexos circulares com IA adaptativa. Disponível no Google Play.",
-    "zh": "环形反应游戏，搭载自适应AI。即将登陆Google Play。"
-  }
-},
   {
-  "status": "done",
-  "title": {
-    "fr": "Projet PULSAR v2.6.4 — Jeu Mobile",
-    "en": "Project PULSAR v2.6.4 — Mobile Game",
-    "de": "Projekt PULSAR v2.6.4 — Handyspiel",
-    "it": "Progetto PULSAR v2.6.4 — Gioco Mobile",
-    "es": "Proyecto PULSAR v2.6.4 — Juego Móvil",
-    "pt": "Projeto PULSAR v2.6.4 — Jogo Mobile",
-    "zh": "PULSAR项目 v2.6.4 — 手机游戏"
+    "status": "done",
+    "title": {
+      "fr": "Projet PULSAR v1.0.0 — Lancement Production",
+      "en": "Project PULSAR v1.0.0 — Production Launch",
+      "de": "Projekt PULSAR v1.0.0 — Produktionsstart",
+      "it": "Progetto PULSAR v1.0.0 — Lancio in Produzione",
+      "es": "Proyecto PULSAR v1.0.0 — Lanzamiento en Producción",
+      "pt": "Projeto PULSAR v1.0.0 — Lançamento em Produção",
+      "zh": "PULSAR项目 v1.0.0 — 正式上线"
+    },
+    "desc": {
+      "fr": "Jeu de réflexes circulaires avec IA adaptative. Disponible sur Google Play.",
+      "en": "Circular reflex game with adaptive AI. Available on Google Play.",
+      "de": "Kreisförmiges Reflexspiel mit adaptiver KI. Auf Google Play verfügbar.",
+      "it": "Gioco di riflessi circolari con IA adattiva. Disponibile su Google Play.",
+      "es": "Juego de reflejos circulares con IA adaptativa. Disponible en Google Play.",
+      "pt": "Jogo de reflexos circulares com IA adaptativa. Disponível no Google Play.",
+      "zh": "环形反应游戏，搭载自适应AI。已登陆Google Play。"
+    }
   },
-  "desc": {
-    "fr": "Réflexes circulaires avec IA adaptative. Phase test fermés",
-    "en": "Circular reflexes with adaptive AI. Closed testing phase.",
-    "de": "Kreisförmige Reflexe mit adaptiver KI. Geschlossene Testphase.",
-    "it": "Riflessi circolari con IA adattiva. Fase di test chiusa.",
-    "es": "Reflejos circulares con IA adaptativa. Fase de prueba cerrada.",
-    "pt": "Reflexos circulares com IA adaptativa. Fase de teste fechado.",
-    "zh": "利用自适应人工智能进行环形反射训练。封闭测试阶段。"
-  }
-},
   {
-  "status": "done",
-  "title": {
-    "fr": "Projet NOVA v1.0.0 — En Développement",
-    "en": "Project NOVA v1.0.0 — In Development",
-    "de": "Projekt NOVA v1.0.0 — In Entwicklung",
-    "it": "Progetto NOVA v1.0.0 — In Sviluppo",
-    "es": "Proyecto NOVA v1.0.0 — En Desarrollo",
-    "pt": "Projeto NOVA v1.0.0 — Em Desenvolvimento",
-    "zh": "NOVA项目 — 开发中"
+    "status": "done",
+    "title": {
+      "fr": "Projet PULSAR v2.6.4 — Jeu Mobile",
+      "en": "Project PULSAR v2.6.4 — Mobile Game",
+      "de": "Projekt PULSAR v2.6.4 — Handyspiel",
+      "it": "Progetto PULSAR v2.6.4 — Gioco Mobile",
+      "es": "Proyecto PULSAR v2.6.4 — Juego Móvil",
+      "pt": "Projeto PULSAR v2.6.4 — Jogo Mobile",
+      "zh": "PULSAR项目 v2.6.4 — 手机游戏"
+    },
+    "desc": {
+      "fr": "Réflexes circulaires avec IA adaptative. Phase test fermée.",
+      "en": "Circular reflexes with adaptive AI. Closed testing phase.",
+      "de": "Kreisförmige Reflexe mit adaptiver KI. Geschlossene Testphase.",
+      "it": "Riflessi circolari con IA adattiva. Fase di test chiusa.",
+      "es": "Reflejos circulares con IA adaptativa. Fase de prueba cerrada.",
+      "pt": "Reflexos circulares com IA adaptativa. Fase de teste fechado.",
+      "zh": "利用自适应AI进行环形反射训练。封闭测试阶段。"
+    }
   },
-  "desc": {
-    "fr": "Notre prochain projet Android — actuellement en phase de conception.",
-    "en": "Our next Android project — currently in design phase.",
-    "de": "Unser nächstes Android-Projekt — aktuell in der Konzeptionsphase.",
-    "it": "Il nostro prossimo progetto Android — attualmente in fase di ideazione.",
-    "es": "Nuestro próximo proyecto Android — actualmente en fase de concepto.",
-    "pt": "Nosso próximo projeto Android — atualmente em fase de concepção.",
-    "zh": "我们的下一个Android项目 — 目前正处于概念设计阶段。"
-  }
-},
   {
-  "status": "active",
-  "title": {
-    "fr": "Projet NOVA V1.3.0  — Jeu Mobile",
-    "en": "Project NOVA  V1.3.0 — Mobile Game",
-    "de": "Projekt NOVA V1.3.0 — Handyspiel",
-    "it": "Progetto NOVA V1.3.0 — Gioco Mobile",
-    "es": "Proyecto NOVA V1.3.0 — Juego Móvil",
-    "pt": "Projeto NOVA V1.3.0 — Jogo Mobile",
-    "zh": "NOVA项目 V1.3.0 — 手机游戏"
+    "status": "done",
+    "title": {
+      "fr": "Projet PULSAR v2.7.0 — Publication Production",
+      "en": "Project PULSAR v2.7.0 — Production Release",
+      "de": "Projekt PULSAR v2.7.0 — Produktionsveröffentlichung",
+      "it": "Progetto PULSAR v2.7.0 — Pubblicazione Produzione",
+      "es": "Proyecto PULSAR v2.7.0 — Publicación en Producción",
+      "pt": "Projeto PULSAR v2.7.0 — Publicação em Produção",
+      "zh": "PULSAR项目 v2.7.0 — 正式发布"
+    },
+    "desc": {
+      "fr": "Mise à jour Play Billing & targetSdk. Compatibilité Google Play maintenue.",
+      "en": "Play Billing & targetSdk update. Google Play compatibility maintained.",
+      "de": "Play Billing & targetSdk aktualisiert. Google Play-Kompatibilität beibehalten.",
+      "it": "Aggiornamento Play Billing & targetSdk. Compatibilità Google Play mantenuta.",
+      "es": "Actualización Play Billing & targetSdk. Compatibilidad Google Play mantenida.",
+      "pt": "Atualização Play Billing & targetSdk. Compatibilidade Google Play mantida.",
+      "zh": "更新Play Billing和targetSdk。保持Google Play兼容性。"
+    }
   },
-  "desc": {
-    "fr": "Shoot'em up spatial complet avec IA adaptative, leaderboards et défis quotidiens. Phase de test fermée (12 testeurs).",
-    "en": "Complete space shoot'em up with adaptive AI, leaderboards and daily challenges. Closed testing phase (12 testers).",
-    "de": "Komplettes Weltraum-Shoot'em-up mit adaptiver KI, Bestenlisten und täglichen Herausforderungen. Geschlossene Testphase (12 Tester).",
-    "it": "Shoot'em up spaziale completo con IA adattiva, classifiche e sfide giornaliere. Fase di test chiusa (12 tester).",
-    "es": "Shoot'em up espacial completo con IA adaptativa, clasificaciones y desafíos diarios. Fase de prueba cerrada (12 testers).",
-    "pt": "Shoot'em up espacial completo com IA adaptativa, rankings e desafios diários. Fase de teste fechado (12 testadores).",
-    "zh": "完整太空射击游戏，配备自适应AI、排行榜和每日挑战。封闭测试阶段（12名测试员）。"
-  }
-},
+  {
+    "status": "done",
+    "title": {
+      "fr": "Projet NOVA v1.0.0 — En Développement",
+      "en": "Project NOVA v1.0.0 — In Development",
+      "de": "Projekt NOVA v1.0.0 — In Entwicklung",
+      "it": "Progetto NOVA v1.0.0 — In Sviluppo",
+      "es": "Proyecto NOVA v1.0.0 — En Desarrollo",
+      "pt": "Projeto NOVA v1.0.0 — Em Desenvolvimento",
+      "zh": "NOVA项目 v1.0.0 — 开发中"
+    },
+    "desc": {
+      "fr": "Notre prochain projet Android — actuellement en phase de conception.",
+      "en": "Our next Android project — currently in design phase.",
+      "de": "Unser nächstes Android-Projekt — aktuell in der Konzeptionsphase.",
+      "it": "Il nostro prossimo progetto Android — attualmente in fase di ideazione.",
+      "es": "Nuestro próximo proyecto Android — actualmente en fase de concepto.",
+      "pt": "Nosso próximo projeto Android — atualmente em fase de concepção.",
+      "zh": "我们的下一个Android项目 — 目前正处于概念设计阶段。"
+    }
+  },
+  {
+    "status": "done",
+    "title": {
+      "fr": "Projet NOVA v1.3.0 — Jeu Mobile",
+      "en": "Project NOVA v1.3.0 — Mobile Game",
+      "de": "Projekt NOVA v1.3.0 — Handyspiel",
+      "it": "Progetto NOVA v1.3.0 — Gioco Mobile",
+      "es": "Proyecto NOVA v1.3.0 — Juego Móvil",
+      "pt": "Projeto NOVA v1.3.0 — Jogo Mobile",
+      "zh": "NOVA项目 v1.3.0 — 手机游戏"
+    },
+    "desc": {
+      "fr": "Shoot'em up spatial complet avec IA adaptative, leaderboards et défis quotidiens. Phase de test fermée (12 testeurs).",
+      "en": "Complete space shoot'em up with adaptive AI, leaderboards and daily challenges. Closed testing phase (12 testers).",
+      "de": "Komplettes Weltraum-Shoot'em-up mit adaptiver KI, Bestenlisten und täglichen Herausforderungen. Geschlossene Testphase (12 Tester).",
+      "it": "Shoot'em up spaziale completo con IA adattiva, classifiche e sfide giornaliere. Fase di test chiusa (12 tester).",
+      "es": "Shoot'em up espacial completo con IA adaptativa, clasificaciones y desafíos diarios. Fase de prueba cerrada (12 testers).",
+      "pt": "Shoot'em up espacial completo com IA adaptativa, rankings e desafios diários. Fase de teste fechado (12 testadores).",
+      "zh": "完整太空射击游戏，配备自适应AI、排行榜和每日挑战。封闭测试阶段（12名测试员）。"
+    }
+  },
+  {
+    "status": "done",
+    "title": {
+      "fr": "Projet NOVA v1.3.1 — Publication Production",
+      "en": "Project NOVA v1.3.1 — Production Release",
+      "de": "Projekt NOVA v1.3.1 — Produktionsveröffentlichung",
+      "it": "Progetto NOVA v1.3.1 — Pubblicazione Produzione",
+      "es": "Proyecto NOVA v1.3.1 — Publicación en Producción",
+      "pt": "Projeto NOVA v1.3.1 — Publicação em Produção",
+      "zh": "NOVA项目 v1.3.1 — 正式发布"
+    },
+    "desc": {
+      "fr": "Lancement mondial sur Google Play. Shoot'em up spatial avec IA adaptative, leaderboards et défis quotidiens.",
+      "en": "Worldwide launch on Google Play. Space shoot'em up with adaptive AI, leaderboards and daily challenges.",
+      "de": "Weltweiter Start auf Google Play. Weltraum-Shoot'em-up mit adaptiver KI, Bestenlisten und täglichen Herausforderungen.",
+      "it": "Lancio mondiale su Google Play. Shoot'em up spaziale con IA adattiva, classifiche e sfide giornaliere.",
+      "es": "Lanzamiento mundial en Google Play. Shoot'em up espacial con IA adaptativa, clasificaciones y desafíos diarios.",
+      "pt": "Lançamento mundial no Google Play. Shoot'em up espacial com IA adaptativa, rankings e desafios diários.",
+      "zh": "在Google Play全球发布。太空射击游戏，搭载自适应AI、排行榜和每日挑战。"
+    }
+  },
   {
     "status": "future",
     "title": {
