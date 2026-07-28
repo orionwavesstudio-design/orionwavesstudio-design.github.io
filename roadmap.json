@@ -23,27 +23,6 @@
   {
     "status": "done",
     "title": {
-      "fr": "ASCEND v3.0.1 — Correctifs & Améliorations",
-      "en": "ASCEND v3.0.1 — Fixes & Improvements",
-      "de": "ASCEND v3.0.1 — Korrekturen & Verbesserungen",
-      "it": "ASCEND v3.0.1 — Correzioni & Miglioramenti",
-      "es": "ASCEND v3.0.1 — Correcciones & Mejoras",
-      "pt": "ASCEND v3.0.1 — Correções & Melhorias",
-      "zh": "ASCEND v3.0.1 — 修复与改进"
-    },
-    "desc": {
-      "fr": "Liens légaux PremiumScreen, site web intégré.",
-      "en": "Legal links PremiumScreen, website integrated.",
-      "de": "Rechtliche Links PremiumScreen, Website integriert.",
-      "it": "Link legali PremiumScreen, sito web integrato.",
-      "es": "Links legales PremiumScreen, sitio web integrado.",
-      "pt": "Links legais PremiumScreen, site integrado.",
-      "zh": "法律链接PremiumScreen，网站已集成。"
-    }
-  },
-  {
-    "status": "done",
-    "title": {
       "fr": "ASCEND v3.0.5 — Publication Production",
       "en": "ASCEND v3.0.5 — Production Release",
       "de": "ASCEND v3.0.5 — Produktionsveröffentlichung",
@@ -81,27 +60,6 @@
       "es": "Bombardeo SMS, animación 3D, sonidos custom, modo sigiloso, 10 destinatarios. 177 países.",
       "pt": "Bombardeio SMS, animação 3D, sons custom, modo furtivo, 10 destinatários. 177 países.",
       "zh": "SMS轰炸、3D动画、自定义音效、隐身模式、10位接收者。177个国家。"
-    }
-  },
-  {
-    "status": "done",
-    "title": {
-      "fr": "SMSplode v3.1.3 — Publication Production",
-      "en": "SMSplode v3.1.3 — Production Release",
-      "de": "SMSplode v3.1.3 — Produktionsveröffentlichung",
-      "it": "SMSplode v3.1.3 — Pubblicazione Produzione",
-      "es": "SMSplode v3.1.3 — Publicación en Producción",
-      "pt": "SMSplode v3.1.3 — Publicação em Produção",
-      "zh": "SMSplode v3.1.3 — 正式发布"
-    },
-    "desc": {
-      "fr": "Intégration AdMob, RGPD, correction widget, publication mondiale.",
-      "en": "AdMob integration, GDPR, widget fix, worldwide release.",
-      "de": "AdMob-Integration, DSGVO, Widget-Fix, weltweite Veröffentlichung.",
-      "it": "Integrazione AdMob, GDPR, correzione widget, pubblicazione mondiale.",
-      "es": "Integración AdMob, RGPD, corrección widget, publicación mundial.",
-      "pt": "Integração AdMob, LGPD, correção widget, publicação mundial.",
-      "zh": "AdMob集成、GDPR、小部件修复、全球发布。"
     }
   },
   {
@@ -149,27 +107,6 @@
   {
     "status": "done",
     "title": {
-      "fr": "Projet PULSAR v2.6.4 — Jeu Mobile",
-      "en": "Project PULSAR v2.6.4 — Mobile Game",
-      "de": "Projekt PULSAR v2.6.4 — Handyspiel",
-      "it": "Progetto PULSAR v2.6.4 — Gioco Mobile",
-      "es": "Proyecto PULSAR v2.6.4 — Juego Móvil",
-      "pt": "Projeto PULSAR v2.6.4 — Jogo Mobile",
-      "zh": "PULSAR项目 v2.6.4 — 手机游戏"
-    },
-    "desc": {
-      "fr": "Réflexes circulaires avec IA adaptative. Phase test fermée.",
-      "en": "Circular reflexes with adaptive AI. Closed testing phase.",
-      "de": "Kreisförmige Reflexe mit adaptiver KI. Geschlossene Testphase.",
-      "it": "Riflessi circolari con IA adattiva. Fase di test chiusa.",
-      "es": "Reflejos circulares con IA adaptativa. Fase de prueba cerrada.",
-      "pt": "Reflexos circulares com IA adaptativa. Fase de teste fechado.",
-      "zh": "利用自适应AI进行环形反射训练。封闭测试阶段。"
-    }
-  },
-  {
-    "status": "done",
-    "title": {
       "fr": "Projet PULSAR v2.7.0 — Publication Production",
       "en": "Project PULSAR v2.7.0 — Production Release",
       "de": "Projekt PULSAR v2.7.0 — Produktionsveröffentlichung",
@@ -207,27 +144,6 @@
       "es": "Nuestro próximo proyecto Android — actualmente en fase de concepto.",
       "pt": "Nosso próximo projeto Android — atualmente em fase de concepção.",
       "zh": "我们的下一个Android项目 — 目前正处于概念设计阶段。"
-    }
-  },
-  {
-    "status": "done",
-    "title": {
-      "fr": "Projet NOVA v1.3.0 — Jeu Mobile",
-      "en": "Project NOVA v1.3.0 — Mobile Game",
-      "de": "Projekt NOVA v1.3.0 — Handyspiel",
-      "it": "Progetto NOVA v1.3.0 — Gioco Mobile",
-      "es": "Proyecto NOVA v1.3.0 — Juego Móvil",
-      "pt": "Projeto NOVA v1.3.0 — Jogo Mobile",
-      "zh": "NOVA项目 v1.3.0 — 手机游戏"
-    },
-    "desc": {
-      "fr": "Shoot'em up spatial complet avec IA adaptative, leaderboards et défis quotidiens. Phase de test fermée (12 testeurs).",
-      "en": "Complete space shoot'em up with adaptive AI, leaderboards and daily challenges. Closed testing phase (12 testers).",
-      "de": "Komplettes Weltraum-Shoot'em-up mit adaptiver KI, Bestenlisten und täglichen Herausforderungen. Geschlossene Testphase (12 Tester).",
-      "it": "Shoot'em up spaziale completo con IA adattiva, classifiche e sfide giornaliere. Fase di test chiusa (12 tester).",
-      "es": "Shoot'em up espacial completo con IA adaptativa, clasificaciones y desafíos diarios. Fase de prueba cerrada (12 testers).",
-      "pt": "Shoot'em up espacial completo com IA adaptativa, rankings e desafios diários. Fase de teste fechado (12 testadores).",
-      "zh": "完整太空射击游戏，配备自适应AI、排行榜和每日挑战。封闭测试阶段（12名测试员）。"
     }
   },
   {
