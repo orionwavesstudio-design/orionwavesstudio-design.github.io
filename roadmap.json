@@ -128,34 +128,13 @@
   {
     "status": "done",
     "title": {
-      "fr": "Projet NOVA v1.0.0 — En Développement",
-      "en": "Project NOVA v1.0.0 — In Development",
-      "de": "Projekt NOVA v1.0.0 — In Entwicklung",
-      "it": "Progetto NOVA v1.0.0 — In Sviluppo",
-      "es": "Proyecto NOVA v1.0.0 — En Desarrollo",
-      "pt": "Projeto NOVA v1.0.0 — Em Desenvolvimento",
-      "zh": "NOVA项目 v1.0.0 — 开发中"
-    },
-    "desc": {
-      "fr": "Notre prochain projet Android — actuellement en phase de conception.",
-      "en": "Our next Android project — currently in design phase.",
-      "de": "Unser nächstes Android-Projekt — aktuell in der Konzeptionsphase.",
-      "it": "Il nostro prossimo progetto Android — attualmente in fase di ideazione.",
-      "es": "Nuestro próximo proyecto Android — actualmente en fase de concepto.",
-      "pt": "Nosso próximo projeto Android — atualmente em fase de concepção.",
-      "zh": "我们的下一个Android项目 — 目前正处于概念设计阶段。"
-    }
-  },
-  {
-    "status": "done",
-    "title": {
-      "fr": "Projet NOVA v1.3.1 — Publication Production",
-      "en": "Project NOVA v1.3.1 — Production Release",
-      "de": "Projekt NOVA v1.3.1 — Produktionsveröffentlichung",
-      "it": "Progetto NOVA v1.3.1 — Pubblicazione Produzione",
-      "es": "Proyecto NOVA v1.3.1 — Publicación en Producción",
-      "pt": "Projeto NOVA v1.3.1 — Publicação em Produção",
-      "zh": "NOVA项目 v1.3.1 — 正式发布"
+      "fr": "Projet NOVA v1.3.1 — Lancement Production",
+      "en": "Project NOVA v1.3.1 — Production Launch",
+      "de": "Projekt NOVA v1.3.1 — Produktionsstart",
+      "it": "Progetto NOVA v1.3.1 — Lancio in Produzione",
+      "es": "Proyecto NOVA v1.3.1 — Lanzamiento en Producción",
+      "pt": "Projeto NOVA v1.3.1 — Lançamento em Produção",
+      "zh": "NOVA项目 v1.3.1 — 正式上线"
     },
     "desc": {
       "fr": "Lancement mondial sur Google Play. Shoot'em up spatial avec IA adaptative, leaderboards et défis quotidiens.",
@@ -165,6 +144,48 @@
       "es": "Lanzamiento mundial en Google Play. Shoot'em up espacial con IA adaptativa, clasificaciones y desafíos diarios.",
       "pt": "Lançamento mundial no Google Play. Shoot'em up espacial com IA adaptativa, rankings e desafios diários.",
       "zh": "在Google Play全球发布。太空射击游戏，搭载自适应AI、排行榜和每日挑战。"
+    }
+  },
+  {
+    "status": "done",
+    "title": {
+      "fr": "Projet RingSplode v1.0.0 — Lancement Production",
+      "en": "Project RingSplode v1.0.0 — Production Launch",
+      "de": "Projekt RingSplode v1.0.0 — Produktionsstart",
+      "it": "Progetto RingSplode v1.0.0 — Lancio in Produzione",
+      "es": "Proyecto RingSplode v1.0.0 — Lanzamiento en Producción",
+      "pt": "Projeto RingSplode v1.0.0 — Lançamento em Produção",
+      "zh": "RingSplode项目 v1.0.0 — 正式上线"
+    },
+    "desc": {
+      "fr": "Faux appels entrants ultra-réalistes en rafale. 50 profils, déclencheurs discrets, thèmes premium. 177 pays.",
+      "en": "Ultra-realistic fake incoming calls in burst mode. 50 profiles, discreet triggers, premium themes. 177 countries.",
+      "de": "Ultrarealistische gefälschte Anrufe im Burst-Modus. 50 Profile, diskrete Auslöser, Premium-Themen. 177 Länder.",
+      "it": "Chiamate false ultra-realistiche in modalità raffica. 50 profili, trigger discreti, temi premium. 177 paesi.",
+      "es": "Llamadas entrantes falsas ultrarrealistas en ráfaga. 50 perfiles, disparadores discretos, temas premium. 177 países.",
+      "pt": "Chamadas falsas ultra-realistas em rajada. 50 perfis, gatilhos discretos, temas premium. 177 países.",
+      "zh": "超真实假来电爆炸模式。50个档案、隐蔽触发器、高级主题。177个国家。"
+    }
+  },
+  {
+    "status": "done",
+    "title": {
+      "fr": "Projet STELLAR v1.0.0 — Lancement Production",
+      "en": "Project STELLAR v1.0.0 — Production Launch",
+      "de": "Projekt STELLAR v1.0.0 — Produktionsstart",
+      "it": "Progetto STELLAR v1.0.0 — Lancio in Produzione",
+      "es": "Proyecto STELLAR v1.0.0 — Lanzamiento en Producción",
+      "pt": "Projeto STELLAR v1.0.0 — Lançamento em Produção",
+      "zh": "STELLAR项目 v1.0.0 — 正式上线"
+    },
+    "desc": {
+      "fr": "Shoot'em up 3D bioluminescent en Unity. IA adaptative, roguelite, Dérive Gravitationnelle. Android & Steam.",
+      "en": "Bioluminescent 3D shoot'em up in Unity. Adaptive AI, roguelite, Gravitational Drift. Android & Steam.",
+      "de": "Biolumineszentes 3D-Shoot'em-up in Unity. Adaptive KI, Roguelite, Gravitationsdrift. Android & Steam.",
+      "it": "Shoot'em up 3D bioluminescente in Unity. IA adattiva, roguelite, Deriva Gravitazionale. Android & Steam.",
+      "es": "Shoot'em up 3D bioluminiscente en Unity. IA adaptativa, roguelite, Deriva Gravitacional. Android & Steam.",
+      "pt": "Shoot'em up 3D bioluminescente em Unity. IA adaptativa, roguelite, Deriva Gravitacional. Android & Steam.",
+      "zh": "Unity生物发光3D射击游戏。自适应AI、Roguelite、引力漂移。Android & Steam。"
     }
   },
   {
