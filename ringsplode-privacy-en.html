@@ -18,72 +18,49 @@
   .highlight { background: #f3f0ff; border: 1px solid #d8b4fe; border-radius: 8px; padding: 14px 18px; margin: 16px 0; }
   .footer { text-align: center; padding: 30px 20px; font-size: 13px; color: #888; border-top: 1px solid #e5e7eb; margin-top: 40px; }
   a { color: #7C3AED; }
+  .language { margin-top: 14px; }
+  .language a { color: white; text-decoration: underline; padding: 8px 12px; display: inline-block; }
+  a { overflow-wrap: anywhere; }
+  @media (max-width: 480px) { .header { padding: 28px 16px; } .container { padding: 24px 16px; } .header h1 { font-size: 25px; } }
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>🔒 Privacy Policy</h1>
-  <p>RingSplode – Fake Call &amp; Ring Bomber<br>OrionWavesStudio · Last updated: August 2026</p>
-</div>
-<div class="container">
+<header class="header"><h1>🔒 Privacy Policy</h1><p>RingSplode – Personal Call Simulator<br>OrionWavesStudio · Last updated: 13 October 2026</p><nav class="language" aria-label="Language"><a href="ringsplode-privacy-fr.html" lang="fr" hreflang="fr">Français</a></nav></header>
+<main class="container">
+<div class="highlight"><strong>Summary:</strong> RingSplode simulates calls on your own device. Caller profiles and recordings are saved locally; advertising, analytics, crash reporting and purchase services can process technical data outside your device. No RingSplode account is required.</div>
+<h2>1. Developer and scope</h2>
+<p>This policy applies to RingSplode, Android package <strong>com.orionwavesstudio.ringsplode</strong>, provided by OrionWavesStudio. Contact: <a href="mailto:orionwavesstudio@gmail.com">orionwavesstudio@gmail.com</a>.</p>
+<p>The app does not read your real call history, intercept calls or access your address book. It does not request GPS location. A country prefix or a caller number entered for a simulation is not a request for your actual phone number. Third-party services may estimate a general location from your IP address.</p>
+<h2>2. Local content and actions you choose</h2>
+<ul><li>Caller names, numbers, countries, avatars, expressions, themes and scripts; references to photos and sounds selected with Android pickers.</li><li>Schedules, simulated-call history, favourites, achievements and app settings.</li><li>Audio recorded using the optional Witness feature after microphone permission and an in-app confirmation. Recordings are saved in the app’s storage; they are not automatically uploaded to OrionWavesStudio.</li><li>A local purchase status and temporary rewarded-access information. Purchase verification also communicates with Google Play.</li></ul>
+<p>There is no OrionWavesStudio server synchronising your profiles or recordings. Exporting, sharing a profile or QR code, or sending a recording is your choice; the selected destination then handles that content under its own rules. Profile exports do not include the imported photo or sound files. Avoid putting sensitive information into a profile you intend to share.</p>
+<p>RingSplode disables Android cloud backup in its manifest. Device-transfer behaviour may depend on Android and the manufacturer. The app’s transfer rules exclude recordings; manually exported files and other copies remain wherever you save them.</p>
+<h2>3. Advertising, analytics and diagnostics</h2>
+<p><strong>Google AdMob:</strong> ads are used in Free access, including optional rewarded ads. Its SDK can transmit IP addresses, advertising/app identifiers, ad interactions and technical performance data to Google for advertising, measurement and fraud prevention. An IP address can indicate an approximate location. These identifiers are not necessarily anonymous. Premium access does not display ads.</p>
+<p><strong>Firebase Crashlytics:</strong> sends crash details, app/device metadata and installation identifiers to Google for reliability monitoring. Firebase’s associated installation and session libraries can process installation identifiers and session metrics. Diagnostic records are not guaranteed to be anonymous.</p>
+<p><strong>Google Analytics for Firebase:</strong> the app includes this SDK, which can collect automatic usage events, app-instance/device identifiers and app/device information for usage measurement, including screen/session and purchase events and an approximate location inferred from network information. Buying Premium does not itself disable Firebase diagnostics or analytics.</p>
+<p><strong>Firebase Remote Config:</strong> the SDK is included. When it retrieves configuration, it can process installation identifiers and technical context such as language, country, time zone and app/system versions to deliver settings. Inclusion alone does not mean every available feature is used.</p>
+<p>The SDKs do not need the content of your saved profiles or recordings for these purposes. RingSplode does not intentionally attach that content to its analytics or crash reports.</p>
+<p>Details: <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure">AdMob data disclosure</a>, <a href="https://firebase.google.com/docs/android/play-data-disclosure">Firebase data disclosure</a>, <a href="https://support.google.com/analytics/answer/11582702">Analytics data disclosure</a> and <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
+<h2>4. Purchases and support</h2>
+<p>Google Play processes the one-time, lifetime Premium purchase. RingSplode receives product, purchase-status and purchase-token information needed to verify, acknowledge and restore access. It does not receive your payment-card number or Google password. Google handles the payment and retains its transaction records under its own policies.</p>
+<p>If you email support, we receive your email address, message and any attachments you choose to send, solely to handle your request and any related legal obligations. Do not send passwords, payment-card details or unnecessary recordings.</p>
+<h2>5. Permissions and choices</h2>
+<ul><li><strong>Notifications, full-screen access and exact alarms:</strong> incoming-call presentation and scheduling, subject to Android permissions and restrictions.</li><li><strong>Microphone:</strong> optional Witness recordings; it is not needed for an ordinary simulated call.</li><li><strong>Camera access:</strong> the optional ringtone torch effect, not automatic photo or video capture. Imported images use system selection.</li><li><strong>Do Not Disturb access:</strong> the optional quiet-mode feature.</li><li><strong>Foreground services, vibration, wake lock and reboot events:</strong> running enabled triggers, ringing, recording and recovering schedules.</li><li><strong>Network access:</strong> Google Play, ads, Firebase services and links you open.</li></ul>
+<p>You can revoke permissions in Android settings. Some features may then be unavailable. Battery settings can affect background behaviour.</p>
+<p>The advertising consent form appears where required by Google’s consent system. Advertising requests are gated by that system’s permitted-request status. Privacy choices are available in the app’s settings when the provider requires them. Refusing personalised advertising does not necessarily eliminate every technical processing operation associated with limited ads. Android also provides advertising-ID controls.</p>
+<p>The advertising form does not, by itself, switch off Firebase Analytics or Crashlytics. This policy does not promise a separate in-app switch for those services.</p>
+<h2>6. Retention, deletion and security</h2>
+<p>Local profiles, history and preferences remain until you delete them using available app functions or clear the app’s storage. Uninstalling normally removes app-owned data. Delete exported files and shared copies separately; removing a local profile does not delete a copy held by a recipient. Clearing local data does not cancel or erase a Google Play purchase.</p>
+<p>Technical data held by Google is retained according to the relevant service policies and configuration; it is not erased merely by uninstalling RingSplode. For privacy requests about data we control, contact us. We may need information sufficient to identify the relevant record, without requesting your password. Support messages are kept as needed to resolve the request and meet applicable obligations.</p>
+<p>The app uses Android’s application storage protections. Google’s AdMob and Firebase services document encrypted network transport. No storage or transmission method offers absolute security. Google may process service data internationally under the safeguards described in its policies.</p>
+<h2>7. Your rights and children</h2>
+<p>Depending on applicable law, you may request access, correction, deletion, restriction or portability of personal data and object to certain processing. Where processing relies on consent, it can be withdrawn without affecting earlier lawful processing. Contact us to exercise rights concerning data we control. You may also contact your competent data-protection authority, including the <a href="https://www.cnil.fr/en">CNIL</a> in France.</p>
+<p>RingSplode is not intended for children under 13. If you believe a child has provided personal data to us, contact us so that we can investigate and handle the request.</p>
+<h2>8. Updates and related information</h2>
+<p>The update date is shown above. This policy may be revised to reflect the app and its services. A policy update does not replace any consent required by law. See also the <a href="ringsplode-terms-en.html">Terms of Use</a>.</p>
 
-  <div class="highlight">
-    <strong>Summary:</strong> RingSplode does not collect, store, or share any personal data. Everything stays on your device.
-  </div>
-
-  <h2>1. What We Collect</h2>
-  <p>RingSplode does <strong>not</strong> collect any personal information. Specifically, we do not collect:</p>
-  <ul>
-    <li>Your name, email address, or contact information</li>
-    <li>Your location or GPS data</li>
-    <li>Your phone number or call logs</li>
-    <li>Any audio recordings made via Witness mode (stored locally only)</li>
-    <li>Usage statistics or analytics</li>
-    <li>Device identifiers</li>
-  </ul>
-
-  <h2>2. Data Stored Locally</h2>
-  <p>The following data is stored <strong>only on your device</strong> and never transmitted:</p>
-  <ul>
-    <li>Caller profiles you create (name, emoji, number type, country)</li>
-    <li>Scheduled burst call settings</li>
-    <li>Call history (local log of fake calls triggered)</li>
-    <li>App preferences (haptic, DND, triggers)</li>
-    <li>Audio recordings from Witness mode (Premium)</li>
-    <li>Premium status (verified via Google Play)</li>
-  </ul>
-
-  <h2>3. Permissions Used</h2>
-  <ul>
-    <li><strong>FOREGROUND_SERVICE</strong> – Required to run the shake trigger and ringtone service in the background</li>
-    <li><strong>VIBRATE</strong> – For haptic feedback during fake calls</li>
-    <li><strong>POST_NOTIFICATIONS</strong> – To display the incoming call notification</li>
-    <li><strong>USE_FULL_SCREEN_INTENT</strong> – To show the call screen over the lock screen</li>
-    <li><strong>SCHEDULE_EXACT_ALARM</strong> – To trigger scheduled burst calls at the exact time</li>
-    <li><strong>REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</strong> – To keep the shake trigger active in the background</li>
-    <li><strong>RECORD_AUDIO</strong> – Only used by Witness mode (Premium), never transmitted</li>
-    <li><strong>CAMERA / FLASHLIGHT</strong> – Only used for the torch effect during ringtone (Premium)</li>
-    <li><strong>RECEIVE_BOOT_COMPLETED</strong> – To reschedule pending burst calls after reboot</li>
-  </ul>
-
-  <h2>4. Third-Party Services</h2>
-  <p><strong>Google AdMob</strong> (Free version only): Displays ads. AdMob may collect anonymous advertising identifiers. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</p>
-  <p><strong>Google Play Billing</strong>: Handles the one-time Premium purchase. No payment data is processed by RingSplode directly.</p>
-  <p><strong>Firebase Crashlytics</strong>: Collects anonymous crash reports to help us fix bugs. No personal data is included.</p>
-
-  <h2>5. Children's Privacy</h2>
-  <p>RingSplode is not intended for children under the age of 13. We do not knowingly collect data from children.</p>
-
-  <h2>6. Changes to This Policy</h2>
-  <p>We may update this policy occasionally. The latest version is always available at this URL. Continued use of the app after changes constitutes acceptance.</p>
-
-  <h2>7. Contact</h2>
-  <p>Questions? Contact us at: <a href="mailto:orionwavesstudio@gmail.com">orionwavesstudio@gmail.com</a><br>
-  Website: <a href="https://orionwavesstudio.com">orionwavesstudio.com</a></p>
-
-</div>
-<div class="footer">
-  © 2026 OrionWavesStudio · RingSplode · All rights reserved
-</div>
+</main>
+<footer class="footer">© 2026 OrionWavesStudio · RingSplode</footer>
 </body>
 </html>
